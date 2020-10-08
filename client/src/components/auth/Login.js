@@ -75,7 +75,7 @@ import classnames from "classnames";
                    )}
                  </div>
                  <div className="form-group">
-                   <input type="submit" className="btn btn-info btn-block mt-4" Style="float:left;" />
+                   <input type="submit" className="btn btn-info btn-block mt-4" Style="float:left;margin-bottom:300px;" />
                    </div>
                </form>
              </div>

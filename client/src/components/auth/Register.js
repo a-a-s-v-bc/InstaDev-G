@@ -95,7 +95,7 @@ class Register extends Component {
 
                 </div>
                 <div className="form-group">
-                  <input type="submit" className="btn btn-info btn-block" Style="float:left;" />
+                  <input type="submit" className="btn btn-info btn-block" Style="float:left;margin-bottom:90px;" />
                   </div>
           </form>
         </div>
