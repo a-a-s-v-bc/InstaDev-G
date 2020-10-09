@@ -34,16 +34,16 @@ export default class Profile extends Component {
                   <p className="socialicons">
                    
               
-                    <a className="text-white p-2" href="#">
+                    <a className="text-white p-2" href="www.twitter.com">
                       <i className="fab fa-twitter fa-2x"></i>
                     </a>
-                    <a className="text-white p-2" href="#">
+                    <a className="text-white p-2" href="www.facebook.com">
                       <i className="fab fa-facebook fa-2x"></i>
                     </a>
-                    <a className="text-white p-2" href="#">
+                    <a className="text-white p-2" href="www.linkedin.com">
                       <i className="fab fa-linkedin fa-2x"></i>
                     </a>
-                    <a className="text-white p-2" href="#">
+                    <a className="text-white p-2" href="www.youtube.com">
                       <i className="fab fa-youtube fa-2x"></i>
                     </a>
                   </p>
