@@ -186,7 +186,7 @@ color: rgb(236, 196, 18);
 }
 
 .form-text{
-  color: rgb(236, 196, 18);
+  color: rgb(245, 209, 9);
   font-size: 15px;
   font-weight: 450;
 }
@@ -212,3 +212,21 @@ color: rgb(236, 196, 18);
   margin-bottom: 25px;
   margin-top: 0px;
 }
+
+.followersremove{
+ margin-top: 80px;
+}
+
+.followername{
+  margin-left:20px;
+  font-weight: Bold;
+  font-size: 1.5em;
+}
+
+.input-group-text{
+  width:43px;
+  height: 43px;
+  background-color:rgb(193, 153, 212);
+  color: white;
+}
+

@@ -12,6 +12,8 @@ import EditProfile from './components/dashboard/EditProfile';
 import store from './store';
 
 import Login from './components/auth/Login';
+import Followers from './components/dashboard/Followers';
+import Following from './components/dashboard/Following';
 
 class App extends Component {
   render() {
@@ -27,6 +29,8 @@ class App extends Component {
           <Route exact path="/dashboard" component={Dashboard} />  
           <Route exact path="/profile" component={Profile} />
           <Route exact path="/profile/editProfile" component={EditProfile} />
+          <Route exact path="/profile/followers" component={Followers} />
+          <Route exact path="/profile/following" component={Following} />
           
           
     <Footer /> 

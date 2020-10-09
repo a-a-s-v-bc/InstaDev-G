@@ -3,57 +3,57 @@ import React, { Component } from "react";
 export default class EditProfile extends Component {
   render() {
     return (
-      <div class="create-profile">
-          <a href="/profile" class="btn btn-light">
+      <div className="create-profile">
+          <a href="/profile" className="btn btn-light">
           Change Password
               </a>
-              <a href="/profile" class="btn btn-light">
+              <a href="/profile" className="btn btn-light">
                 Go Back
               </a>
-        <div class="container">
-          <div class="row">
-            <div class="col-md-8 m-auto">
+        <div className="container">
+          <div className="row">
+            <div className="col-md-8 m-auto">
               
               
-              <h1 class="display-4 text-center" Style="font-weight:bold; margin-top:10px;">Edit Your Profile</h1>
+              <h1 className="display-4 text-center" Style="font-weight:bold; margin-top:10px;">Edit Your Profile</h1>
 
-              <small class="d-block pb-3">* = required field</small>
-              <div class="form-group">
+              <small className="form-text">* = required field</small>
+              <div className="form-group">
                 <img
                   className="rounded-circle Editimage"
                   src="https://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50?s=200"
                   alt=""
                 />
-                <a href="/profile" class="form-text Profilechangeimage">Change Profile Image</a>
+                <a href="/profile" className="form-text Profilechangeimage">Change Profile Image</a>
               
               </div>
              
-              <div class="form-group">
+              <div className="form-group">
                 <input
                   type="text"
-                  class="form-control form-control-md"
+                  className="form-control form-control-md"
                   placeholder="Location"
                   name="location"
                   value="Name"
                 />
-                <small class="form-text ">Name</small>
+                <small className="form-text">Name</small>
               </div>
-              <div class="form-group">
+              <div className="form-group">
                 <input
                   type="text"
-                  class="form-control form-control-md"
+                  className="form-control form-control-md"
                   placeholder="* Profile handle"
                   name="handle"
                   value="myprofilehandle"
                   required
                 />
-                <small class="form-text">
+                <small className="form-text">
                   A unique handle for your profile URL. Your full name, company
                   name, nickname, etc (This CAN'T be changed later)
                 </small>
               </div>
-              <div class="form-group">
-                <select class="form-control form-control-md" name="status">
+              <div className="form-group">
+                <select className="form-control form-control-md" name="status">
                   <option value="0">* Select Professional Status</option>
                   <option value="Developer">Developer</option>
                   <option value="Junior Developer">Junior Developer</option>
@@ -68,127 +68,127 @@ export default class EditProfile extends Component {
                   <option value="Intern">Intern</option>
                   <option value="Other">Other</option>
                 </select>
-                <small class="form-text">
+                <small className="form-text">
                   Give us an idea of where you are at in your career
                 </small>
               </div>
-              <div class="form-group">
+              <div className="form-group">
                 <input
                   type="text"
-                  class="form-control form-control-md"
+                  className="form-control form-control-md"
                   placeholder="Location"
                   name="location"
                   value="abc@xyz.com"
                 />
-                <small class="form-text">Email Address</small>
+                <small className="form-text">Email Address</small>
               </div>
-              <div class="form-group">
+              <div className="form-group">
                 <input
                   type="text"
-                  class="form-control form-control-md"
+                  className="form-control form-control-md"
                   placeholder="Location"
                   name="location"
                   value="+1 4123124324"
                 />
-                <small class="form-text">Phone Number</small>
+                <small className="form-text">Phone Number</small>
               </div>
 
-              <div class="form-group">
+              <div className="form-group">
                 <input
                   type="text"
-                  class="form-control form-control-md"
+                  className="form-control form-control-md"
                   placeholder="Location"
                   name="location"
                   value="www.abc.com"
                 />
-                <small class="form-text">Website</small>
+                <small className="form-text">Website</small>
               </div>
-              <div class="form-group">
+              <div className="form-group">
                 <input
                   type="text"
-                  class="form-control form-control-md"
+                  className="form-control form-control-md"
                   placeholder="Location"
                   name="location"
                   value="Bio"
                 />
-                <small class="form-text">Bio</small>
+                <small className="form-text">Bio</small>
               </div>
-              <div class="form-group">
+              <div className="form-group">
                 <textarea
-                  class="form-control form-control-md"
+                  className="form-control form-control-md"
                   placeholder="A short bio of yourself"
                   name="bio"
                 >
                   I am a web developer from Florida with around 8 years
                   experience
                 </textarea>
-                <small class="form-text">
+                <small className="form-text">
                   Tell us a little about yourself
                 </small>
               </div>
 
-              <div class="op">
+              <div className="op">
                
-                <span class="text-muted">Optional</span>
+                <span className="text-muted">Optional</span>
               </div>
 
-              <div class="input-group mb-3">
-                <div class="input-group-prepend">
-                  <span class="input-group-text">
-                    <i class="fab fa-twitter"></i>
+              <div className="input-group mb-3">
+                <div className="input-group-prepend">
+                  <span className="input-group-text">
+                    <i className="fab fa-twitter"></i>
                   </span>
                 </div>
                 <input
                   type="text"
-                  class="form-control form-control-md"
+                  className="form-control form-control-md"
                   placeholder="Twitter Profile URL"
                   name="twitter"
                   value="https://www.twitter.com/johndoe"
                 />
               </div>
 
-              <div class="input-group mb-3">
-                <div class="input-group-prepend">
-                  <span class="input-group-text">
-                    <i class="fab fa-facebook"></i>
+              <div className="input-group mb-3">
+                <div className="input-group-prepend">
+                  <span className="input-group-text">
+                    <i className="fab fa-facebook"></i>
                   </span>
                 </div>
                 <input
                   type="text"
-                  class="form-control form-control-md"
+                  className="form-control form-control-md"
                   placeholder="Facebook Page URL"
                   name="facebook"
                 />
               </div>
 
-              <div class="input-group mb-3">
-                <div class="input-group-prepend">
-                  <span class="input-group-text">
-                    <i class="fab fa-linkedin"></i>
+              <div className="input-group mb-3">
+                <div className="input-group-prepend">
+                  <span className="input-group-text">
+                    <i className="fab fa-linkedin"></i>
                   </span>
                 </div>
                 <input
                   type="text"
-                  class="form-control form-control-md"
+                  className="form-control form-control-md"
                   placeholder="Linkedin Profile URL"
                   name="linkedin"
                 />
               </div>
 
-              <div class="input-group mb-3">
-                <div class="input-group-prepend">
-                  <span class="input-group-text">
-                    <i class="fab fa-youtube"></i>
+              <div className="input-group mb-3">
+                <div className="input-group-prepend">
+                  <span className="input-group-text">
+                    <i className="fab fa-youtube"></i>
                   </span>
                 </div>
                 <input
                   type="text"
-                  class="form-control form-control-md"
+                  className="form-control form-control-md"
                   placeholder="YouTube Channel URL"
                   name="youtube"
                 />
               </div>
-              <div class="input-group mb-3"> <input type="submit" class="btn btn-info btn-block mt-4" Style="margin-bottom:20px;margin-right:0px;"/></div>
+              <div className="input-group mb-3"> <input type="submit" className="btn btn-info btn-block mt-4" Style="margin-bottom:20px;margin-right:0px;"/></div>
              
             </div>
           </div>

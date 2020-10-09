@@ -9,17 +9,17 @@ export default class Profile extends Component {
                 <div className="row">
                 
                 <img className="rounded-circle positionimage" src="https://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50?s=200" alt="" />
-                <div class="btn-group mb-4" role="group">
-            <a href="/profile/editProfile" class="btn btn-light">
-              <i class="fas fa-user-circle  mr-1"></i> Edit Profile</a>
-            <a href="add-experience.html" class="btn btn-light">
-              <i class="fas fa-mail-bulk  mr-1"></i>
+                <div className="btn-group mb-4" role="group">
+            <a href="/profile/editProfile" className="btn btn-light">
+              <i className="fas fa-user-circle  mr-1"></i> Edit Profile</a>
+            <a href="add-experience.html" className="btn btn-light">
+              <i className="fas fa-mail-bulk  mr-1"></i>
               Posts</a>
-            <a href="add-education.html" class="btn btn-light">
-              <i class="fas fa-arrow-circle-right  mr-1"></i>
+            <a href="/profile/followers" className="btn btn-light">
+              <i className="fas fa-arrow-circle-right  mr-1"></i>
               Followers</a>
-              <a href="add-education.html" class="btn btn-light">
-              <i class="fas fa-arrow-circle-left  mr-1"></i>
+              <a href="/profile/following" className="btn btn-light">
+              <i className="fas fa-arrow-circle-left  mr-1"></i>
               Following</a>
           </div>
 
