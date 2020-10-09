@@ -9,11 +9,11 @@ class Landing extends Component {
       <div className="container">
         <div className="row">
           <div className="col-xl-12 text-center">
-            <h1 className="display-3 mb-4">InstaDev-G
+            <h1 className="display-3 mb-4" Style="text-align:right;margin-top:100px;font-size:4em;">InstaDev-G
             </h1>
             <p className="lead"> Passion. Code. Collaboration. </p>
-            <Link to="/login" className="btn btn-lg btn-light">Login</Link>
-            <Link to="/register"  className="btn btn-lg btn-info mr-2">Sign Up</Link>
+            <Link to="/login" className="btn btn-lg btn-light" Style="margin-right:-35px">Login</Link>
+            <Link to="/register"  className="btn btn-lg btn-info mr-2" Style="margin-right:-35px;">Sign Up</Link>
           </div>
         </div>
       </div>

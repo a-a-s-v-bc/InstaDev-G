@@ -44,7 +44,7 @@
 
 .lead{
   color:rgb(236, 196, 18);
-  margin-left:65%;
+  margin-left:75%;
   font-weight: inherit;
 }
 
@@ -71,6 +71,7 @@
 .btn-info{
 background-color:rgb(193, 153, 212);
 border-color:transparent;
+width:200px;
 }
 
 #mobile-nav a{
@@ -103,6 +104,8 @@ color: rgb(236, 196, 18);
 
 .btn-light{
   background-color: rgb(236, 196, 18);
+  width:200px;
+  
 }
 
 .navbar-dark .navbar-brand {
@@ -168,4 +171,44 @@ color: rgb(236, 196, 18);
 .profileheader{
   width: 137%;
   margin-bottom: 30%;
+}
+
+.Profilechangeimage{
+  text-align: center;
+}
+
+.Editimage{
+  margin-left: 33%;
+}
+
+.op{
+  font-weight: bold;
+}
+
+.form-text{
+  color: rgb(236, 196, 18);
+  font-size: 15px;
+  font-weight: 450;
+}
+
+.create-profile{
+  background-color: rgb(193, 153, 212);
+  margin-top:-25px;
+}
+
+.mt-4{
+  background-color: rgb(236, 196, 18);
+  color:black;
+}
+
+.form-group{
+  margin-left:0px;
+}
+
+.display-3{
+  font-size: 3em;
+  text-align: center;
+  margin-left: 0px;
+  margin-bottom: 25px;
+  margin-top: 0px;
 }

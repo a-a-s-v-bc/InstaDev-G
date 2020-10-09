@@ -41,7 +41,7 @@ import classnames from "classnames";
          <div className="container">
            <div className="row">
              <div className="col-md-8 m-auto">
-               <h1 className="display-4 text-center" Style="font-weight:Bold;margin-bottom:30px;">Log In</h1>
+               <h1 className="display-3 text-center" Style="font-weight:Bold;margin-bottom:30px;">Log In</h1>
                
                <form onSubmit={this.onSubmit}>
                  <div className="form-group">
@@ -75,7 +75,7 @@ import classnames from "classnames";
                    )}
                  </div>
                  <div className="form-group">
-                   <input type="submit" className="btn btn-info btn-block mt-4" Style="float:left;margin-bottom:300px;" />
+                   <input type="submit" className="btn btn-info btn-block" Style="float:left;margin-bottom:300px;" />
                    </div>
                </form>
              </div>

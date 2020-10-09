@@ -10,7 +10,7 @@ export default class Profile extends Component {
                 
                 <img className="rounded-circle positionimage" src="https://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50?s=200" alt="" />
                 <div class="btn-group mb-4" role="group">
-            <a href="edit-profile.html" class="btn btn-light">
+            <a href="/profile/editProfile" class="btn btn-light">
               <i class="fas fa-user-circle  mr-1"></i> Edit Profile</a>
             <a href="add-experience.html" class="btn btn-light">
               <i class="fas fa-mail-bulk  mr-1"></i>
@@ -43,7 +43,9 @@ export default class Profile extends Component {
                     <a className="text-white p-2" href="#">
                       <i className="fab fa-linkedin fa-2x"></i>
                     </a>
-                    
+                    <a className="text-white p-2" href="#">
+                      <i className="fab fa-youtube fa-2x"></i>
+                    </a>
                   </p>
               
               </div>
