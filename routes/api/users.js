@@ -13,7 +13,7 @@ const validateLoginInput = require("../../validation/Login");
 const validateforgotpasswordInput = require("../../validation/forgotpassword");
 const router = express.Router();
 const keys = require("../../config/keys");
-const mailerKey = require('sendgrid')('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');
+const mailerKey = require("sendgrid")("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");
 
 console.log("using key" + mailerKey);
 
@@ -50,10 +50,10 @@ router.post("/resetpassword", (req, res) => {
           .then((res) => {
             transporter.sendMail({
               to: User.email,
-              from: "veenakrishna.s@gmail.com",
-              subject: " Password Reset",
+              from: "instadevg@gmail.com",
+              subject: " Link to Reset Password",
               html:
-                '<p>You or someone assesing your account has  requested for a password reset </p> <h5> Click this <a href="http://localhost:3000/forgotpassword/${token}"link >to reset your password</h5>',
+                '<p>You are receiving this because you (or someone else)have requested the reset of the password for your account </p> <h5> Click this <a href="http://localhost:3000/forgotpassword/${token}">link </a>to reset your password</h5>',
             });
             console.log("email sent");
           })
@@ -177,7 +177,7 @@ router.get(
 //@desc resetting password
 //@access Public
 
-router.post("/forgotpassword", async (req, res) => {
+router.post("/forgotpassword/:token", async (req, res) => {
   const { errors, isValid } = validateforgotpasswordInput(req.body);
 
   if (!isValid) {
@@ -187,6 +187,7 @@ router.post("/forgotpassword", async (req, res) => {
   let newpassword = req.body.password;
 
   console.log("before hash:", newpassword);
+   console.log("email:", email);
 
   //Find user with email
   User.findOne({ email })

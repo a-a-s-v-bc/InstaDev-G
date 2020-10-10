@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import axios from "axios";
 import classnames from "classnames";
+import { Link } from "react-router-dom";
 
 
  class Login extends Component {
@@ -41,8 +42,13 @@ import classnames from "classnames";
          <div className="container">
            <div className="row">
              <div className="col-md-8 m-auto">
-               <h1 className="display-3 text-center" Style="font-weight:Bold;margin-bottom:30px;">Log In</h1>
-               
+               <h1
+                 className="display-3 text-center"
+                 Style="font-weight:Bold;margin-bottom:30px;"
+               >
+                 Log In
+               </h1>
+
                <form onSubmit={this.onSubmit}>
                  <div className="form-group">
                    <input
@@ -74,9 +80,17 @@ import classnames from "classnames";
                      <div className="invalid-feedback"> {errors.password}</div>
                    )}
                  </div>
+                 <Link to="/resetpassword" Style="margin-right:-35px">
+                   Forgot Password?
+                 </Link>
+
                  <div className="form-group">
-                   <input type="submit" className="btn btn-info btn-block" Style="float:left;margin-bottom:300px;" />
-                   </div>
+                   <input
+                     type="submit"
+                     className="btn btn-info btn-block"
+                     Style="float:left;margin-bottom:300px;"
+                   />
+                 </div>
                </form>
              </div>
            </div>

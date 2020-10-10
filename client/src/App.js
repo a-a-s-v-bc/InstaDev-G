@@ -14,30 +14,31 @@ import store from './store';
 import Login from './components/auth/Login';
 import Followers from './components/dashboard/Followers';
 import Following from './components/dashboard/Following';
+import Resetpassword from './components/auth/Resetpassword';
+import Passwordreset from './components/auth/Passwordreset';
 
 class App extends Component {
   render() {
   return (
-
     <Provider store={store}>
-    <Router>
-    <div className="App">
-    <Navbar />
-     <Route exact path="/" component={Landing} />
-     <Route exact path="/register" component={Register} />
-     <Route exact path="/login" component={Login} />
-          <Route exact path="/dashboard" component={Dashboard} />  
+      <Router>
+        <div className="App">
+          <Navbar />
+          <Route exact path="/" component={Landing} />
+          <Route exact path="/register" component={Register} />
+          <Route exact path="/login" component={Login} />
+          <Route exact path="/resetpassword" component={Resetpassword} />
+          <Route exact path="/forgotpassword/:token" component={Passwordreset} />
+          <Route exact path="/dashboard" component={Dashboard} />
           <Route exact path="/profile" component={Profile} />
           <Route exact path="/profile/editProfile" component={EditProfile} />
           <Route exact path="/profile/followers" component={Followers} />
           <Route exact path="/profile/following" component={Following} />
-          
-          
-    <Footer /> 
-    </div>
-    </Router>
-    </Provider>
 
+          <Footer />
+        </div>
+      </Router>
+    </Provider>
   );
 };
 }
