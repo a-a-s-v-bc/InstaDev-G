@@ -16,6 +16,7 @@ import Followers from './components/dashboard/Followers';
 import Following from './components/dashboard/Following';
 import Resetpassword from './components/auth/Resetpassword';
 import Passwordreset from './components/auth/Passwordreset';
+import ChangePassword from './components/dashboard/ChangePassword';
 
 class App extends Component {
   render() {
@@ -34,6 +35,7 @@ class App extends Component {
           <Route exact path="/profile/editProfile" component={EditProfile} />
           <Route exact path="/profile/followers" component={Followers} />
           <Route exact path="/profile/following" component={Following} />
+          <Route exact path="/profile/changePassword" component={ChangePassword} />
 
           <Footer />
         </div>
