@@ -47,3 +47,21 @@ export const loginUser=userData => dispatch=> {
       })
     );
 }
+
+export const logoutUser=()=> dispatch=>{
+
+  // remove token from local storage
+
+  localStorage.removeItem("jwtToken");
+
+  // remove token from axios header
+
+  setAuthToken(false);
+
+  //reset user data in redux store
+
+  dispatch({
+    type: SET_USER,
+    payload: {},
+  });
+}
