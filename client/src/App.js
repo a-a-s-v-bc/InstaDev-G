@@ -6,7 +6,7 @@ import Landing from './components/Layout/Landing';
 import Footer from './components/Layout/Footer';
 import {BrowserRouter as Router, Route} from 'react-router-dom';
 import Register from './components/auth/Register';
-import Dashboard from './components/dashboard/Dashboard';
+
 import Profile from './components/dashboard/Profile';
 import EditProfile from './components/dashboard/EditProfile';
 import store from './store';
@@ -30,7 +30,7 @@ class App extends Component {
           <Route exact path="/login" component={Login} />
           <Route exact path="/resetpassword" component={Resetpassword} />
           <Route exact path="/forgotpassword/:token" component={Passwordreset} />
-          <Route exact path="/dashboard" component={Dashboard} />
+          
           <Route exact path="/profile" component={Profile} />
           <Route exact path="/profile/editProfile" component={EditProfile} />
           <Route exact path="/profile/followers" component={Followers} />
