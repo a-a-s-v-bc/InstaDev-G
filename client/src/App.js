@@ -16,8 +16,42 @@ import Followers from './components/dashboard/Followers';
 import Following from './components/dashboard/Following';
 import Resetpassword from './components/auth/Resetpassword';
 import Passwordreset from './components/auth/Passwordreset';
+import jwt_decode from 'jwt-decode';
+import { logoutUser } from './actions/authActions';
+import setAuthToken from './utils/setAuthToken';
+import {SET_USER } from './actions/types';
 
+
+if (localStorage.jwtToken){
+
+  //decode token 
+  const decoded=jwt_decode(localStorage.jwtToken);
+
+  //check the expiry of the token
+  const currentTime=Date.now()/1000;
+  if(decoded.exp<currentTime){
+    //expired by now
+    //logout user
+    store.dispatch(logoutUser());
+    //redirect user to login
+    window.location.href='/login';
+  }
+  //Set auth header
+
+  setAuthToken(localStorage.jwtToken);
+
+  // dispatch
+
+ store.dispatch({
+
+    type:SET_USER,
+    payload:decoded
+  });
+
+}
 class App extends Component {
+
+
   render() {
   return (
     <Provider store={store}>
