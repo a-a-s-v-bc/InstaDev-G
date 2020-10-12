@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import axios from "axios";
 import classnames from "classnames";
 import { Link } from "react-router-dom";
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
 
 
  class Login extends Component {
@@ -26,10 +28,7 @@ import { Link } from "react-router-dom";
        password: this.state.password
       
      };
-     axios
-       .post("/api/users/login", User)
-       .then((res) => console.log(res.data))
-       .catch((err) => this.setState({ errors: err.response.data }));
+     
    }
 
    render() {
@@ -100,4 +99,5 @@ import { Link } from "react-router-dom";
    }
  }
 
-export default Login;
+
+export default connect(mapStateToProps, { LoginUser })(Login);
