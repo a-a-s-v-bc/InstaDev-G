@@ -2,6 +2,7 @@ import { SET_USER } from "./types";
 import { SET_ERROR } from "./types";
 import axios from "axios";
 import setAuthToken from '../utils/setAuthToken';
+import jwt_decode from 'jwt-decode';
 
 
 export const registerUser = (userData, history) => dispatch => {
@@ -28,9 +29,20 @@ export const loginUser=(userData,history) => dispatch=> {
       //save token to local storage (browser storage)
       const {token}=res.data;
       localStorage.setItem('jwtToken',token);
-      
+
       //set token  to auth header
       setAuthToken(token);
+
+      // decode token
+
+      const decoded= jwt_decode(token);
+
+      // write user info to redux
+     dispatch({
+     type: SET_USER,
+   payload: decoded,
+ });
+
 
     })
     .catch((err) =>
