@@ -20,7 +20,7 @@ import jwt_decode from 'jwt-decode';
 import { logoutUser } from './actions/authActions';
 import setAuthToken from './utils/setAuthToken';
 import {SET_USER } from './actions/types';
-
+import ChangePassword from './components/dashboard/ChangePassword';
 
 if (localStorage.jwtToken){
 
@@ -68,6 +68,7 @@ class App extends Component {
           <Route exact path="/profile/editProfile" component={EditProfile} />
           <Route exact path="/profile/followers" component={Followers} />
           <Route exact path="/profile/following" component={Following} />
+          <Route exact path="/profile/changePassword" component={ChangePassword} />
 
           <Footer />
         </div>

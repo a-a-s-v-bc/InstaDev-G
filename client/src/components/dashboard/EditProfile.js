@@ -4,7 +4,7 @@ export default class EditProfile extends Component {
   render() {
     return (
       <div className="create-profile">
-          <a href="/profile" className="btn btn-light">
+          <a href="/profile/changePassword" className="btn btn-light">
           Change Password
               </a>
               <a href="/profile" className="btn btn-light">
