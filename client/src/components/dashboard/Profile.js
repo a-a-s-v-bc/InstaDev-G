@@ -46,10 +46,10 @@ class Profile extends Component {
               Posts</a>
                 <a href="/profile/followers" className="btn btn-light">
                   <i className="fas fa-arrow-circle-right  mr-1"></i>
-              Followers</a>
+                  {this.props.profile.followers.length} Followers</a>
                 <a href="/profile/following" className="btn btn-light">
                   <i className="fas fa-arrow-circle-left  mr-1"></i>
-              Following</a>
+                  {this.props.profile.following.length} Following</a>
               </div>
 
             
@@ -66,7 +66,8 @@ class Profile extends Component {
                   <a
                     className="text-white p-2"
                     href={this.props.profile.social.twitter}
-                    target="_blank"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   >
                     <i className="fab fa-twitter fa-2x" />
                   </a>
@@ -76,7 +77,8 @@ class Profile extends Component {
                   <a
                     className="text-white p-2"
                     href={this.props.profile.social.facebook}
-                    target="_blank"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   >
                     <i className="fab fa-facebook fa-2x" />
                   </a>
@@ -86,7 +88,8 @@ class Profile extends Component {
                   <a
                     className="text-white p-2"
                     href={this.props.profile.social.linkedin}
-                    target="_blank"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   >
                     <i className="fab fa-linkedin fa-2x" />
                   </a>
@@ -96,7 +99,8 @@ class Profile extends Component {
                   <a
                     className="text-white p-2"
                     href={this.props.profile.social.youtube}
-                    target="_blank"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   >
                     <i className="fab fa-youtube fa-2x" />
                   </a>
