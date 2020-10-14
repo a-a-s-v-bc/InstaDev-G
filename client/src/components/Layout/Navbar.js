@@ -8,7 +8,10 @@ import {logoutUser} from '../../actions/authActions';
    onLogoutClick(e) {
      e.preventDefault();
      this.props.logoutUser();
+     
    }
+
+  
 
    render() {
      const { isAuthenticated, user } = this.props.auth;
@@ -41,7 +44,16 @@ import {logoutUser} from '../../actions/authActions';
            </Link>
          </li>
          <li className="nav-item">
-           <a href="" onClick={this.onLogoutClick.bind(this)} className="nav-link" >
+           <Link className="nav-link" to="/profile">
+             Profile
+           </Link>
+         </li>
+         <li className="nav-item">
+           <Link
+             to="/"
+             onClick={this.onLogoutClick.bind(this)}
+             className="nav-link"
+           >
              <img
                className="rounded-circle"
                src={user.avatar}
@@ -50,7 +62,7 @@ import {logoutUser} from '../../actions/authActions';
                title="You must have a gravatar connected to your email to display an image"
              />
              Logout
-           </a>
+           </Link>
          </li>
        </ul>
      );
