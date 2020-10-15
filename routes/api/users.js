@@ -12,14 +12,16 @@ const validateRegisterInput = require("../../validation/register");
 const validateLoginInput = require("../../validation/Login");
 const validateforgotpasswordInput = require("../../validation/forgotpassword");
 const router = express.Router();
-const keys = require("../../config/keys");
-const mailerKey = require("sendgrid")("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");
+
+const mailerKey = require('../../config/keys').transportURI;
 
 console.log("using key" + mailerKey);
 
 const transporter = nodemailer.createTransport(
   sendgridTransport({
-    auth: mailerKey,
+    auth: {
+      api_key:mailerKey
+    }
   })
 );
 
@@ -53,8 +55,9 @@ router.post("/resetpassword", (req, res) => {
               from: "instadevg@gmail.com",
               subject: " Link to Reset Password",
               html:
-                '<p>You are receiving this because you (or someone else)have requested the reset of the password for your account </p> <h5> Click this <a href="http://localhost:3000/forgotpassword/${token}">link </a>to reset your password</h5>',
+                '<p>You are receiving this because you (or someone else)have requested the reset of the password for your account </p> <h5> Click this <a href="http://localhost:3000/forgotpassword/${mailtoken}">link </a>to reset your password</h5>',
             });
+            
             console.log("email sent");
           })
           .catch((err) => console.log(err));

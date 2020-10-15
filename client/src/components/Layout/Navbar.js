@@ -41,11 +41,7 @@ import {logoutUser} from '../../actions/authActions';
            </Link>
          </li>
          <li className="nav-item">
-           <a
-             href=""
-             onClick={this.onLogoutClick.bind(this)}
-             className="nav-link"
-           >
+           <a href="" onClick={this.onLogoutClick.bind(this)} className="nav-link" >
              <img
                className="rounded-circle"
                src={user.avatar}
