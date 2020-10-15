@@ -33,14 +33,13 @@ class Resetpassword extends Component {
     const { errors } = this.state;
 
     return (
-      <div className="login">
+      <div className="resetpassword">
         <div className="container">
           <div className="row">
             <div className="col-md-8 m-auto">
               <h1
                 className="display-3 text-center"
-                Style="font-weight:Bold;margin-bottom:30px;"
-              >
+                Style="font-weight:Bold;margin-bottom:30px;">
                 Reset password
               </h1>
               <h3 className="text-left">Enter your email </h3>
