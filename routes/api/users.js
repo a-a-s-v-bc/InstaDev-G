@@ -83,11 +83,13 @@ router.post("/register", (req, res) => {
       if (user) {
         return res.status(400).json({ email: "Email Already Exists" });
       } else {
-        const avatar = gravatar.url(req.body.email, {
+        let avatar = gravatar.url(req.body.email, {
           s: "200",
           r: "pg",
           d: "mm",
         });
+
+      
         const newUser = new User({
           name: req.body.name,
           email: req.body.email,
@@ -143,6 +145,7 @@ router.post("/login", (req, res) => {
               id: user.id,
               name: user.name,
               avatar: user.avatar,
+              email: user.email,
             };
 
             //sign Token

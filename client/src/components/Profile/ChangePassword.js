@@ -40,7 +40,7 @@ export default class ChangePassword extends Component {
                 className="display-3 text-center"
                 Style="font-weight:Bold;margin-bottom:30px;"
               >
-                Change Password
+                Change User Password
               </h1>
 
               <form onSubmit={this.onSubmit}>
