@@ -8,6 +8,7 @@ import {logoutUser} from '../../actions/authActions';
    onLogoutClick(e) {
      e.preventDefault();
      this.props.logoutUser();
+    
      
    }
 
@@ -50,7 +51,7 @@ import {logoutUser} from '../../actions/authActions';
          </li>
          <li className="nav-item">
            <Link
-             to="/"
+             to="/login"
              onClick={this.onLogoutClick.bind(this)}
              className="nav-link"
            >

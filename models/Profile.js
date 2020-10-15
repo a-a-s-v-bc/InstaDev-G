@@ -25,8 +25,13 @@ const ProfileSchema = new Schema({
     type: String,
   },
 
-  profile_image: {
+  desc: {
     type: String,
+  },
+
+  status: {
+    type: String,
+    required: true
   },
 
   social: {

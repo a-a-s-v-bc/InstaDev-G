@@ -1,6 +1,8 @@
 import axios from 'axios';
 import { GET_PROFILE } from "./types";
 
+import { GET_ERRORS } from "./types";
+
 
 
 export const getCurrentProfile=() => dispatch=> {
@@ -20,3 +22,17 @@ export const getCurrentProfile=() => dispatch=> {
       })
     );
 }
+
+export const createProfile= (profiledata,history) => dispatch=> {
+
+  axios
+    .post("/api/profile",profiledata)
+    .then((res) => history.push("/profile"))
+    .catch((err) =>
+      dispatch({
+        type: GET_ERRORS,
+        payload: err.response.data
+      })
+    );
+}
+
