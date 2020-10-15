@@ -1,195 +1,291 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
+import TextFieldGroup from "../common/TextFieldGroup";
 
-export default class EditProfile extends Component {
+import InputGroup from "../common/InputGroup";
+import SelectListGroup from "../common/SelectListGroup";
+import { withRouter } from "react-router-dom";
+import { createProfile,getCurrentProfile } from "../../actions/profileActions";
+import isEmpty from '../../validation/is-empty';
+
+class CreateProfile extends Component {
+  constructor(props) {
+    super(props);
+    //Local State of CreateProfile Component
+    this.state = {
+      displaySocialInputs:false,
+      name: "",
+      handle: "",
+      status: "",
+      email: "",
+      avatar: "",
+      phone: "",
+      website: "",
+      bio: "",
+      desc: "",
+      facebook: "",
+      twitter: "",
+      linkedin: "",
+      youtube: "",
+      errors: {},
+    };
+    this.onChange = this.onChange.bind(this);
+    this.onSubmit = this.onSubmit.bind(this);
+  }
+  onChange(e) {
+    this.setState({ [e.target.name]: e.target.value });
+  }
+  onSubmit(e) {
+    e.preventDefault();
+    const userProfileData = {
+      name: this.state.name,
+      handle: this.state.handle,
+      status: this.state.status,
+      email: this.state.email,
+
+      phone: this.state.phone,
+      website: this.state.website,
+      bio: this.state.bio,
+      desc: this.state.desc,
+      facebook: this.state.facebook,
+      twitter: this.state.twitter,
+      linkedin: this.state.linkedin,
+      youtube: this.state.youtube,
+    };
+
+    this.props.createProfile(userProfileData, this.props.history);
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.errors) {
+      this.setState({ errors: nextProps.errors });
+    }
+
+    if (nextProps.profile) {
+      const profile = nextProps.profile.profile;
+
+      // If profile field doesnt exist , make empty string
+      profile.website = !isEmpty(profile.website) ? profile.website : '';
+      profile.name = !isEmpty(profile.name) ? profile.name : '';
+      profile.handle = !isEmpty(profile.handle) ? profile.handle : '';
+      profile.bio = !isEmpty(profile.bio) ? profile.bio : '';
+      profile.phone = !isEmpty(profile.phone) ? profile.phone : '';
+      profile.status = !isEmpty(profile.status) ? profile.status : '';
+      profile.social = !isEmpty(profile.social) ? profile.social : {};
+      profile.twitter = !isEmpty(profile.social.twitter)
+        ? profile.social.twitter
+        : '';
+      profile.facebook = !isEmpty(profile.social.facebook)
+        ? profile.social.facebook
+        : '';
+      profile.linkedin = !isEmpty(profile.social.linkedin)
+        ? profile.social.linkedin
+        : '';
+      profile.youtube = !isEmpty(profile.social.youtube)
+        ? profile.social.youtube
+        : '';
+     // Set component fields state
+      this.setState({
+       
+      handle: profile.handle,
+      name: profile.user.name,
+      website: profile.website,
+      phone : profile.phone,
+      status: profile.status,
+      email : profile.user.email,
+  
+      bio: profile.bio,
+      twitter: profile.twitter,
+      facebook: profile.facebook,
+      linkedin: profile.linkedin,
+      youtube: profile.youtube,
+      
+    });
+  
+
+    }
+  }
+
+  componentDidMount() {
+    this.props.getCurrentProfile();
+  }
   render() {
+    const { errors, displaySocialInputs } = this.state;
+
+    let socialInputs;
+
+    if (displaySocialInputs) {
+      socialInputs = (
+        <div>
+          <InputGroup
+            placeholder="Twitter Profile URL"
+            name="twitter"
+            icon="fab fa-twitter"
+            value={this.state.twitter}
+            onChange={this.onChange}
+            error={errors.twitter}
+          />
+
+          <InputGroup
+            placeholder="Facebook Page URL"
+            name="facebook"
+            icon="fab fa-facebook"
+            value={this.state.facebook}
+            onChange={this.onChange}
+            error={errors.facebook}
+          />
+
+          <InputGroup
+            placeholder="Linkedin Profile URL"
+            name="linkedin"
+            icon="fab fa-linkedin"
+            value={this.state.linkedin}
+            onChange={this.onChange}
+            error={errors.linkedin}
+          />
+
+          <InputGroup
+            placeholder="YouTube Channel URL"
+            name="youtube"
+            icon="fab fa-youtube"
+            value={this.state.youtube}
+            onChange={this.onChange}
+            error={errors.youtube}
+          />
+        </div>
+      );
+    }
+
+    // Select options for status
+    const options = [
+      { label: "* Select Professional Status", value: 0 },
+      { label: "Developer", value: "Developer" },
+      { label: "Junior Developer", value: "Junior Developer" },
+      { label: "Senior Developer", value: "Senior Developer" },
+      { label: "Manager", value: "Manager" },
+      { label: "Student or Learning", value: "Student or Learning" },
+      { label: "Instructor or Teacher", value: "Instructor or Teacher" },
+      { label: "Intern", value: "Intern" },
+      { label: "Other", value: "Other" },
+    ];
+
     return (
       <div className="create-profile">
-          <a href="/profile/changePassword" className="btn btn-light">
+        <a href="/profile/changePassword" className="btn btn-light">
           Change Password
-              </a>
-              <a href="/profile" className="btn btn-light">
-                Go Back
-              </a>
+        </a>
+        <a href="/profile" className="btn btn-light">
+          Go Back
+        </a>
         <div className="container">
           <div className="row">
             <div className="col-md-8 m-auto">
-              
-              
-              <h1 className="display-4 text-center" Style="font-weight:bold; margin-top:10px;">Edit Your Profile</h1>
+              <h1
+                className="display-4 text-center"
+                Style="font-weight:bold; margin-top:10px;"
+              >
+                Edit Your Profile
+              </h1>
 
               <small className="form-text">* = required field</small>
               <div className="form-group">
                 <img
                   className="rounded-circle Editimage"
-                  src="https://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50?s=200"
+                  src={this.props.auth.user.avatar}
                   alt=""
                 />
-                <a href="/profile" className="form-text Profilechangeimage">Change Profile Image</a>
-              
+                <a href="/profile" className="form-text Profilechangeimage">
+                  Change Profile Image
+                </a>
               </div>
-             
-              <div className="form-group">
-                <input
-                  type="text"
-                  className="form-control form-control-md"
-                  placeholder="Location"
-                  name="location"
-                  value="Name"
+              <form onSubmit={this.onSubmit}>
+                <TextFieldGroup
+                  placeholder="Name"
+                  name="name"
+                  value={this.state.name}
+                  onChange={this.onChange}
+                  error={errors.name}
+                  info="Name"
                 />
-                <small className="form-text">Name</small>
-              </div>
-              <div className="form-group">
-                <input
-                  type="text"
-                  className="form-control form-control-md"
+
+                <TextFieldGroup
                   placeholder="* Profile handle"
+                  value={this.state.handle}
+                  onChange={this.onChange}
+                  error={errors.handle}
                   name="handle"
-                  value="myprofilehandle"
-                  required
+                  info="A unique handle for your profile URL. Your full name,
+                    company name, nickname, etc (This CAN'T be changed later)"
                 />
-                <small className="form-text">
-                  A unique handle for your profile URL. Your full name, company
-                  name, nickname, etc (This CAN'T be changed later)
-                </small>
-              </div>
-              <div className="form-group">
-                <select className="form-control form-control-md" name="status">
-                  <option value="0">* Select Professional Status</option>
-                  <option value="Developer">Developer</option>
-                  <option value="Junior Developer">Junior Developer</option>
-                  <option value="Senior Developer" selected>
-                    Senior Developer
-                  </option>
-                  <option value="Manager">Manager</option>
-                  <option value="Student or Learning">
-                    Student or Learning
-                  </option>
-                  <option value="Instructor">Instructor or Teacher</option>
-                  <option value="Intern">Intern</option>
-                  <option value="Other">Other</option>
-                </select>
-                <small className="form-text">
-                  Give us an idea of where you are at in your career
-                </small>
-              </div>
-              <div className="form-group">
-                <input
-                  type="text"
-                  className="form-control form-control-md"
-                  placeholder="Location"
-                  name="location"
-                  value="abc@xyz.com"
-                />
-                <small className="form-text">Email Address</small>
-              </div>
-              <div className="form-group">
-                <input
-                  type="text"
-                  className="form-control form-control-md"
-                  placeholder="Location"
-                  name="location"
-                  value="+1 4123124324"
-                />
-                <small className="form-text">Phone Number</small>
-              </div>
 
-              <div className="form-group">
-                <input
-                  type="text"
-                  className="form-control form-control-md"
-                  placeholder="Location"
-                  name="location"
-                  value="www.abc.com"
+                <SelectListGroup
+                  placeholder="Status"
+                  name="status"
+                  value={this.state.status}
+                  onChange={this.onChange}
+                  options={options}
+                  error={errors.status}
+                  info="Give us an idea of where you are at in your career"
                 />
-                <small className="form-text">Website</small>
-              </div>
-              <div className="form-group">
-                <input
-                  type="text"
-                  className="form-control form-control-md"
-                  placeholder="Location"
-                  name="location"
-                  value="Bio"
+
+                <TextFieldGroup
+                  placeholder="Email"
+                  value={this.state.email}
+                  onChange={this.onChange}
+                  error={errors.email}
+                  info="Email Address"
+                  name="email"
                 />
-                <small className="form-text">Bio</small>
-              </div>
-              <div className="form-group">
-                <textarea
-                  className="form-control form-control-md"
-                  placeholder="A short bio of yourself"
+
+                <TextFieldGroup
+                  placeholder="Contact Number"
+                  value={this.state.phone}
+                  onChange={this.onChange}
+                  error={errors.phone}
+                  info="Phone Number"
+                  name="phone"
+                />
+
+                <TextFieldGroup
+                  placeholder="Website"
+                  value={this.state.website}
+                  onChange={this.onChange}
+                  error={errors.website}
+                  info="Website"
+                  name="website"
+                />
+
+                <TextFieldGroup
+                  placeholder="Bio"
+                  value={this.state.bio}
+                  onChange={this.onChange}
+                  error={errors.bio}
+                  info="Bio"
                   name="bio"
-                >
-                  I am a web developer from Florida with around 8 years
-                  experience
-                </textarea>
-                <small className="form-text">
-                  Tell us a little about yourself
-                </small>
-              </div>
-
-              <div className="op">
-               
-                <span className="text-muted">Optional</span>
-              </div>
-
-              <div className="input-group mb-3">
-                <div className="input-group-prepend">
-                  <span className="input-group-text">
-                    <i className="fab fa-twitter"></i>
-                  </span>
-                </div>
-                <input
-                  type="text"
-                  className="form-control form-control-md"
-                  placeholder="Twitter Profile URL"
-                  name="twitter"
-                  value="https://www.twitter.com/johndoe"
                 />
-              </div>
 
-              <div className="input-group mb-3">
-                <div className="input-group-prepend">
-                  <span className="input-group-text">
-                    <i className="fab fa-facebook"></i>
-                  </span>
+                <div className="mb-3">
+                  <button
+                    type="button"
+                    onClick={() => {
+                      this.setState((prevState) => ({
+                        displaySocialInputs: !prevState.displaySocialInputs,
+                      }));
+                    }}
+                    className="btn btn-light"
+                  >
+                    Add Social Network Links
+                  </button>
+                  <span className="text-muted">Optional</span>
                 </div>
+                {socialInputs}
                 <input
-                  type="text"
-                  className="form-control form-control-md"
-                  placeholder="Facebook Page URL"
-                  name="facebook"
+                  type="submit"
+                  value="Submit"
+                  className="btn btn-info btn-block mt-4"
                 />
-              </div>
-
-              <div className="input-group mb-3">
-                <div className="input-group-prepend">
-                  <span className="input-group-text">
-                    <i className="fab fa-linkedin"></i>
-                  </span>
-                </div>
-                <input
-                  type="text"
-                  className="form-control form-control-md"
-                  placeholder="Linkedin Profile URL"
-                  name="linkedin"
-                />
-              </div>
-
-              <div className="input-group mb-3">
-                <div className="input-group-prepend">
-                  <span className="input-group-text">
-                    <i className="fab fa-youtube"></i>
-                  </span>
-                </div>
-                <input
-                  type="text"
-                  className="form-control form-control-md"
-                  placeholder="YouTube Channel URL"
-                  name="youtube"
-                />
-              </div>
-              <div className="input-group mb-3"> <input type="submit" className="btn btn-info btn-block mt-4" Style="margin-bottom:20px;margin-right:0px;"/></div>
-             
+              </form>
             </div>
           </div>
         </div>
@@ -197,3 +293,21 @@ export default class EditProfile extends Component {
     );
   }
 }
+
+CreateProfile.propTypes = {
+  createProfile: PropTypes.func.isRequired,
+  profile: PropTypes.object.isRequired,
+  getCurrentProfile: PropTypes.func.isRequired,
+  errors: PropTypes.object.isRequired,
+  user: PropTypes.object.isRequired,
+};
+
+const mapStateToProps = (state) => ({
+  profile: state.profile,
+  errors: state.errors,
+  auth: state.auth,
+});
+
+export default connect(mapStateToProps, { createProfile,getCurrentProfile  })(
+  withRouter(CreateProfile)
+);
