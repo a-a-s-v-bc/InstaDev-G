@@ -6,9 +6,11 @@ import Landing from './components/Layout/Landing';
 import Footer from './components/Layout/Footer';
 import {BrowserRouter as Router, Route} from 'react-router-dom';
 import Register from './components/auth/Register';
-import Dashboard from './components/dashboard/Dashboard';
+import Dashboard from "./components/dashboard/Dashboard";
 import Profile from './components/Profile/Profile';
 import EditProfile from './components/Profile/EditProfile';
+
+
 import store from './store';
 import Login from './components/auth/Login';
 import Followers from './components/Profile/Followers';
