@@ -23,6 +23,9 @@ import ChangePassword from './components/Profile/ChangePassword';
 import CreateProfile from './components/Profile/CreateProfile';
 import AllProfiles from './components/Profile/AllProfiles';
 
+import Posts from "./components/posts/Posts";
+
+
 if (localStorage.jwtToken){
 
   //decode token 
@@ -75,6 +78,8 @@ class App extends Component {
           <Route exact path="/profile/changePassword" component={ChangePassword} />
           <Route exact path="/profile/createProfile" component={CreateProfile} />
           <Route exact path="/search/profiles" component={AllProfiles} />
+
+          <Route exact path="/feed" component={Posts} />
 
           <Footer />
         </div>

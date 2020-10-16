@@ -57,6 +57,7 @@ import {logoutUser} from '../../actions/authActions';
          <li className="nav-item">
            <Link
              to="/login"
+           href=""
              onClick={this.onLogoutClick.bind(this)}
              className="nav-link"
            >

@@ -20,6 +20,7 @@
     "express": "^4.17.1",
     "gravatar": "^1.8.1",
     "jsonwebtoken": "^8.5.1",
+    "jwt-decode": "^3.0.0",
     "mongoose": "^5.10.5",
     "nodemailer": "^6.4.13",
     "nodemailer-sendgrid-transport": "^0.2.0",
