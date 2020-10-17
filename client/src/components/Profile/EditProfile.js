@@ -110,6 +110,43 @@ class CreateProfile extends Component {
   componentDidMount() {
     this.props.getCurrentProfile();
   }
+
+
+  fileSelectedHandler = (event) => {
+    console.log(event.target.files[0]);
+    this.setState({
+      selectedFile: event.target.files[0],
+    });
+  };
+
+  fileUploadHandler = () => {
+    const fd = new FormData();
+    fd.append("file", this.state.selectedFile);
+    fd.append("upload_preset", "kalbootcampInsta");
+    fd.append("cloud_name", "kalbootcamp");
+   
+    //axios.post('https://api.cloudinary.com/v1_1/kalbootcamp/image/upload', fd, config)
+    //  .then(res => { console.log(res) })
+    //  .catch(err => { console.log(err) })
+    fetch('https://api.cloudinary.com/v1_1/kalbootcamp/image/upload/', {
+       method: 'POST',
+      body: fd,
+
+     })
+        .then(res => res.json())
+      .then((data) => {
+        this.setState({
+          avatar : data.url
+        })
+       
+        console.log(data.url);
+        
+       }
+      )
+     .catch(err => console.error(err));
+  }
+
+ 
   render() {
     const { errors, displaySocialInputs } = this.state;
 
@@ -195,9 +232,25 @@ class CreateProfile extends Component {
                   src={this.state.avatar}
                   alt=""
                 />
-                <a href="/profile" className="form-text Profilechangeimage">
-                  Change Profile Image
-                </a>
+                <input
+                  style={{ display: "none" }}
+                  type="file"
+                  onChange={this.fileSelectedHandler}
+                  ref={(fileInput) => (this.fileInput = fileInput)}
+                />
+                <div>
+                <button className="btn btn-light" Style="float:left;" onClick={() => this.fileInput.click()}>
+                  Pick File
+                </button>
+                <button
+                  type="button"
+                  onClick={this.fileUploadHandler}
+                  className="btn btn-light"
+                
+                >
+                    Upload
+                </button>
+                </div>
               </div>
               <form onSubmit={this.onSubmit}>
                 <TextFieldGroup
