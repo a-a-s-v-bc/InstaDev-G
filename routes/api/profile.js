@@ -32,7 +32,7 @@ router.post(
     if (req.body.phone) profileFields.phone = req.body.phone;
     if (req.body.website) profileFields.website = req.body.website;
     if (req.body.bio) profileFields.bio = req.body.bio;
-    if (req.body.desc) profileFields.desc = req.body.desc;
+    
     if (req.body.status) profileFields.status = req.body.status;
     profileFields.social = {};
     if (req.body.youtube) profileFields.social.youtube = req.body.youtube;

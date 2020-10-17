@@ -44,7 +44,7 @@ class CreateProfile extends Component {
       status: this.state.status,
       email: this.state.email,
       avatar: this.state.avatar,
-      phone: this.state.phone,
+      phone: this.state.phone.toString(),
       website: this.state.website,
       bio: this.state.bio,
       desc: this.state.desc,
