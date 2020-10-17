@@ -8,6 +8,7 @@ const { ObjectId } = require("mongoose");
 const validateProfileInput = require("../../validation/profile");
 const validatechangepasswordInput = require("../../validation/changepassword");
 const bcrypt = require('bcryptjs');
+const isEmpty = require('../../validation/is-empty');
 
 
 // @route POST /api/profile/
@@ -23,7 +24,10 @@ router.post(
       return res.status(400).json(errors);
     }
     const profileFields = {};
+    const userfields = {};
     profileFields.user = req.user.id;
+
+    if (req.body.avatar) userfields.avatar = req.body.avatar;
     if (req.body.handle) profileFields.handle = req.body.handle;
     if (req.body.phone) profileFields.phone = req.body.phone;
     if (req.body.website) profileFields.website = req.body.website;
@@ -35,7 +39,8 @@ router.post(
     if (req.body.linkedin) profileFields.social.linkedin = req.body.linkedin;
     if (req.body.facebook) profileFields.social.facebook = req.body.facebook;
     if (req.body.twitter) profileFields.social.twitter = req.body.twitter;
-
+    console.log("profilefields:", profileFields);
+    console.log("userfields:", userfields);
     Profile.findOne({ user: req.user.id })
       .then((profile) => {
         if (profile) {
@@ -47,6 +52,15 @@ router.post(
           )
             .then((profile) => res.json(profile))
             .catch((err) => console.log(err));
+          if (!isEmpty(userfields)) {
+            User.findOneAndUpdate(
+              { _id: req.user.id },
+              { $set: userfields },
+              { new: true }
+            )
+              .then((profile) => res.json(profile))
+              .catch((err) => console.log(err));
+          }
         } else {
           //create
           Profile.findOne({ handle: profileFields.handle })
@@ -56,8 +70,18 @@ router.post(
                   .status(400)
                   .json({ handle: "That handle already exists!" });
               }
-
+              if (!isEmpty(userfields)) {
+                User.findOneAndUpdate(
+                  { _id: req.user.id },
+                  { $set: userfields },
+                  { new: true }
+                )
+                  .then((profile) => res.json(profile))
+                  .catch((err) => console.log(err));
+              }
+            
               new Profile(profileFields)
+              
                 .save()
                 .then((profile) => res.json(profile));
             })

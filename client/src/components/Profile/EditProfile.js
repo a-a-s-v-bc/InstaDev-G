@@ -43,7 +43,7 @@ class CreateProfile extends Component {
       handle: this.state.handle,
       status: this.state.status,
       email: this.state.email,
-
+      avatar: this.state.avatar,
       phone: this.state.phone,
       website: this.state.website,
       bio: this.state.bio,
@@ -94,7 +94,7 @@ class CreateProfile extends Component {
       phone : profile.phone,
       status: profile.status,
       email : profile.user.email,
-  
+      avatar:profile.user.avatar,
       bio: profile.bio,
       twitter: profile.twitter,
       facebook: profile.facebook,
@@ -192,7 +192,7 @@ class CreateProfile extends Component {
               <div className="form-group">
                 <img
                   className="rounded-circle Editimage"
-                  src={this.props.auth.user.avatar}
+                  src={this.state.avatar}
                   alt=""
                 />
                 <a href="/profile" className="form-text Profilechangeimage">

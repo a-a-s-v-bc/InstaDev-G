@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import TextFieldGroup from "../common/TextFieldGroup";
-
+//import axios from "axios";
 import InputGroup from "../common/InputGroup";
 import SelectListGroup from "../common/SelectListGroup";
 import { withRouter } from "react-router-dom";
@@ -26,6 +26,7 @@ class CreateProfile extends Component {
       twitter: "",
       linkedin: "",
       youtube: "",
+      selectedFile: null,
       errors: {},
     };
     this.onChange = this.onChange.bind(this);
@@ -41,7 +42,7 @@ class CreateProfile extends Component {
       handle: this.state.handle,
       status: this.state.status,
       email: this.state.email,
-
+      avatar: this.state.avatar,
       phone: this.state.phone,
       website: this.state.website,
       bio: this.state.bio,
@@ -59,7 +60,44 @@ class CreateProfile extends Component {
     if (nextProps.errors) {
       this.setState({ errors: nextProps.errors });
     }
+
+    
+    
   }
+  fileSelectedHandler = (event) => {
+    console.log(event.target.files[0]);
+    this.setState({
+      selectedFile: event.target.files[0],
+    });
+  };
+
+  fileUploadHandler = () => {
+    const fd = new FormData();
+    fd.append("file", this.state.selectedFile);
+    fd.append("upload_preset", "kalbootcampInsta");
+    fd.append("cloud_name", "kalbootcamp");
+   
+    //axios.post('https://api.cloudinary.com/v1_1/kalbootcamp/image/upload', fd, config)
+    //  .then(res => { console.log(res) })
+    //  .catch(err => { console.log(err) })
+    fetch('https://api.cloudinary.com/v1_1/kalbootcamp/image/upload/', {
+       method: 'POST',
+      body: fd,
+
+     })
+        .then(res => res.json())
+      .then((data) => {
+        this.setState({
+          avatar : data.url
+        })
+       
+        console.log(data.url);
+        
+       }
+      )
+     .catch(err => console.error(err));
+  }
+
   render() {
     const { errors, displaySocialInputs } = this.state;
 
@@ -142,12 +180,28 @@ class CreateProfile extends Component {
               <div className="form-group">
                 <img
                   className="rounded-circle Editimage"
-                  src={this.props.auth.user.avatar}
+                  src={this.state.avatar}
                   alt=""
                 />
-                <a href="/profile" className="form-text Profilechangeimage">
-                  Change Profile Image
-                </a>
+                <input
+                  style={{ display: "none" }}
+                  type="file"
+                  onChange={this.fileSelectedHandler}
+                  ref={(fileInput) => (this.fileInput = fileInput)}
+                />
+                <div>
+                <button className="btn btn-light" Style="float:left;" onClick={() => this.fileInput.click()}>
+                  Pick File
+                </button>
+                <button
+                  type="button"
+                  onClick={this.fileUploadHandler}
+                  className="btn btn-light"
+                
+                >
+                    Upload
+                </button>
+                </div>
               </div>
               <form onSubmit={this.onSubmit}>
                 <TextFieldGroup
@@ -248,7 +302,7 @@ CreateProfile.propTypes = {
   createProfile: PropTypes.func.isRequired,
   profile: PropTypes.object.isRequired,
   errors: PropTypes.object.isRequired,
-  user: PropTypes.object.isRequired,
+  
 };
 
 const mapStateToProps = (state) => ({
