@@ -254,7 +254,7 @@ router.get(
   passport.authenticate("jwt", { session: false }),
   async (req, res) => {
     const errors = {};
-
+    console.log("inside the api get followers");
     Profile.findOne({ user: req.user.id })
       .populate("user", ["name", "avatar"])
       .then(async (profile) => {

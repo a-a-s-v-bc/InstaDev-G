@@ -1,9 +1,11 @@
-import {GET_PROFILE} from '../actions/types';
+import { GET_PROFILE } from '../actions/types';
+
 
 const initialState = {
   profile: {
     loaded : false
   },
+
   
 };
 
@@ -18,6 +20,7 @@ export default function(state=initialState, action) {
         }
       
       }
+     
     default:
       return state;
   }

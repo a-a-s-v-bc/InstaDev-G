@@ -2,6 +2,8 @@ import axios from 'axios';
 import { GET_PROFILE } from "./types";
 
 import { GET_ERRORS } from "./types";
+import { GET_FOLLOWERS } from "./types";
+import { GET_FOLLOWING } from "./types";
 
 
 
@@ -36,3 +38,40 @@ export const createProfile= (profiledata,history) => dispatch=> {
     );
 }
 
+
+export const getCurrentFollowers=() => dispatch=> {
+
+  axios
+    .get("/api/profile/follower")
+    .then((res)=> {
+      dispatch({
+     type: GET_FOLLOWERS,
+   payload: res.data
+ });
+    })
+    .catch((err) =>
+      dispatch({
+        type: GET_FOLLOWERS,
+        payload: err.response
+      })
+    );
+}
+
+
+export const getCurrentFollowing=() => dispatch=> {
+
+  axios
+    .get("/api/profile/following")
+    .then((res)=> {
+      dispatch({
+     type: GET_FOLLOWING,
+   payload: res.data
+ });
+    })
+    .catch((err) =>
+      dispatch({
+        type: GET_FOLLOWING,
+        payload: err.response
+      })
+    );
+}
