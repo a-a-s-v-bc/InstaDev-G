@@ -19,7 +19,7 @@ class Followers extends Component {
       <div className="container">
         <div className="row">
           <h2>
-            All Followers{" "}
+            All Followers
             <a
               href="/profile"
               className="btn btn-light"

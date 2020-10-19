@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { GET_PROFILE } from "./types";
+import { GET_PROFILE, SET_ERROR } from "./types";
 
 import { GET_ERRORS } from "./types";
 import { GET_FOLLOWERS } from "./types";
@@ -72,6 +72,23 @@ export const getCurrentFollowing=() => dispatch=> {
       dispatch({
         type: GET_FOLLOWING,
         payload: err.response
+      })
+    );
+}
+
+
+
+export const unfollowUser=(user,history) => dispatch=> {
+
+  axios
+    .put('/api/profile/unfollow',user)
+    .then((res)=>  history.push('/profile/following')
+  
+    )
+    .catch((err) =>
+      dispatch({
+        type: SET_ERROR,
+        payload: err.response.data
       })
     );
 }

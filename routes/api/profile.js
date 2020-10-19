@@ -130,7 +130,7 @@ router.put(
   }
 );
 
-// @route /api/profile/user/unfollow
+// @route /api/profile/unfollow
 // @desc API to update the follower and following
 // @access Private
 
@@ -138,6 +138,7 @@ router.put(
   "/unfollow",
   passport.authenticate("jwt", { session: false }),
   (req, res) => {
+    console.log("inside unfollow");
     Profile.findOneAndUpdate(
       { user: req.body.user_id },
       {
