@@ -47,7 +47,7 @@ class PostItem extends Component {
           <div className="col-md-10">
             <p className="lead">{post.text}</p>
             {showActions ? (
-              <span>
+              <span className="align-bottom">
                 <button
                   onClick={this.onLikeClick.bind(this, post._id)}
                   type="button"
