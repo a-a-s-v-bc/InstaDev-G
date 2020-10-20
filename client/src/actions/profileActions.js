@@ -4,6 +4,7 @@ import { GET_PROFILE, SET_ERROR } from "./types";
 import { GET_ERRORS } from "./types";
 import { GET_FOLLOWERS } from "./types";
 import { GET_FOLLOWING } from "./types";
+import { SET_PASSWORD } from "./types";
 
 
 
@@ -88,6 +89,24 @@ export const unfollowUser=(user,history) => dispatch=> {
     .catch((err) =>
       dispatch({
         type: SET_ERROR,
+        payload: err.response.data
+      })
+    );
+}
+
+export const changeProfilePassword= (userdata) => dispatch=> {
+
+  axios
+    .post("/api/profile/changepassword",userdata)
+    .then((res) =>  {
+      dispatch({
+     type: SET_PASSWORD,
+   payload: res.data
+ });
+    })
+    .catch((err) =>
+      dispatch({
+        type: GET_ERRORS,
         payload: err.response.data
       })
     );

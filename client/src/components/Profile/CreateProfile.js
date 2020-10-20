@@ -7,7 +7,7 @@ import InputGroup from "../common/InputGroup";
 import SelectListGroup from "../common/SelectListGroup";
 import { withRouter } from "react-router-dom";
 import { createProfile } from "../../actions/profileActions";
-import isEmpty from "../../validation/is-empty";
+
 
 class CreateProfile extends Component {
   constructor() {
