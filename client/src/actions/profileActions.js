@@ -44,7 +44,7 @@ export const createProfile= (profiledata,history) => dispatch=> {
 export const getCurrentFollowers=() => dispatch=> {
 
   axios
-    .get("/api/profile/follower")
+    .get("/api/profile/followers")
     .then((res)=> {
       dispatch({
      type: GET_FOLLOWERS,
@@ -94,6 +94,22 @@ export const unfollowUser=(user,history) => dispatch=> {
       })
     );
 }
+
+export const removeFollower=(user,history) => dispatch=> {
+
+  axios
+    .put('/api/profile/removeFollower',user)
+    .then((res)=>  history.push('/profile/followers')
+  
+    )
+    .catch((err) =>
+      dispatch({
+        type: SET_ERROR,
+        payload: err.response.data
+      })
+    );
+}
+
 
 export const changeProfilePassword= (userdata) => dispatch=> {
 

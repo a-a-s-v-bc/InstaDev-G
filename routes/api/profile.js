@@ -169,6 +169,46 @@ router.put(
   }
 );
 
+// @route /api/profile/removeFollower
+// @desc API to update to remove follower 
+// @access Private
+
+router.put(
+  "/removeFollower",
+  passport.authenticate("jwt", { session: false }),
+  (req, res) => {
+    console.log("inside remove follower");
+    Profile.findOneAndUpdate(
+      { user: req.body.user_id },
+      {
+        $pull: { following: req.user.id },
+      },
+      {
+        new: true,
+      },
+      (err, result) => {
+        if (err) {
+          return res.status(421).json({ error: err });
+        }
+        Profile.findOneAndUpdate(
+          { user: req.user.id },
+          { $pull: { followers: req.body.user_id } },
+
+          {
+            new: true,
+          }
+        )
+          .then((profile) => res.json(profile))
+
+          .catch((err) => {
+            return res.status(422).json({ error: err });
+          });
+      }
+    );
+  }
+);
+
+
 // @route   GET api/profile
 // @desc    Get current users profile
 // @access  Private
@@ -246,12 +286,12 @@ router.get("/user/:user_id", (req, res) => {
     .catch((err) => console.log(err));
 });
 
-// @route /api/profile/follower
+// @route /api/profile/followers
 // @desc Get all list of followers of the user
 // @access private
 
 router.get(
-  "/follower",
+  "/followers",
   passport.authenticate("jwt", { session: false }),
   async (req, res) => {
     const errors = {};

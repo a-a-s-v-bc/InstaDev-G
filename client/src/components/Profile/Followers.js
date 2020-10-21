@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import { getCurrentFollowers } from "../../actions/profileActions";
+import { getCurrentFollowers,removeFollower } from "../../actions/profileActions";
 
 class Followers extends Component {
   componentDidMount() {
@@ -66,6 +66,13 @@ class Followers extends Component {
                   value="Remove"
                   className="btn btn-info"
                   Style="margin-bottom:10px;"
+                  onClick={() => {
+                    const userid = {user_id:`${user.id}`};
+                    console.log("inside submit",userid);
+                    this.props.removeFollower(userid, this.props.history);
+                    window.location.href = window.location.href;
+                   
+                  }}
                 />
               </div>
             ))}
@@ -86,4 +93,4 @@ const mapStateToProps = (state) => ({
   followers: state.followers,
 });
 
-export default connect(mapStateToProps, { getCurrentFollowers })(Followers);
+export default connect(mapStateToProps, { getCurrentFollowers ,removeFollower})(Followers);
