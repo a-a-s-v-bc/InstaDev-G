@@ -2,12 +2,14 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import TextFieldGroup from "../common/TextFieldGroup";
+//import axios from "axios";
 
 import InputGroup from "../common/InputGroup";
 import SelectListGroup from "../common/SelectListGroup";
 import { withRouter } from "react-router-dom";
-import { createProfile,getCurrentProfile } from "../../actions/profileActions";
+import { createProfile,getCurrentProfile,deleteAccount} from "../../actions/profileActions";
 import isEmpty from '../../validation/is-empty';
+import { logoutUser } from '../../actions/authActions';
 
 class CreateProfile extends Component {
   constructor(props) {
@@ -146,6 +148,25 @@ class CreateProfile extends Component {
      .catch(err => console.error(err));
   }
 
+//   delAccount = () => {
+   
+//     this.props.deleteAccount();
+//     console.log("props:", this.props);
+//     if ( this.props.auth.user.actions.success === "true") {
+//       return (
+//         (<div class="alert alert-success" role="alert"> User/Profile Deleted Successfully
+//           </div>)
+//       )
+// }
+   
+  
+// }
+  
+onDeleteClick(e) {
+  this.props.deleteAccount(this.props.history);
+  this.props.logoutUser();
+}
+
  
   render() {
     const { errors, displaySocialInputs } = this.state;
@@ -215,6 +236,13 @@ class CreateProfile extends Component {
         <a href="/profile" className="btn btn-light">
           Go Back
         </a>
+        <button
+              onClick={this.onDeleteClick.bind(this)}
+          className="btn btn-danger"
+          Style="width:200px;"
+            >
+              Delete My Account
+            </button>
         <div className="container">
           <div className="row">
             <div className="col-md-8 m-auto">
@@ -238,18 +266,19 @@ class CreateProfile extends Component {
                   onChange={this.fileSelectedHandler}
                   ref={(fileInput) => (this.fileInput = fileInput)}
                 />
-                <div>
-                <button className="btn btn-light" Style="float:left;" onClick={() => this.fileInput.click()}>
+                <div> <span Style="margin-left:30px;">Pick a File and Upload to change the profile image</span>
+                <button className="btn btn-light"  Style="float:left;margin-left:0px;margin-bottom:-90px;margin-right:0px;" onClick={() => this.fileInput.click()}>
                   Pick File
                 </button>
                 <button
                   type="button"
                   onClick={this.fileUploadHandler}
                   className="btn btn-light"
-                
+                  Style="margin-right:0px;margin-bottom:20px;"
                 >
                     Upload
                 </button>
+                 
                 </div>
               </div>
               <form onSubmit={this.onSubmit}>
@@ -353,6 +382,8 @@ CreateProfile.propTypes = {
   getCurrentProfile: PropTypes.func.isRequired,
   errors: PropTypes.object.isRequired,
   user: PropTypes.object.isRequired,
+  deleteAccount: PropTypes.func.isRequired,
+  logoutUser: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({
@@ -361,6 +392,6 @@ const mapStateToProps = (state) => ({
   auth: state.auth,
 });
 
-export default connect(mapStateToProps, { createProfile,getCurrentProfile  })(
+export default connect(mapStateToProps, { createProfile,getCurrentProfile,deleteAccount,logoutUser  })(
   withRouter(CreateProfile)
 );

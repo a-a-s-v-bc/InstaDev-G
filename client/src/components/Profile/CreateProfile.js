@@ -224,7 +224,7 @@ class CreateProfile extends Component {
                   onChange={this.fileSelectedHandler}
                   ref={(fileInput) => (this.fileInput = fileInput)}
                 />
-                <div>
+                <div><span Style="margin-left:80px;">Pick a File and Upload to change the profile image</span>
                   <button
                     className="btn btn-light"
                     Style="float:left;margin-left:55px;margin-bottom-20px;"

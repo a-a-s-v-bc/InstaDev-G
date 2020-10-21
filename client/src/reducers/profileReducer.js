@@ -1,4 +1,4 @@
-import { GET_PROFILE } from '../actions/types';
+import { GET_PROFILE, SET_CURRENT_USER } from '../actions/types';
 
 
 const initialState = {
@@ -20,6 +20,12 @@ export default function(state=initialState, action) {
         }
       
       }
+      case SET_CURRENT_USER:
+        return {
+          ...state,
+          profile: null
+        
+        }
      
     default:
       return state;

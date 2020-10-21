@@ -5,6 +5,7 @@ import { GET_ERRORS } from "./types";
 import { GET_FOLLOWERS } from "./types";
 import { GET_FOLLOWING } from "./types";
 import { SET_PASSWORD } from "./types";
+import { SET_CURRENT_USER } from "./types";
 
 
 
@@ -111,3 +112,26 @@ export const changeProfilePassword= (userdata) => dispatch=> {
       })
     );
 }
+
+// Delete account & profile
+export const deleteAccount = (history) => dispatch => {
+  if (window.confirm('Are you sure? This can NOT be undone!')) {
+    axios
+      .delete('/api/profile')
+      .then(res => {
+        history.push("/");
+        dispatch({
+          type: SET_CURRENT_USER,
+          payload: {}
+        })
+      }
+      )
+  
+      .catch(err =>
+        dispatch({
+          type: GET_ERRORS,
+          payload: err.response.data
+        })
+      );
+  }
+};

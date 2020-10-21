@@ -6,3 +6,4 @@ export const GET_ERRORS = "GET_ERRORS"
 export const GET_FOLLOWERS = "GET_FOLLOWERS";
 export const GET_FOLLOWING = "GET_FOLLOWING";
 export const SET_PASSWORD = "SET_PASSWORD";
+export const SET_CURRENT_USER = "SET_CURRENT_USER";
