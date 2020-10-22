@@ -53,6 +53,7 @@
   font-weight: inherit;
   font-size:150%;
   margin-bottom: 20px;
+  margin-top:-45px;
 }
 
 .btn .btn-lg{
@@ -116,7 +117,7 @@ color: rgb(236, 196, 18);
 .positionimage{
   margin-left:50px;
   width:13%;
-  
+  height:70%;
   
 }
 
@@ -183,6 +184,7 @@ color: rgb(236, 196, 18);
 .Editimage{
   margin-left: 33%;
   width:30%;
+  height:30%;
 }
 
 .op{

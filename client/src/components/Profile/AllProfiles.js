@@ -12,9 +12,9 @@ class AllProfiles extends Component {
     let profilelist = this.props.profile.profiles;
     console.log("props:", this.props);
 
-    // if (this.props.profile.loaded === false) {
-    //   return <div> Loading .....</div>;
-    // }
+    if (this.props.profile.loaded === false) {
+       return <div> Loading .....</div>;
+    }
     return (
       <div className="container">
         <div className="row">
@@ -45,20 +45,21 @@ class AllProfiles extends Component {
                   className="rounded-circle"
                   src={usr.user.avatar}
                   alt=""
-                  Style="width:15%;"
+                  Style="width:15%;height:170px;"
                   onClick={() => {
-                    const userid = {user_id:`${usr.user.id}`};
-                    console.log("inside submit",userid);
-                    this.props.getOthersProfile(userid, this.props.history);
+                    const handle = {handle:`${usr.handle}`};
+                    console.log("userdata:", handle);
+                    this.props.match.params.handle = handle.handle;
+                    this.props.getOthersProfile(this.props.match.params.handle, this.props.history);
                     
                    
                   }}
                 />
                 <span className="followername"
                      onClick={() => {
-                      const userid = {user_id:`${usr.user.id}`};
-                      console.log("inside submit",userid);
-                      this.props.getOthersProfile(userid, this.props.history);
+                      const handle = {handle:`${usr.handle}`};
+                      this.props.match.params.handle = handle.handle;
+                      this.props.getOthersProfile(this.props.match.params.handle, this.props.history);
                       
                      
                     }}

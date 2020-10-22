@@ -173,15 +173,16 @@ export const getAllProfiles=() => dispatch=> {
 }
 
 
-export const getOthersProfile=(userid) => dispatch=> {
-
+export const getOthersProfile = (handle,history) => dispatch=> {
+ 
   axios
-    .get(`api/profile/user/:${userid}`)
+    .get(`/api/profile/handle/${handle}`)
     .then((res)=> {
       dispatch({
      type: GET_OTHERUSER_PROFILE,
    payload: res.data
- });
+      });
+      history.push("/profile/other");
     })
     .catch((err) =>
       dispatch({

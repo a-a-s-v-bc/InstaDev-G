@@ -1,4 +1,4 @@
-import { GET_PROFILE, SET_CURRENT_USER, GET_PROFILES } from "../actions/types";
+import { GET_PROFILE, SET_CURRENT_USER, GET_PROFILES,GET_OTHERUSER_PROFILE } from "../actions/types";
 
 const initialState = {
   profile: {
@@ -7,7 +7,9 @@ const initialState = {
 
   profiles: [],
   loaded:false,
-    
+  OtherUserProfile: {
+    loaded:false,
+  },
   
 };
 
@@ -33,6 +35,15 @@ export default function (state = initialState, action) {
           loaded: true,
         
       };
+    case GET_OTHERUSER_PROFILE:
+      return {
+        ...state,
+        OtherUserProfile:{
+          ...action.payload,
+          loaded: true,
+        },
+        
+      }
     default:
       return state;
   }
