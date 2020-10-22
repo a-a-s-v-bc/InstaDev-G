@@ -9,6 +9,8 @@ class PostForm extends Component {
     super(props);
     this.state = {
       text: "",
+      image:"",
+      imageFile: null,
       errors: {},
     };
 
@@ -29,6 +31,7 @@ class PostForm extends Component {
 
     const newPost = {
       text: this.state.text,
+      image: this.state.image,
       name: user.name,
       avatar: user.avatar,
     };
@@ -40,6 +43,39 @@ class PostForm extends Component {
   onChange(e) {
     this.setState({ [e.target.name]: e.target.value });
   }
+
+fileSelectedHandler = (event) => {
+  console.log("*** selected file name", event.target.files[0]);
+  this.setState({
+    imageFile: event.target.files[0],
+  });
+  console.log("*** this.state", this.state);
+};
+
+fileUploadHandler = () => {
+  const fd = new FormData();
+  fd.append("file", this.state.imageFile);
+  fd.append("upload_preset", "instadevgPosts");
+  fd.append("cloud_name", "instadevg1");
+
+  fetch("https://api.cloudinary.com/v1_1/instadevg1/image/upload", {
+    method: "POST",
+    body: fd,
+  })
+    .then((res) => res.json())
+    .then((data) => {
+      this.setState({
+        image: data.url,
+      });
+
+      console.log(data.url);
+      console.log("*** here is the image file**", this.image);
+    })
+    .catch((err) => console.error(err));
+
+}
+
+
 
   render() {
     const { errors } = this.state;
@@ -62,6 +98,31 @@ class PostForm extends Component {
               <button type="submit" className="btn btn-dark">
                 Submit
               </button>
+              <div className="form-group">
+                <input
+                  style={{ display: "none" }}
+                  type="file"
+                  onChange={this.fileSelectedHandler}
+                  ref={(fileInput) => (this.fileInput = fileInput)}
+                />
+                <div>
+                  <button
+                    className="btn btn-light"
+                    //Style="float:left;margin-left:55px;margin-bottom-20px;"
+                    onClick={() => this.fileInput.click()}
+                  >
+                    Pick Image File
+                  </button>
+                  <button
+                    type="button"
+                    onClick={this.fileUploadHandler}
+                    className="btn btn-light"
+                    //Style="float:left;margin-left:55px;margin-bottom-20px;"
+                  >
+                    Upload Image
+                  </button>
+                </div>
+              </div>
             </form>
           </div>
         </div>
