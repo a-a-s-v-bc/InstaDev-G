@@ -34,6 +34,11 @@ import {logoutUser} from '../../actions/authActions';
 
      const authLinks = (
        <ul className="navbar-nav ml-auto">
+          <li className="nav-item">
+           <Link className="nav-link" to="/search/profiles">
+           <i className="fa fa-search"></i>
+           </Link>
+         </li>
          <li className="nav-item">
            <Link className="nav-link" to="/feed">
              Post Feed

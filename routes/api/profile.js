@@ -234,9 +234,9 @@ router.get(
 // @route   GET api/profile/all
 // @desc    Get all profiles
 // @access  Public
-router.get("/all", (req, res) => {
+router.get("/all", passport.authenticate("jwt", { session: false }), (req, res) => {
   const errors = {};
-
+  console.log("inside the api get all profiles");
   Profile.find()
     .populate("user", ["name", "avatar", "email"])
     .then((profiles) => {

@@ -21,6 +21,7 @@ import setAuthToken from './utils/setAuthToken';
 import {SET_USER } from './actions/types';
 import ChangePassword from './components/Profile/ChangePassword';
 import CreateProfile from './components/Profile/CreateProfile';
+import AllProfiles from './components/Profile/AllProfiles';
 
 if (localStorage.jwtToken){
 
@@ -73,6 +74,7 @@ class App extends Component {
           <Route exact path="/profile/following" component={Following} />
           <Route exact path="/profile/changePassword" component={ChangePassword} />
           <Route exact path="/profile/createProfile" component={CreateProfile} />
+          <Route exact path="/search/profiles" component={AllProfiles} />
 
           <Footer />
         </div>

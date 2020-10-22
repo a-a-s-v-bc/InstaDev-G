@@ -230,19 +230,21 @@ onDeleteClick(e) {
 
     return (
       <div className="create-profile">
-        <a href="/profile/changePassword" className="btn btn-light">
-          Change Password
-        </a>
-        <a href="/profile" className="btn btn-light">
-          Go Back
-        </a>
+       
+       
         <button
               onClick={this.onDeleteClick.bind(this)}
           className="btn btn-danger"
           Style="width:200px;"
             >
-              Delete My Account
+          Delete My Account
             </button>
+            <a href="/profile/changePassword" className="btn btn-light">
+          Change Password
+        </a>
+            <a href="/profile" className="btn btn-light">
+          Go Back
+        </a>
         <div className="container">
           <div className="row">
             <div className="col-md-8 m-auto">

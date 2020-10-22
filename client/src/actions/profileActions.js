@@ -6,6 +6,8 @@ import { GET_FOLLOWERS } from "./types";
 import { GET_FOLLOWING } from "./types";
 import { SET_PASSWORD } from "./types";
 import { SET_CURRENT_USER } from "./types";
+import { GET_PROFILES } from "./types";
+import { GET_OTHERUSER_PROFILE } from "./types";
 
 
 
@@ -151,3 +153,40 @@ export const deleteAccount = (history) => dispatch => {
       );
   }
 };
+
+export const getAllProfiles=() => dispatch=> {
+
+  axios
+    .get("/api/profile/all")
+    .then((res)=> {
+      dispatch({
+     type: GET_PROFILES,
+   payload: res.data
+ });
+    })
+    .catch((err) =>
+      dispatch({
+        type: GET_ERRORS,
+        payload: err.response.data,
+      })
+    );
+}
+
+
+export const getOthersProfile=(userid) => dispatch=> {
+
+  axios
+    .get(`api/profile/user/:${userid}`)
+    .then((res)=> {
+      dispatch({
+     type: GET_OTHERUSER_PROFILE,
+   payload: res.data
+ });
+    })
+    .catch((err) =>
+      dispatch({
+        type: GET_OTHERUSER_PROFILE,
+        payload: err.response
+      })
+    );
+}
