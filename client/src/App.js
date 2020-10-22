@@ -6,15 +6,10 @@ import Landing from './components/Layout/Landing';
 import Footer from './components/Layout/Footer';
 import {BrowserRouter as Router, Route} from 'react-router-dom';
 import Register from './components/auth/Register';
-<<<<<<< HEAD
 import Dashboard from "./components/dashboard/Dashboard";
-import Profile from './components/dashboard/Profile';
-import EditProfile from './components/dashboard/EditProfile';
-=======
 
 import Profile from './components/Profile/Profile';
 import EditProfile from './components/Profile/EditProfile';
->>>>>>> e0fbd54... Create profile Working
 import store from './store';
 import Login from './components/auth/Login';
 import Followers from './components/Profile/Followers';
