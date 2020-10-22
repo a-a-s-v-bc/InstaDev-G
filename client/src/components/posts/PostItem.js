@@ -36,22 +36,29 @@ class PostItem extends Component {
           <div className="col-md-2">
             <Link to="/profile">
               <img
-                className="rounded-circle d-none d-md-block"
+                className="rounded-circle"
                 src={post.avatar}
                 alt=""
+                Style="width:25%;"
               />
             </Link>
             <br />
-            <p className="text-center">{post.name}</p>
+            <p className="text-left">{post.name}</p>
           </div>
           <div className="col-md-10">
-            <p className="lead">{post.text}</p>
+            <p className="text-left">{post.text}</p>
+            <img
+              src={post.image}
+              alt="profile image"
+              className="post-image-size"
+            ></img>
             {showActions ? (
               <span className="align-bottom">
                 <button
                   onClick={this.onLikeClick.bind(this, post._id)}
                   type="button"
-                  className="btn btn-light mr-1"
+                  className="btn btn-light"
+                  Style="width:120px;"
                 >
                   <i
                     className={classnames("fas fa-thumbs-up", {
@@ -60,26 +67,36 @@ class PostItem extends Component {
                   />
                   <span className="badge badge-light">{post.likes.length}</span>
                 </button>
+
                 <button
                   onClick={this.onUnlikeClick.bind(this, post._id)}
                   type="button"
-                  className="btn btn-light mr-1"
+                  className="btn btn-light"
+                  Style="width:120px;"
                 >
                   <i className="text-secondary fas fa-thumbs-down" />
                 </button>
-                <Link to={`/post/${post._id}`} className="btn btn-info mr-1">
+                
+                <Link
+                  to={`/post/${post._id}`}
+                  className="btn btn-light"
+                  Style="width:120px;"
+                >
                   Comments
                 </Link>
                 {post.user === auth.user.id ? (
                   <button
                     onClick={this.onDeleteClick.bind(this, post._id)}
                     type="button"
-                    className="btn btn-danger mr-1"
+                    className="btn btn-danger"
+                    Style="width:120px;"
                   >
                     <i className="fas fa-times" />
                   </button>
+                  
                 ) : null}
               </span>
+              
             ) : null}
           </div>
         </div>

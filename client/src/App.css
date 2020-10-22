@@ -232,3 +232,7 @@ color: rgb(236, 196, 18);
   color: white;
 }
 
+.post-image-size{
+  width:200px;
+  height:200px;
+}

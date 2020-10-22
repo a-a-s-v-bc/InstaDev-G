@@ -82,22 +82,30 @@ fileUploadHandler = () => {
 
     return (
       <div className="post-form mb-3">
-        <div className="card card-info">
-          <div className="card-header bg-info text-white">Say Something...</div>
+        <div className="card card-body">
+          <div className="card-header bg-info">
+            <h5>Create your post!</h5>
+            <h6>Select an image, upload image, give a title and submit!</h6>
+          </div>
           <div className="card-body">
             <form onSubmit={this.onSubmit}>
               <div className="form-group">
                 <TextAreaFieldGroup
-                  placeholder="Create a post"
+                  placeholder="Your title"
                   name="text"
                   value={this.state.text}
                   onChange={this.onChange}
                   error={errors.text}
                 />
               </div>
-              <button type="submit" className="btn btn-dark">
+              <button
+                type="submit"
+                className="btn btn-light"
+                Style="width:180px;"
+              >
                 Submit
               </button>
+
               <div className="form-group">
                 <input
                   style={{ display: "none" }}
@@ -107,19 +115,20 @@ fileUploadHandler = () => {
                 />
                 <div>
                   <button
-                    className="btn btn-light"
-                    //Style="float:left;margin-left:55px;margin-bottom-20px;"
-                    onClick={() => this.fileInput.click()}
-                  >
-                    Pick Image File
-                  </button>
-                  <button
                     type="button"
                     onClick={this.fileUploadHandler}
                     className="btn btn-light"
-                    //Style="float:left;margin-left:55px;margin-bottom-20px;"
+                    Style="width:180px;"
                   >
                     Upload Image
+                  </button>
+
+                  <button
+                    className="btn btn-light"
+                    onClick={() => this.fileInput.click()}
+                    Style="width:180px;"
+                  >
+                    Select Image
                   </button>
                 </div>
               </div>
