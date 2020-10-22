@@ -38,6 +38,7 @@ class PostForm extends Component {
 
     this.props.addPost(newPost);
     this.setState({ text: "" });
+    this.setState({ image: "" });
   }
 
   onChange(e) {
@@ -68,8 +69,8 @@ fileUploadHandler = () => {
         image: data.url,
       });
 
-      console.log(data.url);
-      console.log("*** here is the image file**", this.image);
+      //console.log(data.url);
+      //console.log("*** here is the image file**", this.image);
     })
     .catch((err) => console.error(err));
 
