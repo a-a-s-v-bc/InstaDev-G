@@ -8,7 +8,7 @@ import {logoutUser} from '../../actions/authActions';
    onLogoutClick(e) {
      e.preventDefault();
      this.props.logoutUser();
-    
+     window.location.href = "/login";
      
    }
 

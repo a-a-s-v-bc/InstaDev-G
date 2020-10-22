@@ -8,6 +8,7 @@ import {BrowserRouter as Router, Route} from 'react-router-dom';
 import Register from './components/auth/Register';
 import Dashboard from "./components/dashboard/Dashboard";
 
+
 import Profile from './components/Profile/Profile';
 import EditProfile from './components/Profile/EditProfile';
 import store from './store';
@@ -22,6 +23,7 @@ import setAuthToken from './utils/setAuthToken';
 import {SET_USER } from './actions/types';
 import ChangePassword from './components/Profile/ChangePassword';
 import CreateProfile from './components/Profile/CreateProfile';
+
 
 if (localStorage.jwtToken){
 
@@ -50,6 +52,8 @@ if (localStorage.jwtToken){
   });
 
 }
+
+
 class App extends Component {
 
 
