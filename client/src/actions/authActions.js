@@ -48,6 +48,19 @@ export const loginUser=userData => dispatch=> {
     );
 }
 
+/*
+export const resetpasswordUser = userData => dispatch => {
+  axios
+    .post("/api/users/resetpassword", userData)
+    .then((res) => console.log(res.data))
+    .catch((err) =>
+      dispatch({
+        type: SET_ERROR,
+        
+      })
+    );
+};*/
+
 export const logoutUser=()=> dispatch=>{
 
   // remove token from local storage

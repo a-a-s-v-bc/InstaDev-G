@@ -2,13 +2,16 @@ import React, { Component } from "react";
 import axios from "axios";
 import classnames from "classnames";
 
+//import PropTypes from "prop-types";
+//import { connect } from "react-redux";
+//import {resetpasswordUser} from "../../actions/authActions";
 class Resetpassword extends Component {
   constructor() {
     super();
     //Local State of Reset password component
     this.state = {
       email: "",
-  
+
       errors: {},
     };
     this.onChange = this.onChange.bind(this);
@@ -21,14 +24,15 @@ class Resetpassword extends Component {
     e.preventDefault();
     const User = {
       email: this.state.email,
-      
     };
     axios
       .post("/api/users/resetpassword", User)
       .then((res) => console.log(res.data))
       .catch((err) => this.setState({ errors: err.response.data }));
+    window.location.href='/emailsenttext';
   }
 
+  
   render() {
     const { errors } = this.state;
 
@@ -74,5 +78,6 @@ class Resetpassword extends Component {
     );
   }
 }
+
 
 export default Resetpassword;

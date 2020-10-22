@@ -17,6 +17,7 @@ import Followers from './components/Profile/Followers';
 import Following from './components/Profile/Following';
 import Resetpassword from './components/auth/Resetpassword';
 import Passwordreset from './components/auth/Passwordreset';
+import EmailSentText from "./components/auth/EmailSentText";
 import jwt_decode from 'jwt-decode';
 import { logoutUser } from './actions/authActions';
 import setAuthToken from './utils/setAuthToken';
@@ -67,17 +68,25 @@ class App extends Component {
           <Route exact path="/register" component={Register} />
           <Route exact path="/login" component={Login} />
           <Route exact path="/resetpassword" component={Resetpassword} />
-          <Route
-            exact path="/forgotpassword/:token" component={Passwordreset}  />
-         
-            <Route exact path="/Dashboard" component={Dashboard} />
-         
+          <Route exact path="/forgotpassword/:token" component={Passwordreset} />
+          <Route exact path="/emailsenttext" component={EmailSentText} />
+
+          <Route exact path="/Dashboard" component={Dashboard} />
+
           <Route exact path="/profile" component={Profile} />
           <Route exact path="/profile/editProfile" component={EditProfile} />
           <Route exact path="/profile/followers" component={Followers} />
           <Route exact path="/profile/following" component={Following} />
-          <Route exact path="/profile/changePassword" component={ChangePassword} />
-          <Route exact path="/profile/createProfile" component={CreateProfile} />
+          <Route
+            exact
+            path="/profile/changePassword"
+            component={ChangePassword}
+          />
+          <Route
+            exact
+            path="/profile/createProfile"
+            component={CreateProfile}
+          />
 
           <Footer />
         </div>
