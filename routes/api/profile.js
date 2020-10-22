@@ -8,6 +8,7 @@ const { ObjectId } = require("mongoose");
 const validateProfileInput = require("../../validation/profile");
 const validatechangepasswordInput = require("../../validation/changepassword");
 const bcrypt = require('bcryptjs');
+const isEmpty = require('../../validation/is-empty');
 
 
 // @route POST /api/profile/
@@ -23,19 +24,23 @@ router.post(
       return res.status(400).json(errors);
     }
     const profileFields = {};
+    const userfields = {};
     profileFields.user = req.user.id;
+
+    if (req.body.avatar) userfields.avatar = req.body.avatar;
     if (req.body.handle) profileFields.handle = req.body.handle;
     if (req.body.phone) profileFields.phone = req.body.phone;
     if (req.body.website) profileFields.website = req.body.website;
     if (req.body.bio) profileFields.bio = req.body.bio;
-    if (req.body.desc) profileFields.desc = req.body.desc;
+    
     if (req.body.status) profileFields.status = req.body.status;
     profileFields.social = {};
     if (req.body.youtube) profileFields.social.youtube = req.body.youtube;
     if (req.body.linkedin) profileFields.social.linkedin = req.body.linkedin;
     if (req.body.facebook) profileFields.social.facebook = req.body.facebook;
     if (req.body.twitter) profileFields.social.twitter = req.body.twitter;
-
+    console.log("profilefields:", profileFields);
+    console.log("userfields:", userfields);
     Profile.findOne({ user: req.user.id })
       .then((profile) => {
         if (profile) {
@@ -47,6 +52,15 @@ router.post(
           )
             .then((profile) => res.json(profile))
             .catch((err) => console.log(err));
+          if (!isEmpty(userfields)) {
+            User.findOneAndUpdate(
+              { _id: req.user.id },
+              { $set: userfields },
+              { new: true }
+            )
+              .then((profile) => res.json(profile))
+              .catch((err) => console.log(err));
+          }
         } else {
           //create
           Profile.findOne({ handle: profileFields.handle })
@@ -56,8 +70,18 @@ router.post(
                   .status(400)
                   .json({ handle: "That handle already exists!" });
               }
-
+              if (!isEmpty(userfields)) {
+                User.findOneAndUpdate(
+                  { _id: req.user.id },
+                  { $set: userfields },
+                  { new: true }
+                )
+                  .then((profile) => res.json(profile))
+                  .catch((err) => console.log(err));
+              }
+            
               new Profile(profileFields)
+              
                 .save()
                 .then((profile) => res.json(profile));
             })
@@ -106,7 +130,7 @@ router.put(
   }
 );
 
-// @route /api/profile/user/unfollow
+// @route /api/profile/unfollow
 // @desc API to update the follower and following
 // @access Private
 
@@ -114,6 +138,7 @@ router.put(
   "/unfollow",
   passport.authenticate("jwt", { session: false }),
   (req, res) => {
+    console.log("inside unfollow");
     Profile.findOneAndUpdate(
       { user: req.body.user_id },
       {
@@ -144,6 +169,46 @@ router.put(
   }
 );
 
+// @route /api/profile/removeFollower
+// @desc API to update to remove follower 
+// @access Private
+
+router.put(
+  "/removeFollower",
+  passport.authenticate("jwt", { session: false }),
+  (req, res) => {
+    console.log("inside remove follower");
+    Profile.findOneAndUpdate(
+      { user: req.body.user_id },
+      {
+        $pull: { following: req.user.id },
+      },
+      {
+        new: true,
+      },
+      (err, result) => {
+        if (err) {
+          return res.status(421).json({ error: err });
+        }
+        Profile.findOneAndUpdate(
+          { user: req.user.id },
+          { $pull: { followers: req.body.user_id } },
+
+          {
+            new: true,
+          }
+        )
+          .then((profile) => res.json(profile))
+
+          .catch((err) => {
+            return res.status(422).json({ error: err });
+          });
+      }
+    );
+  }
+);
+
+
 // @route   GET api/profile
 // @desc    Get current users profile
 // @access  Private
@@ -169,9 +234,9 @@ router.get(
 // @route   GET api/profile/all
 // @desc    Get all profiles
 // @access  Public
-router.get("/all", (req, res) => {
+router.get("/all", passport.authenticate("jwt", { session: false }), (req, res) => {
   const errors = {};
-
+  console.log("inside the api get all profiles");
   Profile.find()
     .populate("user", ["name", "avatar", "email"])
     .then((profiles) => {
@@ -221,16 +286,16 @@ router.get("/user/:user_id", (req, res) => {
     .catch((err) => console.log(err));
 });
 
-// @route /api/profile/follower
+// @route /api/profile/followers
 // @desc Get all list of followers of the user
 // @access private
 
 router.get(
-  "/follower",
+  "/followers",
   passport.authenticate("jwt", { session: false }),
   async (req, res) => {
     const errors = {};
-
+    console.log("inside the api get followers");
     Profile.findOne({ user: req.user.id })
       .populate("user", ["name", "avatar"])
       .then(async (profile) => {

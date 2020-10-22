@@ -62,10 +62,10 @@ class Profile extends Component {
                   
             <p className="socialicons">
                    
-            {isEmpty(this.props.profile.social && this.props.profile.social.twitter) ? null : (
-                  <a
-                    className="text-white p-2"
-                    href={this.props.profile.social.twitter}
+              {isEmpty(this.props.profile.social && this.props.profile.social.twitter) ? null : (
+                <a
+                  className="text-white p-2"
+                  href={`//${this.props.profile.social.twitter}`}
                   target="_blank"
                   rel="noopener noreferrer"
                   >
@@ -73,10 +73,10 @@ class Profile extends Component {
                   </a>
                 )}
 
-                {isEmpty(this.props.profile.social && this.props.profile.social.facebook) ? null : (
-                  <a
-                    className="text-white p-2"
-                    href={this.props.profile.social.facebook}
+              {isEmpty(this.props.profile.social && this.props.profile.social.facebook) ? null : (
+                <a
+                  className="text-white p-2"
+                  href={`//${this.props.profile.social.facebook}`}
                   target="_blank"
                   rel="noopener noreferrer"
                   >
@@ -84,10 +84,10 @@ class Profile extends Component {
                   </a>
                 )}
 
-                {isEmpty(this.props.profile.social && this.props.profile.social.linkedin) ? null : (
-                  <a
-                    className="text-white p-2"
-                    href={this.props.profile.social.linkedin}
+              {isEmpty(this.props.profile.social && this.props.profile.social.linkedin) ? null : (
+                <a
+                  className="text-white p-2"
+                  href={`//${this.props.profile.social.linkedin}`}
                   target="_blank"
                   rel="noopener noreferrer"
                   >
@@ -95,10 +95,10 @@ class Profile extends Component {
                   </a>
                 )}
 
-                {isEmpty(this.props.profile.social && this.props.profile.social.youtube) ? null : (
-                  <a
-                    className="text-white p-2"
-                    href={this.props.profile.social.youtube}
+              {isEmpty(this.props.profile.social && this.props.profile.social.youtube) ? null : (
+                <a
+                  className="text-white p-2"
+                  href={`//${this.props.profile.social.youtube}`}
                   target="_blank"
                   rel="noopener noreferrer"
                   >

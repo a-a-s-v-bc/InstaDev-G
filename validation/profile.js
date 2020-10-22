@@ -16,7 +16,7 @@ module.exports = function validateProfileInput(data) {
   }
   if (!isEmpty(data.phone)) {
     if (!Validation.isMobilePhone(data.phone)) {
-      errors.handle = "Invalid mobile phone";
+      errors.phone = "Invalid mobile phone";
     }
   }
 

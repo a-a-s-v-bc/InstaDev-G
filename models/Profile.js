@@ -25,9 +25,7 @@ const ProfileSchema = new Schema({
     type: String,
   },
 
-  desc: {
-    type: String,
-  },
+ 
 
   status: {
     type: String,

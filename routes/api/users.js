@@ -14,6 +14,7 @@ const validateforgotpasswordInput = require("../../validation/forgotpassword");
 const router = express.Router();
 
 const mailerKey = require('../../config/keys').transportURI;
+const keys = require('../../config/keys');
 
 console.log("using key" + mailerKey);
 

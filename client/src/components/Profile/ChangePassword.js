@@ -1,14 +1,18 @@
 import React, { Component } from "react";
-import axios from "axios";
-import classnames from "classnames";
 
-export default class ChangePassword extends Component {
+import classnames from "classnames";
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
+import {changeProfilePassword} from '../../actions/profileActions';
+
+class ChangePassword extends Component {
   constructor() {
     super();
-    //Local State of Password reset Component
+    //Local State of Change Password Component
     this.state = {
       password: "",
       password2: "",
+      message:"",
       errors: {},
     };
     this.onChange = this.onChange.bind(this);
@@ -23,14 +27,24 @@ export default class ChangePassword extends Component {
       password: this.state.password,
       password2: this.state.password2,
     };
-    axios
-      .post("/api/profile/changepassword", User)
-      .then((res) => console.log(res.data))
-      .catch((err) => this.setState({ errors: err.response.data }));
+    this.props.changeProfilePassword(User);
+  
+
+    
   }
 
   render() {
-    const { errors } = this.state;
+    const { errors } = this.props;
+    console.log("props:", this.props);
+ 
+  
+      if (this.props.auth.actions.Msg) {
+        return(<div class="alert alert-success" role="alert">{this.props.auth.actions.Msg}
+        </div>)
+      
+      }
+    
+    
     return (
       <div className="changepassword">
         <div className="container">
@@ -79,6 +93,7 @@ export default class ChangePassword extends Component {
                     type="submit"
                     className="btn btn-info btn-block"
                     Style="float:left;margin-bottom:300px;"
+                    
                   />
                 </div>
               </form>
@@ -89,3 +104,17 @@ export default class ChangePassword extends Component {
     );
   }
 }
+
+ChangePassword.propTypes = {
+  changeProfilePassword: PropTypes.func.isRequired,
+  errors: PropTypes.object.isRequired,
+  actions: PropTypes.object.isRequired,
+};
+
+const mapStateToProps = (state) => ({
+  errors: state.errors,
+  auth: state.auth,
+  mesg: state.actions,
+});
+
+export default connect(mapStateToProps, { changeProfilePassword })(ChangePassword);

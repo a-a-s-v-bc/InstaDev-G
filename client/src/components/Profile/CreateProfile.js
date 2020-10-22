@@ -2,11 +2,12 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import TextFieldGroup from "../common/TextFieldGroup";
-
+//import axios from "axios";
 import InputGroup from "../common/InputGroup";
 import SelectListGroup from "../common/SelectListGroup";
 import { withRouter } from "react-router-dom";
 import { createProfile } from "../../actions/profileActions";
+
 
 class CreateProfile extends Component {
   constructor() {
@@ -26,6 +27,7 @@ class CreateProfile extends Component {
       twitter: "",
       linkedin: "",
       youtube: "",
+      selectedFile: null,
       errors: {},
     };
     this.onChange = this.onChange.bind(this);
@@ -41,7 +43,7 @@ class CreateProfile extends Component {
       handle: this.state.handle,
       status: this.state.status,
       email: this.state.email,
-
+      avatar: this.state.avatar,
       phone: this.state.phone,
       website: this.state.website,
       bio: this.state.bio,
@@ -60,8 +62,57 @@ class CreateProfile extends Component {
       this.setState({ errors: nextProps.errors });
     }
   }
+  fileSelectedHandler = (event) => {
+    console.log(event.target.files[0]);
+    this.setState({
+      selectedFile: event.target.files[0],
+    });
+  };
+
+  fileUploadHandler = () => {
+    const fd = new FormData();
+    fd.append("file", this.state.selectedFile);
+    fd.append("upload_preset", "kalbootcampInsta");
+    fd.append("cloud_name", "kalbootcamp");
+
+    //axios.post('https://api.cloudinary.com/v1_1/kalbootcamp/image/upload', fd, config)
+    //  .then(res => { console.log(res) })
+    //  .catch(err => { console.log(err) })
+    fetch("https://api.cloudinary.com/v1_1/kalbootcamp/image/upload/", {
+      method: "POST",
+      body: fd,
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        this.setState({
+          avatar: data.url,
+        });
+
+        console.log(data.url);
+      })
+      .catch((err) => console.error(err));
+  };
+
   render() {
     const { errors, displaySocialInputs } = this.state;
+    console.log("avatar state ,", this.state.avatar);
+    let isNewProfile = this.state.avatar;
+    let getavatar;
+    if (isNewProfile === "") {
+     getavatar=( <img
+          className="rounded-circle Editimage"
+          src={this.props.auth.user.avatar}
+          alt=""
+        />
+      )
+    } else {
+    getavatar=(
+        <img
+          className="rounded-circle Editimage"
+          src={this.state.avatar}
+          alt=""
+         />)
+    }
 
     let socialInputs;
 
@@ -120,6 +171,26 @@ class CreateProfile extends Component {
       { label: "Other", value: "Other" },
     ];
 
+    // const isNewProfile = () => {
+    //   console.log("avatar state:", this.state.avatar);
+    // if (this.state.avatar === "") {
+    //     return (<img
+    //       className="rounded-circle Editimage"
+    //       src={this.props.auth.user.avatar}
+    //       alt=""
+    //     />
+    //   )
+    // } else {
+    //   return(
+    //     <img
+    //       className="rounded-circle Editimage"
+    //       src={this.state.avatar}
+    //       alt=""
+    //     />
+    //   )}
+    // };
+
+
     return (
       <div className="create-profile">
         <a href="/profile/changePassword" className="btn btn-light">
@@ -140,14 +211,36 @@ class CreateProfile extends Component {
 
               <small className="form-text">* = required field</small>
               <div className="form-group">
-                <img
+                {/* /* <img
                   className="rounded-circle Editimage"
-                  src={this.props.auth.user.avatar}
+                  src={this.state.avatar}
                   alt=""
+                /> */ }
+                {getavatar}
+
+                <input
+                  style={{ display: "none" }}
+                  type="file"
+                  onChange={this.fileSelectedHandler}
+                  ref={(fileInput) => (this.fileInput = fileInput)}
                 />
-                <a href="/profile" className="form-text Profilechangeimage">
-                  Change Profile Image
-                </a>
+                <div><span Style="margin-left:80px;">Pick a File and Upload to change the profile image</span>
+                  <button
+                    className="btn btn-light"
+                    Style="float:left;margin-left:55px;margin-bottom-20px;"
+                    onClick={() => this.fileInput.click()}
+                  >
+                    Pick File
+                  </button>
+                  <button
+                    type="button"
+                    onClick={this.fileUploadHandler}
+                    className="btn btn-light"
+                    Style="margin-right:55px;margin-bottom:20px;"
+                  >
+                    Upload
+                  </button>
+                </div>
               </div>
               <form onSubmit={this.onSubmit}>
                 <TextFieldGroup
@@ -248,7 +341,6 @@ CreateProfile.propTypes = {
   createProfile: PropTypes.func.isRequired,
   profile: PropTypes.object.isRequired,
   errors: PropTypes.object.isRequired,
-  user: PropTypes.object.isRequired,
 };
 
 const mapStateToProps = (state) => ({
