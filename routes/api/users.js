@@ -13,6 +13,8 @@ const validateLoginInput = require("../../validation/Login");
 const validateforgotpasswordInput = require("../../validation/forgotpassword");
 const router = express.Router();
 
+const keys= require('../../config/keys');
+
 const mailerKey = require('../../config/keys').transportURI;
 const keys = require('../../config/keys');
 
