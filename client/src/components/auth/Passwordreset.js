@@ -29,6 +29,8 @@ class Passwordreset extends Component {
       .post("/api/users/forgotpassword/:token", User)
       .then((res) => console.log(res.data))
       .catch((err) => this.setState({ errors: err.response.data }));
+      alert("Success!! Your new password is updated. Kindly Login.");
+      window.location.href = "/login";
   }
 
   render() {
