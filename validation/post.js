@@ -12,10 +12,6 @@ module.exports = function validatePostInput(data) {
     errors.text = "Text field is required";
   }
 
-  if (isEmpty(data.image)) {
-    errors.text = "Image field is required";
-  }
-
   return {
     errors,
     isValid: isEmpty(errors),

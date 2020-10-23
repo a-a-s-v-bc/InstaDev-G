@@ -12,7 +12,7 @@ class CommentItem extends Component {
     const { comment, postId, auth } = this.props;
 
     return (
-      <div className="card card-body mb-3">
+      <div className="postCommentCard card-body mb-3">
         <div className="row">
           <div className="col-md-2">
             <a href="profile.html">
@@ -20,22 +20,24 @@ class CommentItem extends Component {
                 className="rounded-circle d-none d-md-block"
                 src={comment.avatar}
                 alt=""
+                Style="width:25%;"
               />
             </a>
-            <br />
-            <p className="text-center">{comment.name}</p>
+            
+            <p className="text-left">{comment.name}</p>
           </div>
           <div className="col-md-10">
-            <p className="lead">{comment.text}</p>
+            <p className="">{comment.text}
             {comment.user === auth.user.id ? (
               <button
                 onClick={this.onDeleteClick.bind(this, postId, comment._id)}
                 type="button"
-                className="btn btn-danger mr-1"
+                className="postCommentbtn btn-danger"
               >
                 <i className="fas fa-times" />
               </button>
             ) : null}
+            </p>
           </div>
         </div>
       </div>
