@@ -1,14 +1,16 @@
 import React, { Component } from "react";
-import axios from "axios";
+//import axios from "axios";
 import classnames from "classnames";
-
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
+import {resetpasswordUser} from "../../actions/authActions";
 class Resetpassword extends Component {
   constructor() {
     super();
     //Local State of Reset password component
     this.state = {
       email: "",
-  
+
       errors: {},
     };
     this.onChange = this.onChange.bind(this);
@@ -20,15 +22,19 @@ class Resetpassword extends Component {
   onSubmit(e) {
     e.preventDefault();
     const User = {
-      email: this.state.email,
-      
+      email: this.state.email
     };
-    axios
-      .post("/api/users/resetpassword", User)
-      .then((res) => console.log(res.data))
-      .catch((err) => this.setState({ errors: err.response.data }));
+
+    this.props.resetpasswordUser(User, this.props.history);
+   
+  }
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.errors) {
+      this.setState({ errors: nextProps.errors });
+    }
   }
 
+  
   render() {
     const { errors } = this.state;
 
@@ -39,7 +45,8 @@ class Resetpassword extends Component {
             <div className="col-md-8 m-auto">
               <h1
                 className="display-3 text-center"
-                Style="font-weight:Bold;margin-bottom:30px;">
+                Style="font-weight:Bold;margin-bottom:30px;"
+              >
                 Reset password
               </h1>
               <h3 className="text-left">Enter your email </h3>
@@ -75,4 +82,14 @@ class Resetpassword extends Component {
   }
 }
 
-export default Resetpassword;
+Resetpassword.propTypes = {
+  resetpasswordUser: PropTypes.func.isRequired,
+  errors: PropTypes.object.isRequired,
+  auth: PropTypes.object.isRequired
+};
+
+const mapStateToProps = (state) => ({
+  errors: state.errors,
+  auth: state.auth
+});
+export default connect(mapStateToProps, {resetpasswordUser})(Resetpassword);

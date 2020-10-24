@@ -47,7 +47,8 @@ router.post("/resetpassword", (req, res) => {
         if (!User) {
           return res.status(404).json({ email: "User not found" });
         }
-          console.log("user found");
+        console.log("user found");
+ 
         //save token with a expiration time
         User.resettoken = mailtoken;
         User.expiretoken = Date.now() + 3600000; 
@@ -59,11 +60,18 @@ router.post("/resetpassword", (req, res) => {
               subject: " Link to Reset Password",
               html:
                 '<p>You are receiving this because you (or someone else)have requested the reset of the password for your account </p> <h5> Click this <a href="http://localhost:3000/forgotpassword/${mailtoken}">link </a>to reset your password</h5>',
-            });
-            
+                        
+              });
             console.log("email sent");
           })
           .catch((err) => console.log(err));
+
+                      
+          if (User) {
+            var redir = { redirect: "/emailtextsent" };
+            return res.json(redir);
+          }
+
       })
       .catch((err) => console.log(err));
   });

@@ -9,14 +9,13 @@ import Register from './components/auth/Register';
 import Dashboard from "./components/dashboard/Dashboard";
 import Profile from './components/Profile/Profile';
 import EditProfile from './components/Profile/EditProfile';
-
-
 import store from './store';
 import Login from './components/auth/Login';
 import Followers from './components/Profile/Followers';
 import Following from './components/Profile/Following';
 import Resetpassword from './components/auth/Resetpassword';
 import Passwordreset from './components/auth/Passwordreset';
+import EmailSentText from "./components/auth/EmailSentText";
 import jwt_decode from 'jwt-decode';
 import { logoutUser } from './actions/authActions';
 import setAuthToken from './utils/setAuthToken';
@@ -57,6 +56,8 @@ if (localStorage.jwtToken){
   });
 
 }
+
+
 class App extends Component {
 
 
@@ -70,11 +71,8 @@ class App extends Component {
           <Route exact path="/register" component={Register} />
           <Route exact path="/login" component={Login} />
           <Route exact path="/resetpassword" component={Resetpassword} />
-          <Route
-            exact
-            path="/forgotpassword/:token"
-            component={Passwordreset}
-          />
+          <Route exact path="/forgotpassword/:token" component={Passwordreset} />
+          <Route exact path="/emailsenttext" component={EmailSentText} />
 
           <Route exact path="/Dashboard" component={Dashboard} />
 
