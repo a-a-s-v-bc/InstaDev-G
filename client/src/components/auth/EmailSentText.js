@@ -26,4 +26,4 @@ class EmailSentText extends Component {
 }
 
 
-export default (EmailSentText);
+export default EmailSentText;

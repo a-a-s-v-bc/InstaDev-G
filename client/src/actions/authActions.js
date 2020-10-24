@@ -49,7 +49,7 @@ export const loginUser=userData => dispatch=> {
 }
 
 
-export const resetpasswordUser = userData => dispatch => {
+/*export const resetpasswordUser = userData => dispatch => {
   axios
     .post("/api/users/resetpassword", userData)
     .then((res) => {
@@ -76,7 +76,7 @@ export const resetpasswordUser = userData => dispatch => {
         payload: err.response.data,
       })
     );
-}
+}*/
 
 export const passwordresetUser = (userData, history) => (dispatch) => {
   axios
@@ -84,6 +84,21 @@ export const passwordresetUser = (userData, history) => (dispatch) => {
     .then((res) =>{ 
       alert("SUCCESS! YOUR PASSWORD HAS BEEN RESET. KINDLY LOGIN");
       history.push("/login")})
+    .catch((err) =>
+      dispatch({
+        type: SET_ERROR,
+        payload: err.response.data,
+      })
+    );
+};
+
+export const resetpasswordUser = (userData, history) => (dispatch) => {
+  axios
+    .post("/api/users/resetpassword", userData)
+    .then((res) => {
+      
+     history.push("/emailsenttext");
+    })
     .catch((err) =>
       dispatch({
         type: SET_ERROR,

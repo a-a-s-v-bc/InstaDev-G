@@ -22,25 +22,19 @@ class Resetpassword extends Component {
   onSubmit(e) {
     e.preventDefault();
     const User = {
-      email: this.state.email,
+      email: this.state.email
     };
 
     this.props.resetpasswordUser(User, this.props.history);
+   
   }
-  componentDidMount() {
-    if (this.props.auth.isAuthenticated) {
-      this.props.history.push("/emailsenttext");
-    }
-  }
-
   componentWillReceiveProps(nextProps) {
-    if (nextProps.auth.isAuthenticated) {
-      this.props.history.push("/emailsenttext");
-    }
     if (nextProps.errors) {
       this.setState({ errors: nextProps.errors });
     }
   }
+
+  
   render() {
     const { errors } = this.state;
 
