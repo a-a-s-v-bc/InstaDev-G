@@ -169,6 +169,8 @@ color: rgb(236, 196, 18);
   
 }
 
+
+
 .profileheader{
   width: 137%;
   margin-bottom: 30%;
@@ -232,3 +234,25 @@ color: rgb(236, 196, 18);
   color: white;
 }
 
+.post-image-size{
+  width:200px;
+  height:200px;
+}
+
+.postCommentCard{
+  height:100px;
+}
+
+.postCommentbtn{
+  float:right;
+  margin-top: 10px;
+  width: 150px;
+  margin-right: 15px;
+}
+
+.postBTFbtn{
+  float:right;
+  margin-top: 10px;
+  width: 150px;
+  margin-right: 25px;
+}

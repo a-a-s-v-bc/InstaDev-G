@@ -6,7 +6,7 @@ const passport = require("passport");
 // Post model
 const Post = require("../../models/Post");
 // Profile model
-// const Profile = require("../../models/Profile");
+const Profile = require("../../models/Profile");
 
 // Validation
 const validatePostInput = require("../../validation/post");
@@ -20,6 +20,8 @@ router.get("/", (req, res) => {
     .then((posts) => res.json(posts))
     .catch((err) => res.status(404).json({ nopostsfound: "No posts found" }));
 });
+
+
 
 // @route   GET api/posts/:id
 // @desc    Get post by id
@@ -52,8 +54,10 @@ router.post(
 
     const newPost = new Post({
       text: req.body.text,
-      name: req.body.name,
-      avatar: req.body.avatar,
+      image: req.body.image,
+      title: req.body.title,
+      name: req.user.name,
+      avatar: req.user.avatar,
       user: req.user.id,
     });
 

@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import PostFeed from "../posts/PostFeed";
+import PostForm from "./PostForm";
+import PostFeed from "./PostFeed";
 import Spinner from "../common/Spinner";
 import { getPosts } from "../../actions/postActions";
 
@@ -12,7 +13,6 @@ class Posts extends Component {
 
   render() {
     const { posts, loading } = this.props.post;
-    console.log("props in dashboard:", this.props);
     let postContent;
 
     if (posts === null || loading) {
@@ -26,7 +26,7 @@ class Posts extends Component {
         <div className="container">
           <div className="row">
             <div className="col-md-12">
-            
+              <PostForm />
               {postContent}
             </div>
           </div>
