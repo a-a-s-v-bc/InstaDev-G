@@ -1,6 +1,10 @@
 import React, { Component } from "react";
 import axios from "axios";
+import PropTypes from "prop-types";
 import classnames from "classnames";
+import { connect } from "react-redux";
+
+import { passwordresetUser } from "../../actions/authActions";
 
 class Passwordreset extends Component {
   constructor() {
@@ -25,10 +29,14 @@ class Passwordreset extends Component {
       password: this.state.password,
       password2: this.state.password2,
     };
-    axios
-      .post("/api/users/forgotpassword/:token", User)
-      .then((res) => console.log(res.data))
-      .catch((err) => this.setState({ errors: err.response.data }));
+   this.props.passwordresetUser(User, this.props.history);
+  }
+
+   componentWillReceiveProps(nextProps) {
+    if(nextProps.errors) {
+      this.setState({errors: nextProps.errors});
+    }
+        
   }
 
   render() {
@@ -107,4 +115,14 @@ class Passwordreset extends Component {
   }
 }
 
-export default Passwordreset;
+Passwordreset.propTypes = {
+  passwordresetUser: PropTypes.func.isRequired,
+  errors: PropTypes.object.isRequired
+};
+
+const mapStateToProps = state => (
+  {
+    errors: state.errors
+  }
+);
+export default connect(mapStateToProps, {passwordresetUser})(Passwordreset);
