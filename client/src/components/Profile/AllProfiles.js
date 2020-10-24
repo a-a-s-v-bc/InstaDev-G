@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { getAllProfiles, getOthersProfile } from '../../actions/profileActions';
+import { Link } from "react-router-dom";
+import Search from '../common/Search';
 
 class AllProfiles extends Component {
   componentDidMount() {
@@ -20,19 +22,7 @@ class AllProfiles extends Component {
         <div className="row">
         
 
-          <div className="input-group">
-            <div className="input-group-prepend">
-              <div className="input-group-text">
-                <i className="fa fa-search"></i>
-              </div>
-            </div>
-            <input
-              className="form-control  "
-              type="search"
-              placeholder="Search"
-              Style="font-size:1.25em;"
-            />
-          </div>
+          <Search allusers={profilelist}/>       
 
           <br></br>
           <br></br>
@@ -41,6 +31,7 @@ class AllProfiles extends Component {
           <div className="col-md-12">
             { profilelist.map((usr, index) => (
               <div key={index}>
+                <Link to="/profile/other">
                 <img
                   className="rounded-circle"
                   src={usr.user.avatar}
@@ -50,20 +41,21 @@ class AllProfiles extends Component {
                     const handle = {handle:`${usr.handle}`};
                     console.log("userdata:", handle);
                     this.props.match.params.handle = handle.handle;
-                    this.props.getOthersProfile(this.props.match.params.handle, this.props.history);
+                   this.props.getOthersProfile(this.props.match.params.handle);
                     
                    
                   }}
-                />
-                <span className="followername"
+                  />
+                  </Link>
+                  <Link to="/profile/other"><span className="followername"
                      onClick={() => {
                       const handle = {handle:`${usr.handle}`};
                       this.props.match.params.handle = handle.handle;
-                      this.props.getOthersProfile(this.props.match.params.handle, this.props.history);
+                      this.props.getOthersProfile(this.props.match.params.handle);
                       
                      
                     }}
-                >{usr.user.name} </span>
+                >{usr.user.name} </span></Link>
                
                
               

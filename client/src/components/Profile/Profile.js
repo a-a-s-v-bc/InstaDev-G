@@ -44,10 +44,10 @@ class Profile extends Component {
                 <a href="add-experience.html" className="btn btn-light">
                   <i className="fas fa-mail-bulk  mr-1"></i>
               Posts</a>
-                <a href="/profile/followers" className="btn btn-light">
+                <a href={`/profile/followers/${this.props.profile.user._id}`} className="btn btn-light">
                   <i className="fas fa-arrow-circle-right  mr-1"></i>
                   {this.props.profile.followers.length} Followers</a>
-                <a href="/profile/following" className="btn btn-light">
+                <a href={`/profile/following/${this.props.profile.user._id}`} className="btn btn-light">
                   <i className="fas fa-arrow-circle-left  mr-1"></i>
                   {this.props.profile.following.length} Following</a>
               </div>
