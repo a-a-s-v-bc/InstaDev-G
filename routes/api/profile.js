@@ -244,8 +244,9 @@ router.get("/all", passport.authenticate("jwt", { session: false }), (req, res) 
         errors.noprofile = "There are no profiles";
         return res.status(404).json(errors);
       }
+      const ps = profiles.filter(item => item.user.id !== req.user.id);
 
-      res.json(profiles);
+      res.json(ps);
     })
     .catch((err) => res.status(404).json(err));
 });
@@ -291,12 +292,12 @@ router.get("/user/:user_id", (req, res) => {
 // @access private
 
 router.get(
-  "/followers",
+  "/followers/:user",
   passport.authenticate("jwt", { session: false }),
   async (req, res) => {
     const errors = {};
-    console.log("inside the api get followers");
-    Profile.findOne({ user: req.user.id })
+    console.log("inside the api get followers",req.params);
+    Profile.findOne({ user: req.params.user })
       .populate("user", ["name", "avatar"])
       .then(async (profile) => {
         if (!profile) {
@@ -305,16 +306,18 @@ router.get(
         } else {
           const allfollowers = profile.followers;
           const followersnames = [];
-
+          console.log("allfollowers", profile);
           for (let i = 0; i < allfollowers.length; i++) {
-            await User.findOne({ _id: allfollowers[i] })
+            await Profile.findOne({ user: allfollowers[i] })
+            .populate("user", ["name", "avatar"])
               .then((profile) => {
-                const follower = {
-                  name: profile.name,
-                  id: profile._id,
-                  avatar: profile.avatar,
-                };
-                followersnames.push(follower);
+                // // const follower = {
+                //   name: user.name,
+                //   id: user._id,
+                //   avatar: user.avatar,
+                //   handle: profile.handle,
+                // };
+                followersnames.push(profile);
                 console.log(follower);
               })
               .catch((err) => console.log(err));
@@ -333,12 +336,12 @@ router.get(
 // @access private
 
 router.get(
-  "/following",
+  "/following/:user",
   passport.authenticate("jwt", { session: false }),
   async (req, res) => {
     const errors = {};
-
-    Profile.findOne({ user: req.user.id })
+    console.log("inside following,", req.params);
+    Profile.findOne({ user: req.params.user })
       .populate("user", ["name", "avatar"])
       .then(async (profile) => {
         if (!profile) {
@@ -346,17 +349,20 @@ router.get(
           return res.status(404).json(errors);
         } else {
           const allfollowing = profile.following;
+          console.log("all following:", profile);
           const followingnames = [];
 
           for (let i = 0; i < allfollowing.length; i++) {
-            await User.findOne({ _id: allfollowing[i] })
+            await Profile.findOne({ user: allfollowing[i] })
+            .populate("user", ["name", "avatar"])
               .then((profile) => {
-                const following = {
-                  name: profile.name,
-                  id: profile._id,
-                  avatar: profile.avatar,
-                };
-                followingnames.push(following);
+                // const following = {
+                //   name: user.name,
+                //   id: user._id,
+                //   avatar: user.avatar,
+                //   handle:profile.handle,
+                // };
+                followingnames.push(profile);
                 console.log(following);
               })
               .catch((err) => console.log(err));
@@ -428,5 +434,25 @@ router.post('/changepassword', passport.authenticate('jwt',{session:false}),
 
 });
 
+
+// @route   GET api/profile/handle/:handle
+// @desc    Get profile by handle
+// @access  Public
+
+router.get("/handle/:handle", passport.authenticate('jwt',{session:false}),(req, res) => {
+  const errors = {};
+
+  Profile.findOne({ handle: req.params.handle })
+    .populate("user", ["name", "avatar"])
+    .then((profile) => {
+      if (!profile) {
+        errors.noprofile = "There is no profile for this user";
+        return res.status(404).json(errors);
+      }
+
+      res.json(profile);
+    })
+    .catch((err) => res.status(404).json(err));
+});
 
 module.exports = router;

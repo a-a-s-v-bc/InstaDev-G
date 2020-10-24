@@ -37,17 +37,17 @@ class Profile extends Component {
           <div className="card card-body text-white mb-3 ">
             <div className="row">
                 
-              <img className="rounded-circle positionimage" src={this.props.profile.user.avatar} alt="" />
+              <img className="rounded-circle positionimage" src={this.props.profile.user.avatar} alt="" Style="width:170px;height:170px;" />
               <div className="btn-group mb-4" role="group">
                 <Link to="/profile/editProfile" className="btn btn-light">
                   <i className="fas fa-user-circle  mr-1"></i> Edit Profile</Link>
                 <a href="add-experience.html" className="btn btn-light">
                   <i className="fas fa-mail-bulk  mr-1"></i>
               Posts</a>
-                <a href="/profile/followers" className="btn btn-light">
+                <a href={`/profile/followers/${this.props.profile.user._id}`} className="btn btn-light">
                   <i className="fas fa-arrow-circle-right  mr-1"></i>
                   {this.props.profile.followers.length} Followers</a>
-                <a href="/profile/following" className="btn btn-light">
+                <a href={`/profile/following/${this.props.profile.user._id}`} className="btn btn-light">
                   <i className="fas fa-arrow-circle-left  mr-1"></i>
                   {this.props.profile.following.length} Following</a>
               </div>
@@ -55,7 +55,7 @@ class Profile extends Component {
             
             </div>
             <div className="text-left">
-              <h1 className="display-4 text-left" Style="margin-left:50px;">{this.props.profile.user.name}</h1>
+              <h1 className="display-4 text-left" Style="margin-left:50px;margin-top:50px;">{this.props.profile.user.name}</h1>
             </div>
                 
                   

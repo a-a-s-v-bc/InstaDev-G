@@ -1,25 +1,40 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import { getCurrentFollowers,removeFollower } from "../../actions/profileActions";
+import { getCurrentFollowers, removeFollower,getOthersProfile } from "../../actions/profileActions";
+import { Link } from "react-router-dom";
+import  Search  from '../common/Search';
 
 class Followers extends Component {
   componentDidMount() {
-    this.props.getCurrentFollowers();
+    
+ 
+    console.log("props inside follower:", this.props);
+    const user = this.props.match.params.user_id;
+    
+    this.props.getCurrentFollowers(user);
   }
 
   render() {
+    const useridPassed = this.props.match.params.user_id;
+    let nonuser = false;
+    //let nonuser2 = false;
+    console.log("props in render of follower:", this.props)
+    if (this.props.user.id === useridPassed) {
+      nonuser = true;
+    }
     let followerslist = this.props.followers.followers;
+    
     console.log("props:", this.props);
 
-    if (this.props.followers.loaded === false) {
+    if (this.props.followers.loaded === false ) {
       return <div> Loading .....</div>;
     }
     return (
       <div className="container">
         <div className="row">
           <h2>
-            All Followers
+            Followers
             <a
               href="/profile"
               className="btn btn-light"
@@ -33,20 +48,7 @@ class Followers extends Component {
           <br></br>
           <br></br>
 
-          <div className="input-group">
-            <div className="input-group-prepend">
-              <div className="input-group-text">
-                <i className="fa fa-search"></i>
-              </div>
-            </div>
-            <input
-              className="form-control  "
-              type="search"
-              placeholder="Search"
-              Style="font-size:1.25em;"
-            />
-          </div>
-
+          <Search allusers={followerslist}/>
           <br></br>
           <br></br>
           <br></br>
@@ -56,24 +58,31 @@ class Followers extends Component {
               <div key={index}>
                 <img
                   className="rounded-circle"
-                  src={user.avatar}
+                  src={user.user.avatar}
                   alt=""
                   Style="width:15%;"
                 />
-                <span className="followername">{user.name} </span>
-                <input
+                <Link to="/profile/other"><span className="followername"
+                 onClick={() => {
+                  const handle = {handle:`${user.handle}`};
+                  this.props.match.params.handle = handle.handle;
+                  this.props.getOthersProfile(this.props.match.params.handle);
+                  
+                 
+                }}>{user.user.name} </span></Link>
+                {nonuser ? <input
                   type="submit"
                   value="Remove"
                   className="btn btn-info"
                   Style="margin-bottom:10px;"
                   onClick={() => {
-                    const userid = {user_id:`${user.id}`};
-                    console.log("inside submit",userid);
+                    const userid = { user_id: `${user.user.id}` };
+                    console.log("inside submit", userid);
                     this.props.removeFollower(userid, this.props.history);
                     window.location.href = window.location.href;
                    
                   }}
-                />
+                /> : ""}
               </div>
             ))}
           </div>
@@ -87,10 +96,14 @@ Followers.propTypes = {
   getCurrentFollowers: PropTypes.func.isRequired,
   errors: PropTypes.object.isRequired,
   followers: PropTypes.object.isRequired,
+  auth: PropTypes.object.isRequired,
+  getOthersProfile:PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({
   followers: state.followers,
+  ...state.profile,
+  ...state.auth,
 });
 
-export default connect(mapStateToProps, { getCurrentFollowers ,removeFollower})(Followers);
+export default connect(mapStateToProps, { getCurrentFollowers ,removeFollower,getOthersProfile})(Followers);

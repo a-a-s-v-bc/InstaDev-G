@@ -1,102 +1,138 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import { getCurrentFollowing,unfollowUser } from "../../actions/profileActions";
+import { getCurrentFollowing, unfollowUser, followUser,getOthersProfile } from "../../actions/profileActions";
+import { Link } from "react-router-dom";
+import Search  from "../common/Search";
 
 class Following extends Component {
   componentDidMount() {
-    this.props.getCurrentFollowing();
+   
+    console.log("props inside following:", this.props);
+    const user = this.props.match.params.user_id;
+    
+    this.props.getCurrentFollowing(user);
+    
   }
 
  
-
+      
+   
+  
+  
   render() {
-    let followerslist = this.props.following.following;
-    console.log("props:", this.props);
-
-    if (this.props.following.loaded === false) {
-      return <div> Loading .....</div>;
+    const useridPassed = this.props.match.params.user_id;
+    let nonuser = false;
+    //let nonuser2 = false;
+    console.log("props in render of following:", this.props)
+    if (this.props.user.id === useridPassed) {
+      nonuser = true;
     }
+      let followerslist = this.props.following.following;
+      if (this.props.following.loaded === false) {
+        return <div> Loading .....</div>;
+    }
+    
+      // if (followerslist.includes(this.props.user.id)) {
+      //   nonuser2 = true;
+      //   console.log("exists");
+      // }
 
-
-    return (
-      <div className="container">
-        <div className="row">
-          <h2>
-            All Followings
+      return (
+        <div className="container">
+          <div className="row">
+            <h2>
+              Following
             <a
-              href="/profile"
-              className="btn btn-light"
-              Style="margin-left:720px;margin-top:0px;"
-            >
-              Go Back
+                href="/profile"
+                className="btn btn-light"
+                Style="margin-left:720px;margin-top:0px;"
+              >
+                Go Back
             </a>
-          </h2>
+            </h2>
 
-          <br></br>
-          <br></br>
-          <br></br>
-
-          <div className="input-group">
-            <div className="input-group-prepend">
-              <div className="input-group-text">
-                <i className="fa fa-search"></i>
+            <br></br>
+            <br></br>
+            <br></br>
+{/* 
+            <div className="input-group">
+              <div className="input-group-prepend">
+                <div className="input-group-text">
+                  <i className="fa fa-search"></i>
+                </div>
               </div>
-            </div>
-            <input
-              className="form-control  "
-              type="search"
-              placeholder="Search"
-              Style="font-size:1.25em;"
-            />
-          </div>
+              <input
+                className="form-control  "
+                type="search"
+                placeholder="Search"
+                Style="font-size:1.25em;"
+              />
+            </div> */}
 
-          <br></br>
-          <br></br>
-          <br></br>
+            <Search allusers={followerslist}/>
+            <br></br>
+            <br></br>
+            <br></br>
 
-          <div className="col-md-12">
-            {followerslist.map((user, index) => (
-              <div key={index}>
-                <img
-                  className="rounded-circle"
-                  src={user.avatar}
-                  alt=""
-                  Style="width:15%;"
-                />
-                <span className="followername">{user.name} </span>
-                <input
-                  type="submit"
-                  value="Unfollow"
-                  className="btn btn-info"
-                  Style="margin-bottom:10px;"
-                  onClick={() => {
-                    const userid = {user_id:`${user.id}`};
-                    console.log("inside submit",userid);
-                    this.props.unfollowUser(userid, this.props.history);
-                    window.location.href = window.location.href;
+            <div className="col-md-12">
+              {followerslist.map((user, index) => (
+                <div key={index}>
+                  <img
+                    className="rounded-circle"
+                    src={user.user.avatar}
+                    alt=""
+                    Style="width:15%;"
+                  />
+                  <Link to="/profile/other"><span className="followername"
+                    onClick={() => {
+                      const handle = {handle:`${user.handle}`};
+                      this.props.match.params.handle = handle.handle;
+                      this.props.getOthersProfile(this.props.match.params.handle);
+                      
+                     
+                    }}
+                  >{user.user.name} </span></Link>
+                  {nonuser ? (<input
+                    type="submit"
+                    value="Unfollow"
+                    className="btn btn-info"
+                    Style="margin-bottom:10px;"
+                    onClick={() => {
+                      const userid = { user_id: `${user.user.id}` };
+                      console.log("inside submit", userid);
+                      this.props.unfollowUser(userid, this.props.history);
+                      window.location.href = window.location.href;
                    
-                  }}
+                    }}
                   
-                />
+                  />) : ""
+                  }
 
-              </div>
-            ))}
+                </div>
+              ))}
+            </div>
           </div>
         </div>
-      </div>
-    );
+      );
+    }
   }
-}
+
 
 Following.propTypes = {
   getCurrentFollowing: PropTypes.func.isRequired,
   errors: PropTypes.object.isRequired,
-  followers: PropTypes.object.isRequired,
+ following: PropTypes.object.isRequired,
+  auth: PropTypes.object.isRequired,
+  followUser: PropTypes.object.isRequired,
+  getOthersProfile:PropTypes.object.isRequired,
+ 
 };
 
 const mapStateToProps = (state) => ({
   following: state.following,
+  ...state.profile,
+  ...state.auth,
 });
 
-export default connect(mapStateToProps, { getCurrentFollowing,unfollowUser })(Following);
+export default connect(mapStateToProps, { getCurrentFollowing,unfollowUser,followUser,getOthersProfile })(Following);

@@ -24,6 +24,7 @@ import {SET_USER } from './actions/types';
 import ChangePassword from './components/Profile/ChangePassword';
 import CreateProfile from './components/Profile/CreateProfile';
 import AllProfiles from './components/Profile/AllProfiles';
+import OthersProfile from './components/Profile/OthersProfile';
 
 import Posts from "./components/posts/Posts";
 import Post from "./components/post/Post";
@@ -94,6 +95,13 @@ class App extends Component {
 
           <Route exact path="/feed" component={Posts} />
           <Route exact path="/post/:id" component={Post} />
+          <Route exact path="/profile/followers/:user_id" component={Followers} />
+          <Route exact path="/profile/following/:user_id" component={Following} />
+          <Route exact path="/profile/changePassword" component={ChangePassword} />
+          <Route exact path="/profile/createProfile" component={CreateProfile} />
+          <Route exact path="/search/profiles" component={AllProfiles} />
+          <Route exact path="/profile/other" component={OthersProfile} />
+          
 
           <Footer />
         </div>

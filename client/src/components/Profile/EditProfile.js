@@ -258,9 +258,10 @@ onDeleteClick(e) {
               <small className="form-text">* = required field</small>
               <div className="form-group">
                 <img
-                  className="rounded-circle Editimage"
+                  className="rounded-circle positionimage"
                   src={this.state.avatar}
                   alt=""
+                  Style="width: 45%;height: 180px;margin-left: 90px;"
                 />
                 <input
                   style={{ display: "none" }}

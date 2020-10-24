@@ -108,9 +108,10 @@ class CreateProfile extends Component {
     } else {
     getavatar=(
         <img
-          className="rounded-circle Editimage"
+          className="rounded-circle positionimage"
           src={this.state.avatar}
-          alt=""
+        alt=""
+        Style="width: 170px;height: 170px;margin-left: 150px;"
          />)
     }
 
