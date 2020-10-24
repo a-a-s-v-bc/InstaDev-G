@@ -17,6 +17,8 @@ class Post extends Component {
     const { post, loading } = this.props.post;
     let postContent;
 
+    //console.log("inside Post.js ****", this.props);
+
     if (post === null || loading || Object.keys(post).length === 0) {
       postContent = <Spinner />;
     } else {
