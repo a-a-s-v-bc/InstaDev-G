@@ -21,6 +21,8 @@ router.get("/", (req, res) => {
     .catch((err) => res.status(404).json({ nopostsfound: "No posts found" }));
 });
 
+
+
 // @route   GET api/posts/:id
 // @desc    Get post by id
 // @access  Public
@@ -54,8 +56,8 @@ router.post(
       text: req.body.text,
       image: req.body.image,
       title: req.body.title,
-      name: req.body.name,
-      avatar: req.body.avatar,
+      name: req.user.name,
+      avatar: req.user.avatar,
       user: req.user.id,
     });
 

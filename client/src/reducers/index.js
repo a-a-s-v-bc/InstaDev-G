@@ -5,7 +5,6 @@ import followersReducer from './followersReducer';
 import followingReducer from './followingReducer';
 import profileReducer from './profileReducer';
 import postReducer from "./postReducer";
-import profileReducer from "./profileReducer";
 
 export default combineReducers({
   auth: authReducer,
@@ -13,6 +12,5 @@ export default combineReducers({
   profile: profileReducer,
   followers: followersReducer,
   following: followingReducer,
-  post: postReducer,
-  profile: profileReducer
+  post: postReducer
 });

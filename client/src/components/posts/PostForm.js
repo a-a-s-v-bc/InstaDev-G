@@ -92,12 +92,8 @@ fileUploadHandler = () => {
                   name="text"
                   value={this.state.text}
                   onChange={this.onChange}
-                  error={errors.text}
+                  //error={errors.text}
                 />
-
-                {errors.text && (
-                  <div className="invalid-feedback">{errors.text}</div>
-                )}
               </div>
               <button
                 type="submit"
