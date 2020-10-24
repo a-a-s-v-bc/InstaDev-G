@@ -29,7 +29,7 @@ class PostItem extends Component {
 
   render() {
     const { post, auth, showActions } = this.props;
-    console.log("post information", {post});
+    //console.log("post information", {post});
     return (
       <div className="card card-body mb-3">
         <div className="row">
@@ -39,14 +39,14 @@ class PostItem extends Component {
                 className="rounded-circle"
                 src={post.avatar}
                 alt=""
-                Style="width:25%;"
+                Style="width:1.5em;"
               />
             </Link>
             <br />
-            <p className="text-left">{post.name}</p>
+            <p className="post-text-left">{post.name}</p>
           </div>
           <div className="col-md-10">
-            <p className="text-left">{post.text}</p>
+            <p className="post-text-left">{post.text}</p>
             <img src={post.image} alt="" className="post-image-size"></img>
             {showActions ? (
               <span className="align-bottom">

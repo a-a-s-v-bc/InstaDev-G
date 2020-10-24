@@ -259,3 +259,11 @@ color: rgb(236, 196, 18);
   width: 150px;
   margin-right: 25px;
 }
+
+.post-text-left{
+  color:rgb(236, 196, 18);
+  font-weight: inherit;
+  font-size:150%;
+  margin-bottom: 20px;
+  margin-top:5px;
+}

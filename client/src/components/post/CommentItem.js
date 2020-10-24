@@ -20,12 +20,12 @@ class CommentItem extends Component {
                 className="rounded-circle d-none d-md-block"
                 src={comment.avatar}
                 alt=""
-                Style="width:25%;"
+                Style="width:1.5em;"
               />
             </a>
-            
-            <p className="text-left">{comment.name}</p>
+            <p className="post-text-left">{comment.name}</p>
           </div>
+
           <div className="col-md-10">
             <p className="">{comment.text}
             {comment.user === auth.user.id ? (
