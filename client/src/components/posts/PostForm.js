@@ -39,6 +39,7 @@ class PostForm extends Component {
     this.props.addPost(newPost);
     this.setState({ text: "" });
     this.setState({ image: "" });
+    
   }
 
   onChange(e) {
@@ -46,11 +47,9 @@ class PostForm extends Component {
   }
 
 fileSelectedHandler = (event) => {
-  console.log("*** selected file name", event.target.files[0]);
   this.setState({
     imageFile: event.target.files[0],
   });
-  console.log("*** this.state", this.state);
 };
 
 fileUploadHandler = () => {
@@ -68,9 +67,6 @@ fileUploadHandler = () => {
       this.setState({
         image: data.url,
       });
-
-      //console.log(data.url);
-      //console.log("*** here is the image file**", this.image);
     })
     .catch((err) => console.error(err));
 
@@ -84,7 +80,7 @@ fileUploadHandler = () => {
     return (
       <div className="post-form mb-3">
         <div className="card card-body">
-          <div className="card-header bg-info">
+          <div className="card-header bg-info ">
             <h5>Create your post!</h5>
             <h6>Select an image, upload image, give a title and submit!</h6>
           </div>
@@ -98,6 +94,10 @@ fileUploadHandler = () => {
                   onChange={this.onChange}
                   error={errors.text}
                 />
+
+                {errors.text && (
+                  <div className="invalid-feedback">{errors.text}</div>
+                )}
               </div>
               <button
                 type="submit"
