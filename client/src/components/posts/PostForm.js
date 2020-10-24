@@ -80,9 +80,9 @@ fileUploadHandler = () => {
     return (
       <div className="post-form mb-3">
         <div className="card card-body">
-          <div className="card-header bg-info ">
-            <h5>Create your post!</h5>
-            <h6>Select an image, upload image, give a title and submit!</h6>
+          <div>
+            <h2>Create your post!</h2>
+            <h5>Select an image, upload it, give it a title, and submit!</h5>
           </div>
           <div className="card-body">
             <form onSubmit={this.onSubmit}>
