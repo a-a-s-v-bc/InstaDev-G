@@ -39,7 +39,7 @@ class PostItem extends Component {
                 className="rounded-circle"
                 src={post.avatar}
                 alt=""
-                Style="width:1.5em;"
+                Style="width:3.5em;height:3.5em;"
               />
             </Link>
             <br />
