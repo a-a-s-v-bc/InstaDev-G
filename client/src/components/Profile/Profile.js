@@ -4,17 +4,46 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { getCurrentProfile } from '../../actions/profileActions';
 import isEmpty from "../../validation/is-empty";
+import { getAllUserPosts,clearPost} from "../../actions/postActions";
+import PostFeed from "../posts/PostFeed";
+
+import Spinner from "../common/Spinner";
 
 class Profile extends Component {
 
- 
-
+  constructor() {
+    super();
+    this.state = {
+      postcalled: false,
+    }
+    // this.onChange = this.onChange.bind(this);
+ }
+//  onChange(e) {
+//   this.setState({ [e.target.name]: e.target.value });
+// }
   componentDidMount() {
+  
+ 
     this.props.getCurrentProfile();
+    
   }
-   
+  shouldComponentUpdate(nextProps,nextState) {
+    
+    
+  
+    if ( nextState.postcalled === false && nextProps.profile.user && nextProps.profile.user._id ) {
+      const id = nextProps.profile.user._id;
+      console.log("id current user value:", id);
+      this.props.getAllUserPosts(id);
+      this.setState({ postcalled: true });
+
+    }
+ 
+    return true;
+   }
   render() {
-    console.log("props", this.props);
+    console.log("profile render props", this.props);
+  
     if(this.props.profile.loaded === false) {
       return (
         <div> Loading .....</div>
@@ -31,19 +60,32 @@ class Profile extends Component {
           </div>
       )
     }
+    const { userposts } = this.props.post;
+    console.log("this props post :", this.props,userposts);
+let postContent;
+
+if (userposts === null || this.props.post.loading) {
+  postContent = <Spinner />;
+} else {
+  console.log("posts:", userposts);
+  postContent = <PostFeed posts={userposts} />;
+}
+
+ 
     return (
-      <div className="container" id='profilecover'>
+      <div className="container" >
         <div className="profileheader">
           <div className="card card-body text-white mb-3 ">
             <div className="row">
                 
               <img className="rounded-circle positionimage" src={this.props.profile.user.avatar} alt="" Style="width:170px;height:170px;" />
               <div className="btn-group mb-4" role="group">
+              <div Style="margin-top:50px">
+                  <i className="fas fa-mail-bulk  mr-1"></i>
+                  {this.props.post.userposts.length} Posts</div>
                 <Link to="/profile/editProfile" className="btn btn-light">
                   <i className="fas fa-user-circle  mr-1"></i> Edit Profile</Link>
-                <a href="add-experience.html" className="btn btn-light">
-                  <i className="fas fa-mail-bulk  mr-1"></i>
-              Posts</a>
+                
                 <a href={`/profile/followers/${this.props.profile.user._id}`} className="btn btn-light">
                   <i className="fas fa-arrow-circle-right  mr-1"></i>
                   {this.props.profile.followers.length} Followers</a>
@@ -109,7 +151,14 @@ class Profile extends Component {
               
           </div>
         </div>
+        <br></br>
+        <br></br>
+        <br></br>
+        <p Style="background-color:white;"> {postContent}</p>
+         
+
       </div>
+      
     )
   }
 
@@ -118,12 +167,16 @@ class Profile extends Component {
 Profile.propTypes = {
   getCurrentProfile: PropTypes.func.isRequired,
   errors: PropTypes.object.isRequired,
-  profile:PropTypes.object.isRequired
+  profile: PropTypes.object.isRequired,
+  getAllUserPosts:PropTypes.func.isRequired,
+  post: PropTypes.object.isRequired,
+  clearPost:PropTypes.object.isRequired,
 };
 
 const mapStateToProps = (state) => ({
-  ...state.profile
+  ...state.profile,
+  post:state.post,
 });
 
-export default connect(mapStateToProps, { getCurrentProfile })(Profile);
+export default connect(mapStateToProps, { getCurrentProfile,getAllUserPosts,clearPost })(Profile);
 

@@ -100,6 +100,7 @@ router.put(
   "/follow",
   passport.authenticate("jwt", { session: false }),
   (req, res) => {
+    console.log("inside follow user", req.body.user_id);
     Profile.findOneAndUpdate(
       { user: req.body.user_id },
       {
@@ -138,7 +139,7 @@ router.put(
   "/unfollow",
   passport.authenticate("jwt", { session: false }),
   (req, res) => {
-    console.log("inside unfollow");
+    console.log("inside unfollow",req.body.user_id);
     Profile.findOneAndUpdate(
       { user: req.body.user_id },
       {
@@ -177,7 +178,7 @@ router.put(
   "/removeFollower",
   passport.authenticate("jwt", { session: false }),
   (req, res) => {
-    console.log("inside remove follower");
+    console.log("inside remove follower",req.body);
     Profile.findOneAndUpdate(
       { user: req.body.user_id },
       {
@@ -198,7 +199,7 @@ router.put(
             new: true,
           }
         )
-          .then((profile) => res.json(profile))
+          .then((profile) => { res.json(profile); console.log("remove user",profile) })
 
           .catch((err) => {
             return res.status(422).json({ error: err });
@@ -318,7 +319,7 @@ router.get(
                 //   handle: profile.handle,
                 // };
                 followersnames.push(profile);
-                console.log(follower);
+                console.log(profile);
               })
               .catch((err) => console.log(err));
           }
@@ -363,7 +364,7 @@ router.get(
                 //   handle:profile.handle,
                 // };
                 followingnames.push(profile);
-                console.log(following);
+                console.log(profile);
               })
               .catch((err) => console.log(err));
           }

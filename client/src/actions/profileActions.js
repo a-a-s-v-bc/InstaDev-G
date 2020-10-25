@@ -21,7 +21,7 @@ export const getCurrentProfile = () => (dispatch) => {
     .catch((err) =>
       dispatch({
         type: GET_PROFILE,
-        payload: err.response.data,
+        payload: err.response,
       })
     );
 };
@@ -110,6 +110,7 @@ export const followUser = (user) => (dispatch) => {
 };
 
 export const removeFollower = (user, history) => (dispatch) => {
+  console.log("user value inside profile action for remove follower:", user);
   axios
     .put("/api/profile/removeFollower", user)
     .then((res) => history.push("/profile/followers"))

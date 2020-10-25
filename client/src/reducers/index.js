@@ -12,5 +12,5 @@ export default combineReducers({
   profile: profileReducer,
   followers: followersReducer,
   following: followingReducer,
-  post: postReducer
+  post: postReducer,
 });

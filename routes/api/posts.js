@@ -24,6 +24,18 @@ router.get("/", (req, res) => {
 
 
 // @route   GET api/posts/:id
+// @desc    Get all posts by id
+// @access  Public
+router.get("/user/:id", (req, res) => {
+  console.log("inside get post by id api:", req.params.id);
+  Post.find({ user: req.params.id })
+    .then((post) => res.json(post))
+    .catch((err) =>
+      res.status(404).json({ nopostfound: "No post found with that ID" })
+    );
+});
+
+// @route   GET api/posts/:id
 // @desc    Get post by id
 // @access  Public
 router.get("/:id", (req, res) => {
@@ -33,7 +45,6 @@ router.get("/:id", (req, res) => {
       res.status(404).json({ nopostfound: "No post found with that ID" })
     );
 });
-
 
 
 

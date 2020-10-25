@@ -42,11 +42,14 @@ class Following extends Component {
         <div className="container">
           <div className="row">
             <h2>
-              Following
+              Following  {followerslist.length} 
             <a
-                href="/profile"
+               
                 className="btn btn-light"
                 Style="margin-left:720px;margin-top:0px;"
+                onClick={() =>
+                  window.history.back()
+                }
               >
                 Go Back
             </a>
@@ -99,7 +102,7 @@ class Following extends Component {
                     className="btn btn-info"
                     Style="margin-bottom:10px;"
                     onClick={() => {
-                      const userid = { user_id: `${user.user.id}` };
+                      const userid = { user_id: `${user.user._id}` };
                       console.log("inside submit", userid);
                       this.props.unfollowUser(userid, this.props.history);
                       window.location.href = window.location.href;

@@ -1,4 +1,8 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
+import Link from 'react-dom';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { getOthersProfile } from "../../actions/profileActions";
 
 class Search extends Component {
   constructor() {
@@ -44,16 +48,26 @@ class Search extends Component {
             src={user.user.avatar}
             alt=""
             Style="width:15%;height:170px;"
-          // onClick={() => {
-          //   const handle = {handle:`${usr.handle}`};
-          //   console.log("userdata:", handle);
-          //   this.props.match.params.handle = handle.handle;
-          //  this.props.getOthersProfile(this.props.match.params.handle);
+          onClick={() => {
+            const handle = {handle:`${user.handle}`};
+            console.log("userdata:", handle);
+            this.props.match.params.handle = handle.handle;
+           this.props.getOthersProfile(this.props.match.params.handle);
             
            
-          // }}
+          }}
           />
-            <span>{user.user.name}</span>
+             <a href="/profile/other" ><span
+             onClick={() => {
+              const handle = {handle:`${user.handle}`};
+              console.log("userdata:", handle.handle);
+                this.props.match.params = handle ;
+               // console.log("params:", this.props.match.params.handle);
+                this.props.getOthersProfile(handle.handle);
+                
+              
+             
+            }}>{user.user.name}</span></a>
             </div>) : null
         })}
         <br></br>
@@ -66,4 +80,17 @@ class Search extends Component {
   }
 }
 
-export default Search;
+Search.propTypes = {
+  getOthersProfile: PropTypes.func.isRequired,
+  errors: PropTypes.object.isRequired,
+  profile: PropTypes.object.isRequired,
+ 
+};
+
+const mapStateToProps = (state) => ({
+  profile: state.profile,
+  
+});
+
+export default connect(mapStateToProps, {getOthersProfile})(Search);
+

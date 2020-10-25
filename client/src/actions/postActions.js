@@ -8,6 +8,8 @@ import {
   GET_POST,
   POST_LOADING,
   DELETE_POST,
+  CLEAR_POST,
+  GET_USER_POSTS,
 } from "./types";
 
 // Add Post
@@ -66,6 +68,28 @@ export const getPost = (id) => (dispatch) => {
       })
     );
 };
+
+// Get All Posts for a User 
+export const getAllUserPosts = (id) => (dispatch) => {
+  dispatch(setPostLoading());
+  axios
+    .get(`/api/posts/user/${id}`)
+    .then((res) =>
+      dispatch({
+        type: GET_USER_POSTS,
+        payload: res.data,
+      })
+    )
+    .catch((err) =>
+      dispatch({
+        type: GET_USER_POSTS,
+        payload: null,
+      })
+    );
+};
+
+
+
 
 // Delete Post
 export const deletePost = (id) => (dispatch) => {
@@ -159,5 +183,13 @@ export const setPostLoading = () => {
 export const clearErrors = () => {
   return {
     type: CLEAR_ERRORS,
+  };
+};
+
+// Clear Post
+export const clearPost = () => {
+  return {
+    type: CLEAR_POST
+  
   };
 };
