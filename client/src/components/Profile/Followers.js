@@ -34,7 +34,7 @@ class Followers extends Component {
       <div className="container">
         <div className="row">
           <h2>
-            Followers
+            Followers {followerslist.length} 
             <a
             
               className="btn btn-light"

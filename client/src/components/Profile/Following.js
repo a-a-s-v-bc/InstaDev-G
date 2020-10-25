@@ -42,7 +42,7 @@ class Following extends Component {
         <div className="container">
           <div className="row">
             <h2>
-              Following
+              Following  {followerslist.length} 
             <a
                
                 className="btn btn-light"
