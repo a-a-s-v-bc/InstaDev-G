@@ -19,7 +19,7 @@ class Followers extends Component {
     const useridPassed = this.props.match.params.user_id;
     let nonuser = false;
     //let nonuser2 = false;
-    console.log("props in render of follower:", this.props)
+    console.log("UseridPassed:",useridPassed)
     if (this.props.user.id === useridPassed) {
       nonuser = true;
     }
@@ -36,9 +36,12 @@ class Followers extends Component {
           <h2>
             Followers
             <a
-              href="/profile"
+            
               className="btn btn-light"
               Style="margin-left:720px;margin-top:0px;"
+              onClick={() =>
+                window.history.back()
+              }
             >
               Go Back
             </a>
@@ -76,8 +79,8 @@ class Followers extends Component {
                   className="btn btn-info"
                   Style="margin-bottom:10px;"
                   onClick={() => {
-                    const userid = { user_id: `${user.user.id}` };
-                    console.log("inside submit", userid);
+                    const userid = { user_id:user.user._id  };
+                
                     this.props.removeFollower(userid, this.props.history);
                     window.location.href = window.location.href;
                    
@@ -97,7 +100,8 @@ Followers.propTypes = {
   errors: PropTypes.object.isRequired,
   followers: PropTypes.object.isRequired,
   auth: PropTypes.object.isRequired,
-  getOthersProfile:PropTypes.func.isRequired,
+  getOthersProfile: PropTypes.func.isRequired,
+  removeFollower:PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({

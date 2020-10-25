@@ -4,12 +4,16 @@ import {
   GET_POST,
   DELETE_POST,
   POST_LOADING,
+  CLEAR_POST,
+  GET_USER_POSTS,
 } from "../actions/types";
 
 const initialState = {
   posts: [],
   post: {},
+  userposts:[],
   loading: false,
+  
 };
 
 export default function (state = initialState, action) {
@@ -30,7 +34,15 @@ export default function (state = initialState, action) {
         ...state,
         post: action.payload,
         loading: false,
+        
       };
+      case GET_USER_POSTS:
+        return {
+          ...state,
+          userposts:action.payload,
+          loading: false,
+          
+        };
     case ADD_POST:
       return {
         ...state,
@@ -41,6 +53,8 @@ export default function (state = initialState, action) {
         ...state,
         posts: state.posts.filter((post) => post._id !== action.payload),
       };
+    case CLEAR_POST:
+      return initialState;
     default:
       return state;
   }
