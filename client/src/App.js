@@ -105,7 +105,7 @@ class App extends Component {
          
           <Switch><PrivateRoute exact path="/profile/followers/:user_id" component={Followers} /></Switch>
           <Switch><PrivateRoute exact path="/profile/following/:user_id" component={Following} /></Switch>
-          <Switch><PrivateRoute exact path="/profile/changePassword" component={ChangePassword} /></Switch>
+          
          
           <Switch><PrivateRoute exact path="/search/profiles" component={AllProfiles} /></Switch>
           <Switch><PrivateRoute exact path="/profile/other" component={OthersProfile} /></Switch>
