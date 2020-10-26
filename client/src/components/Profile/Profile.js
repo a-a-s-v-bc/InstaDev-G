@@ -15,6 +15,7 @@ class Profile extends Component {
     super();
     this.state = {
       postcalled: false,
+      norepeate : false,
     }
     // this.onChange = this.onChange.bind(this);
  }
@@ -49,8 +50,11 @@ class Profile extends Component {
         <div> Loading .....</div>
       )
     }
-
-    if (this.props.profile.noprofile) {
+    
+    if (this.props.profile.data && this.props.profile.data.noprofile) {
+      // if (this.norepeate) {
+      //   console.log("repeat");
+      //   this.setState({ norepeate: false });
       return (
         <div className="container" Style="margin-bottom:600px;margin-top:15px;">
         <div className="btn-group mb-4"  role="group">
@@ -59,6 +63,8 @@ class Profile extends Component {
           </div>
           </div>
       )
+      
+      
     }
     const { userposts } = this.props.post;
     console.log("this props post :", this.props,userposts);
@@ -69,8 +75,11 @@ if (userposts === null || this.props.post.loading) {
 } else {
   console.log("posts:", userposts);
   postContent = <PostFeed posts={userposts} />;
+    }
+    
+function refreshPage() {
+  window.location.reload(false);
 }
-
  
     return (
       <div className="container" >
@@ -154,7 +163,7 @@ if (userposts === null || this.props.post.loading) {
         <br></br>
         <br></br>
         <br></br>
-        <p Style="background-color:white;"> {postContent}</p>
+        <p Style="background-color:white;" onClick={refreshPage}> {postContent}</p>
          
 
       </div>

@@ -43,13 +43,11 @@ class Following extends Component {
           <div className="row">
             <h2>
               Following  {followerslist.length} 
-            <a
+            <a href="/profile"
                
                 className="btn btn-light"
                 Style="margin-left:720px;margin-top:0px;"
-                onClick={() =>
-                  window.history.back()
-                }
+               
               >
                 Go Back
             </a>

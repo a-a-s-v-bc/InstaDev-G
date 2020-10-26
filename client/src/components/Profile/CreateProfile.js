@@ -10,8 +10,8 @@ import { createProfile } from "../../actions/profileActions";
 
 
 class CreateProfile extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     //Local State of CreateProfile Component
     this.state = {
       name: "",
@@ -57,6 +57,9 @@ class CreateProfile extends Component {
     this.props.createProfile(userProfileData, this.props.history);
   }
 
+  // componentDidMount() {
+  
+  // }
   componentWillReceiveProps(nextProps) {
     if (nextProps.errors) {
       this.setState({ errors: nextProps.errors });
@@ -95,24 +98,24 @@ class CreateProfile extends Component {
 
   render() {
     const { errors, displaySocialInputs } = this.state;
-    console.log("avatar state ,", this.state.avatar);
+    console.log("avatar state ,", this.state);
     let isNewProfile = this.state.avatar;
     let getavatar;
     if (isNewProfile === "") {
-     getavatar=( <img
-          className="rounded-circle Editimage"
-          src={this.props.auth.user.avatar}
-          alt=""
-        />
+      getavatar = (<img
+        className="rounded-circle Editimage"
+        src={this.props.auth.user.avatar}
+        alt=""
+      />
       )
     } else {
-    getavatar=(
+      getavatar = (
         <img
           className="rounded-circle positionimage"
           src={this.state.avatar}
-        alt=""
-        Style="width: 170px;height: 170px;margin-left: 150px;"
-         />)
+          alt=""
+          Style="width: 170px;height: 170px;margin-left: 150px;"
+        />)
     }
 
     let socialInputs;
@@ -172,26 +175,7 @@ class CreateProfile extends Component {
       { label: "Other", value: "Other" },
     ];
 
-    // const isNewProfile = () => {
-    //   console.log("avatar state:", this.state.avatar);
-    // if (this.state.avatar === "") {
-    //     return (<img
-    //       className="rounded-circle Editimage"
-    //       src={this.props.auth.user.avatar}
-    //       alt=""
-    //     />
-    //   )
-    // } else {
-    //   return(
-    //     <img
-    //       className="rounded-circle Editimage"
-    //       src={this.state.avatar}
-    //       alt=""
-    //     />
-    //   )}
-    // };
-
-
+   
     return (
       <div className="create-profile">
         <a href="/profile/changePassword" className="btn btn-light">
@@ -207,16 +191,12 @@ class CreateProfile extends Component {
                 className="display-4 text-center"
                 Style="font-weight:bold; margin-top:10px;"
               >
-                Edit Your Profile
+                Create Your Profile
               </h1>
 
               <small className="form-text">* = required field</small>
               <div className="form-group">
-                {/* /* <img
-                  className="rounded-circle Editimage"
-                  src={this.state.avatar}
-                  alt=""
-                /> */ }
+               
                 {getavatar}
 
                 <input
