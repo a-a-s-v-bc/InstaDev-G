@@ -26,7 +26,7 @@ class Search extends Component {
   }
   
   render() {
-    const noprofilefound = "No Profile Found";
+  
     return (
       <div className="row" Style="width:100%;">
 

@@ -4,7 +4,7 @@ import './App.css';
 import Navbar from './components/Layout/Navbar';
 import Landing from './components/Layout/Landing';
 import Footer from './components/Layout/Footer';
-import {BrowserRouter as Router, Route} from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Register from './components/auth/Register';
 import Dashboard from "./components/dashboard/Dashboard";
 import Profile from './components/Profile/Profile';
@@ -24,6 +24,7 @@ import ChangePassword from './components/Profile/ChangePassword';
 import CreateProfile from './components/Profile/CreateProfile';
 import AllProfiles from './components/Profile/AllProfiles';
 import OthersProfile from './components/Profile/OthersProfile';
+import PrivateRoute from "./components/common/PrivateRoute";
 
 import Posts from "./components/posts/Posts";
 import Post from "./components/post/Post";
@@ -73,32 +74,41 @@ class App extends Component {
           <Route exact path="/resetpassword" component={Resetpassword} />
           <Route exact path="/forgotpassword/:token" component={Passwordreset} />
           <Route exact path="/emailsenttext" component={EmailSentText} />
-
-          <Route exact path="/Dashboard" component={Dashboard} />
-
-          <Route exact path="/profile" component={Profile} />
-          <Route exact path="/profile/editProfile" component={EditProfile} />
-          <Route exact path="/profile/followers" component={Followers} />
-          <Route exact path="/profile/following" component={Following} />
-          <Route
+          <Switch>
+          <PrivateRoute exact path="/Dashboard" component={Dashboard} />
+          </Switch>
+          
+<Switch>   <PrivateRoute exact path="/profile" component={Profile} /></Switch>
+       
+          <Switch>
+          <PrivateRoute exact path="/profile/editProfile" component={EditProfile} />
+          </Switch> 
+          <Switch>
+          <PrivateRoute exact path="/profile/followers" component={Followers} />
+          </Switch>
+          <Switch><PrivateRoute exact path="/profile/following" component={Following} /></Switch>
+          <Switch> <PrivateRoute
             exact
             path="/profile/changePassword"
             component={ChangePassword}
-          />
-          <Route
+          /></Switch>
+         <Switch><PrivateRoute
             exact
             path="/profile/createProfile"
             component={CreateProfile}
-          />
-
-          <Route exact path="/feed" component={Posts} />
-          <Route exact path="/post/:id" component={Post} />
-          <Route exact path="/profile/followers/:user_id" component={Followers} />
-          <Route exact path="/profile/following/:user_id" component={Following} />
-          <Route exact path="/profile/changePassword" component={ChangePassword} />
+          /></Switch>
+          
+          <Switch>
+          <PrivateRoute exact path="/feed" component={Posts} />
+</Switch>
+          <Switch> <PrivateRoute exact path="/post/:id" component={Post} /></Switch>
          
-          <Route exact path="/search/profiles" component={AllProfiles} />
-          <Route exact path="/profile/other" component={OthersProfile} />
+          <Switch><PrivateRoute exact path="/profile/followers/:user_id" component={Followers} /></Switch>
+          <Switch><PrivateRoute exact path="/profile/following/:user_id" component={Following} /></Switch>
+          <Switch><PrivateRoute exact path="/profile/changePassword" component={ChangePassword} /></Switch>
+         
+          <Switch><PrivateRoute exact path="/search/profiles" component={AllProfiles} /></Switch>
+          <Switch><PrivateRoute exact path="/profile/other" component={OthersProfile} /></Switch>
           
 
           <Footer />
