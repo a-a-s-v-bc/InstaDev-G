@@ -96,7 +96,7 @@ class App extends Component {
           <Route exact path="/profile/followers/:user_id" component={Followers} />
           <Route exact path="/profile/following/:user_id" component={Following} />
           <Route exact path="/profile/changePassword" component={ChangePassword} />
-          <Route exact path="/profile/createProfile" component={CreateProfile} />
+         
           <Route exact path="/search/profiles" component={AllProfiles} />
           <Route exact path="/profile/other" component={OthersProfile} />
           

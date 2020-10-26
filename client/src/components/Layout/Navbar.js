@@ -77,7 +77,7 @@ import {logoutUser} from '../../actions/authActions';
      return (
        <nav className="navbar navbar-expand-sm navbar-dark bg-dark mb-4">
          <div className="container">
-           <Link className="navbar-brand" to="/landing">
+           <Link className="navbar-brand" to="/">
              InstaDev-G
            </Link>
            <button
@@ -91,12 +91,12 @@ import {logoutUser} from '../../actions/authActions';
 
            <div className="collapse navbar-collapse" id="mobile-nav">
              <ul className="navbar-nav mr-auto">
-               <li className="nav-item">
+               {/* <li className="nav-item">
                  <Link className="nav-link" to="/profiles">
                    {" "}
                    Profiles
                  </Link>
-               </li>
+               </li> */}
              </ul>
 
              {isAuthenticated? authLinks:guestLinks}
