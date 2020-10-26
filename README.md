@@ -3,7 +3,7 @@
  
 YoutTube link for Assignment #3b (Part 1 of _): Registration- https://youtu.be/h4upAOmoXno <br />
 YoutTube link for Assignment #3b (Part 2 of _): Login- https://youtu.be/ncP_m5-0P9E <br />
-YoutTube link for Assignment #3b (Part 3 of _): Profiles- <br />
+YoutTube link for Assignment #3b (Part 3 of _): Profiles- https://youtu.be/0ndUZ-FoUfc <br />
 YoutTube link for Assignment #3b (Part 4 of _): Posts- https://youtu.be/mFiqqIQZckg
 
 
