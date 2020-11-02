@@ -9,7 +9,7 @@ import Register from './components/auth/Register';
 import Dashboard from "./components/dashboard/Dashboard";
 import Profile from './components/Profile/Profile';
 import EditProfile from './components/Profile/EditProfile';
-import store from './store';
+import store from './store_prod';
 import Login from './components/auth/Login';
 import Followers from './components/Profile/Followers';
 import Following from './components/Profile/Following';
