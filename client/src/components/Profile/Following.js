@@ -3,7 +3,8 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { getCurrentFollowing, unfollowUser, followUser,getOthersProfile } from "../../actions/profileActions";
 import { Link } from "react-router-dom";
-import Search  from "../common/Search";
+import Search from "../common/Search";
+import spinner from '../../img/Spinner-1s-200px.gif';
 
 class Following extends Component {
   componentDidMount() {
@@ -30,7 +31,11 @@ class Following extends Component {
     }
       let followerslist = this.props.following.following;
       if (this.props.following.loaded === false) {
-        return <div> Loading .....</div>;
+        return <div> <img
+        src={spinner}
+        style={{ width: '200px', margin: 'auto', display: 'block' }}
+        alt="Loading..."
+      /></div>;
     }
     
       // if (followerslist.includes(this.props.user.id)) {

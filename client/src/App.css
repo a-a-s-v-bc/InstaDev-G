@@ -24,6 +24,7 @@
 
 .card-form {
   opacity: 0.9;
+  border: 2px solid;
 }
 
 .latest-profiles-img {
@@ -98,10 +99,7 @@ color: rgb(236, 196, 18);
   width:100%;
 }
 
-.container {
-  width:100%; 
 
-}
 
 .btn-light{
   background-color: rgb(236, 196, 18);
@@ -168,14 +166,19 @@ color: rgb(236, 196, 18);
 
 .card{
   height:320px;
+  border: 2px solid;
   
 }
 
 
 
 .profileheader{
-  width: 137%;
-  margin-left:-200px;
+  width: 139%;
+  margin-left:-220px;
+  margin-top:-22px;
+  
+
+  
 }
 
 .Profilechangeimage{
@@ -266,4 +269,52 @@ color: rgb(236, 196, 18);
   font-size:150%;
   margin-bottom: 20px;
   margin-top:5px;
+}
+
+
+
+/* 
+  ##Device = Laptops, Desktops
+  ##Screen = B/w 1025px to 1280px
+*/
+
+@media (min-width: 1025px) and (max-width: 1280px) {
+  
+  /* CSS */
+  .col-lap-3{
+    width:100%;
+    float:left;
+   
+  }
+}
+
+/* 
+  ##Device = Tablets, Ipads (portrait)
+  ##Screen = B/w 768px to 1024px
+*/
+
+@media (min-width: 768px) and (max-width: 1024px) {
+  
+  /* CSS */
+  .col-tab-3{
+    width:100%;
+   
+  }
+}
+
+
+
+
+/* 
+  ##Device = Most of the Smartphones Mobiles (Portrait)
+  ##Screen = B/w 320px to 479px
+*/
+
+@media (min-width: 320px) and (max-width: 480px) {
+  
+  /* CSS */
+  .col-sma-3{
+    width:100%;
+    
+  }
 }

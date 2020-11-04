@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import { getAllProfiles, getOthersProfile } from '../../actions/profileActions';
 import { Link } from "react-router-dom";
 import Search from '../common/Search';
+import spinner from '../../img/Spinner-1s-200px.gif'
 
 class AllProfiles extends Component {
   componentDidMount() {
@@ -15,7 +16,11 @@ class AllProfiles extends Component {
     console.log("props:", this.props);
 
     if (this.props.profile.loaded === false) {
-       return <div> Loading .....</div>;
+       return <div> <img
+       src={spinner}
+       style={{ width: '200px', margin: 'auto', display: 'block' }}
+       alt="Loading..."
+     /></div>;
     }
     return (
       <div className="container">
@@ -24,7 +29,7 @@ class AllProfiles extends Component {
 
           <Search allusers={profilelist}/>       
 
-          <br></br>
+          {/* <br></br>
           <br></br>
           <br></br>
 
@@ -61,8 +66,8 @@ class AllProfiles extends Component {
               
               </div>
             ))}
-          </div>
-        </div>
+                  </div>*/}
+        </div> 
       </div>
     );
   }

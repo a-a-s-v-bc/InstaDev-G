@@ -3,7 +3,8 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { getCurrentFollowers, removeFollower,getOthersProfile } from "../../actions/profileActions";
 import { Link } from "react-router-dom";
-import  Search  from '../common/Search';
+import Search from '../common/Search';
+import spinner from '../../img/Spinner-1s-200px.gif';
 
 class Followers extends Component {
   componentDidMount() {
@@ -28,7 +29,11 @@ class Followers extends Component {
     console.log("props:", this.props);
 
     if (this.props.followers.loaded === false ) {
-      return <div> Loading .....</div>;
+      return <div> <img
+      src={spinner}
+      style={{ width: '200px', margin: 'auto', display: 'block' }}
+      alt="Loading..."
+    /></div>;
     }
     return (
       <div className="container">

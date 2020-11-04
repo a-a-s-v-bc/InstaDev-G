@@ -14,7 +14,10 @@ import {
 } from "../../actions/profileActions";
 import { getAllUserPosts, clearPost } from "../../actions/postActions";
 import PostFeed from "../posts/PostFeed";
-import Spinner from "../common/Spinner";
+import spinner from "../../img/Spinner-1s-200px.gif";
+import Spinner from '../common/Spinner';
+
+
 class OthersProfile extends Component {
   constructor() {
     super();
@@ -46,7 +49,11 @@ class OthersProfile extends Component {
       this.props.profile.OtherUserProfile.loaded === false ||
       this.props.profile.profile.loaded === false
     ) {
-      return <div> Loading .....</div>;
+      return <div> <img
+      src={spinner}
+      style={{ width: '200px', margin: 'auto', display: 'block' }}
+      alt="Loading..."
+    /></div>;
     }
     const userid = this.props.profile.OtherUserProfile.user._id;
     const handle = this.props.profile.OtherUserProfile.handle;
@@ -79,7 +86,7 @@ class OthersProfile extends Component {
     return (
       <div className="container">
         <div className="profileheader">
-          <div className="card card-body text-white mb-3 " Style="height:70%;">
+          <div className="card card-body text-white mb-3 " Style="height:70%;margin-bottom:200px;">
             <div className="row">
               <img
                 className="rounded-circle positionimage"
@@ -120,7 +127,7 @@ class OthersProfile extends Component {
               <div>
                 <button
                   className="btn btn-light"
-                  Style="float:left;"
+                  Style="float:left;margin-left:30px;margin-top:20px;"
                   onClick={() => {
                     const usrid = { user_id: `${userid}` };
                     console.log("inside submit", usrid);
@@ -200,6 +207,7 @@ class OthersProfile extends Component {
         <br></br>
         <br></br>
         <br></br>
+        <div Style="font-weight: Bold;"> Posts</div>
         <p Style="background-color:white;"> {postContent}</p>
       </div>
     );

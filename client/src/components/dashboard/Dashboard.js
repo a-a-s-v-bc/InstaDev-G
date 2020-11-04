@@ -4,10 +4,13 @@ import { connect } from "react-redux";
 import PostFeed from "../posts/PostFeed";
 import Spinner from "../common/Spinner";
 import { getPosts } from "../../actions/postActions";
+import { getCurrentProfile } from "../../actions/profileActions";
 
 class Posts extends Component {
   componentDidMount() {
+    this.props.getCurrentProfile();
     this.props.getPosts();
+    
   }
 
   render() {
@@ -19,6 +22,22 @@ class Posts extends Component {
       postContent = <Spinner />;
     } else {
       postContent = <PostFeed posts={posts} />;
+    }
+
+    if (this.props.profile.data && this.props.profile.data.noprofile) {
+      // if (this.norepeate) {
+      //   console.log("repeat");
+      //   this.setState({ norepeate: false });
+      return (
+        <div className="container" Style="margin-bottom:600px;margin-top:15px;">
+        <div className="btn-group mb-4"  role="group">
+          <a href="/profile/createProfile" className="btn btn-light">
+            <i className="fas fa-user-circle  mr-1"></i> Create Profile</a>
+          </div>
+          </div>
+      )
+      
+      
     }
 
     return (
@@ -38,11 +57,13 @@ class Posts extends Component {
 
 Posts.propTypes = {
   getPosts: PropTypes.func.isRequired,
+  getCurrentProfile: PropTypes.func.isRequired,
   post: PropTypes.object.isRequired,
 };
 
 const mapStateToProps = (state) => ({
   post: state.post,
+  ...state.profile,
 });
 
-export default connect(mapStateToProps, { getPosts })(Posts);
+export default connect(mapStateToProps, { getPosts,getCurrentProfile })(Posts);

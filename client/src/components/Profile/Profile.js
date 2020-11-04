@@ -6,8 +6,11 @@ import { getCurrentProfile } from '../../actions/profileActions';
 import isEmpty from "../../validation/is-empty";
 import { getAllUserPosts,clearPost} from "../../actions/postActions";
 import PostFeed from "../posts/PostFeed";
+import Spinner from '../common/Spinner';
 
-import Spinner from "../common/Spinner";
+
+
+import spinner from "../../img/Spinner-1s-200px.gif";
 
 class Profile extends Component {
 
@@ -47,7 +50,11 @@ class Profile extends Component {
   
     if(this.props.profile.loaded === false) {
       return (
-        <div> Loading .....</div>
+        <div>  <img
+        src={spinner}
+        style={{ width: '200px', margin: 'auto', display: 'block' }}
+        alt="Loading..."
+      /></div>
       )
     }
     
@@ -83,9 +90,10 @@ function refreshPage() {
  
     return (
       <div className="container" >
-        <div className="profileheader">
+         <div className="profileheader"> 
+        <div className="col-sma-3 col-tab-3 col-lap-3">
           <div className="card card-body text-white mb-3 ">
-            <div className="row">
+            <div className="row ">
                 
               <img className="rounded-circle positionimage" src={this.props.profile.user.avatar} alt="" Style="width:170px;height:170px;" />
               <div className="btn-group mb-4" role="group">
@@ -158,11 +166,13 @@ function refreshPage() {
                 )}
   </p>
               
-          </div>
+             </div> 
+            </div>
         </div>
         <br></br>
         <br></br>
         <br></br>
+        <div Style="font-weight: Bold;"> Posts</div>
         <p Style="background-color:white;" onClick={refreshPage}> {postContent}</p>
          
 

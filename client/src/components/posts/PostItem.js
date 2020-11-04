@@ -4,7 +4,8 @@ import { connect } from "react-redux";
 import classnames from "classnames";
 import { Link } from "react-router-dom";
 import { deletePost, addLike, removeLike } from "../../actions/postActions";
-
+import { getOthersProfile } from '../../actions/profileActions';
+import axios from 'axios';
 class PostItem extends Component {
   onDeleteClick(id) {
     this.props.deletePost(id);
@@ -34,20 +35,35 @@ class PostItem extends Component {
       <div className="card card-body mb-3">
         <div className="row">
           <div className="col-md-2">
-            <Link to="/profile">
+            <Link to="/profile/other">
               <img
                 className="rounded-circle"
                 src={post.avatar}
                 alt=""
                 Style="width:3.5em;height:3.5em;"
+                onClick={() => {
+                  console.log("post user id", post.user);
+                  axios
+                    .get(`/api/profile/user/${post.user}`)
+                    .then((res) => {
+                      console.log("res", res);
+                      const handle = res.data.handle;
+                      // this.props.match.params.handle = handle.handle;
+                      this.props.getOthersProfile(handle);
+                  
+                 
+                    })
+                }}
               />
             </Link>
             <br />
             <p className="post-text-left">{post.name}</p>
           </div>
           <div className="col-md-10">
+          <div Style="float:right;color:rgb(236, 196, 18)">{post.date}</div>
             <p className="post-text-left">{post.text}</p>
             <img src={post.image} alt="" className="post-image-size"></img>
+            
             {showActions ? (
               <span className="align-bottom">
                 <button
@@ -110,12 +126,13 @@ PostItem.propTypes = {
   removeLike: PropTypes.func.isRequired,
   post: PropTypes.object.isRequired,
   auth: PropTypes.object.isRequired,
+  getOthersProfile:PropTypes.func.isRequired
 };
 
 const mapStateToProps = (state) => ({
   auth: state.auth,
 });
 
-export default connect(mapStateToProps, { deletePost, addLike, removeLike })(
+export default connect(mapStateToProps, { deletePost, addLike, removeLike,getOthersProfile })(
   PostItem
 );
