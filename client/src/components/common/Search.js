@@ -28,7 +28,7 @@ class Search extends Component {
   render() {
   
     return (
-      <div className="row" Style="width:100%;">
+      <div className="row" Style="width:100%;margin-bottom:550px;">
 
           <div className="input-group">
             <div className="input-group-prepend">
@@ -70,7 +70,7 @@ class Search extends Component {
                 
               
              
-            }}><span
+            }}><span Style="margin-left:20px;"
              >{user.user.name}</span></Link>
             </div>) : null
         })}

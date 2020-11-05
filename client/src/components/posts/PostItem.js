@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import classnames from "classnames";
 import { Link } from "react-router-dom";
 import { deletePost, addLike, removeLike } from "../../actions/postActions";
-import { getOthersProfile } from '../../actions/profileActions';
+import { getOthersProfile,getCurrentProfile } from '../../actions/profileActions';
 import axios from 'axios';
 class PostItem extends Component {
   onDeleteClick(id) {
@@ -30,7 +30,8 @@ class PostItem extends Component {
 
   render() {
     const { post, auth, showActions } = this.props;
-    //console.log("post information", {post});
+    
+    console.log("post information in postitems", this.props);
     return (
       <div className="card card-body mb-3">
         <div className="row">
@@ -49,7 +50,15 @@ class PostItem extends Component {
                       console.log("res", res);
                       const handle = res.data.handle;
                       // this.props.match.params.handle = handle.handle;
-                      this.props.getOthersProfile(handle);
+                      console.log("handle before calling", handle);
+                      if (auth.user.id === post.user) {
+                        //this.props.getCurrentProfile();
+                        window.location.href = "http://localhost:3000/profile";
+                      } else {
+                        
+                        this.props.getOthersProfile(handle);
+                      }
+                     
                   
                  
                     })
@@ -62,7 +71,7 @@ class PostItem extends Component {
           <div className="col-md-10">
           <div Style="float:right;color:rgb(236, 196, 18)">{post.date}</div>
             <p className="post-text-left">{post.text}</p>
-            <img src={post.image} alt="" className="post-image-size"></img>
+            {post.image ? <img src={post.image} alt="" className="post-image-size"></img> : ""}
             
             {showActions ? (
               <span className="align-bottom">
@@ -126,13 +135,14 @@ PostItem.propTypes = {
   removeLike: PropTypes.func.isRequired,
   post: PropTypes.object.isRequired,
   auth: PropTypes.object.isRequired,
-  getOthersProfile:PropTypes.func.isRequired
+  getOthersProfile: PropTypes.func.isRequired,
+  getCurrentProfile: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({
   auth: state.auth,
 });
 
-export default connect(mapStateToProps, { deletePost, addLike, removeLike,getOthersProfile })(
+export default connect(mapStateToProps, { deletePost, addLike, removeLike,getOthersProfile ,getCurrentProfile})(
   PostItem
 );

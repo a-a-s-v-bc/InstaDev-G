@@ -172,7 +172,7 @@ function refreshPage() {
         <br></br>
         <br></br>
         <br></br>
-        <div Style="font-weight: Bold;"> Posts</div>
+       
         <p Style="background-color:white;" onClick={refreshPage}> {postContent}</p>
          
 

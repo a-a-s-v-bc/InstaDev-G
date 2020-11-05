@@ -34,6 +34,8 @@ class OthersProfile extends Component {
       nextProps.profile.OtherUserProfile.user &&
       nextProps.profile.OtherUserProfile.user._id
     ) {
+      console.log("nextprops:", nextProps);
+
       const id = nextProps.profile.OtherUserProfile.user._id;
       console.log("id of other user value:", id);
       this.props.getAllUserPosts(id);
@@ -207,7 +209,7 @@ class OthersProfile extends Component {
         <br></br>
         <br></br>
         <br></br>
-        <div Style="font-weight: Bold;"> Posts</div>
+        
         <p Style="background-color:white;"> {postContent}</p>
       </div>
     );
