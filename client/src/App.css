@@ -73,7 +73,7 @@
 .btn-info{
 background-color:rgb(193, 153, 212);
 border-color:transparent;
-width:200px;
+width:190px;
 }
 
 #mobile-nav a{
@@ -103,7 +103,7 @@ color: rgb(236, 196, 18);
 
 .btn-light{
   background-color: rgb(236, 196, 18);
-  width:200px;
+  width:190px;
   
 }
 
@@ -303,8 +303,6 @@ color: rgb(236, 196, 18);
 }
 
 
-
-
 /* 
   ##Device = Most of the Smartphones Mobiles (Portrait)
   ##Screen = B/w 320px to 479px
@@ -313,8 +311,23 @@ color: rgb(236, 196, 18);
 @media (min-width: 320px) and (max-width: 480px) {
   
   /* CSS */
-  .col-sma-3{
+  .landing {
+    position: relative;
+    background: url('./img/LandingImage_Updated.gif') no-repeat;
+    background-size: 50%;
     width:100%;
+    height: 400px;
+    margin-top:-24px;
     
+  
+  }
+
+  .display-3{
+    font-size: 1em;
+    text-align: center;
+    margin-left: 0px;
+    margin-bottom: 25px;
+    margin-top: 0px;
   }
 }
+

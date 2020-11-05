@@ -91,13 +91,13 @@ function refreshPage() {
     return (
       <div className="container" >
          <div className="profileheader"> 
-        <div className="col-sma-3 col-tab-3 col-lap-3">
+        
           <div className="card card-body text-white mb-3 ">
             <div className="row ">
                 
               <img className="rounded-circle positionimage" src={this.props.profile.user.avatar} alt="" Style="width:170px;height:170px;" />
               <div className="btn-group mb-4" role="group">
-              <div Style="margin-top:50px">
+              <div Style="margin-top:50px;margin-right:20px;">
                   <i className="fas fa-mail-bulk  mr-1"></i>
                   {this.props.post.userposts.length} Posts</div>
                 <Link to="/profile/editProfile" className="btn btn-light">
@@ -166,7 +166,7 @@ function refreshPage() {
                 )}
   </p>
               
-             </div> 
+           
             </div>
         </div>
         <br></br>

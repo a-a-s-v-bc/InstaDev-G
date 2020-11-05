@@ -1,4 +1,5 @@
 import axios from "axios";
+//import OthersProfile from "../components/Profile/OthersProfile";
 import { GET_PROFILE, SET_ERROR } from "./types";
 
 import { GET_ERRORS } from "./types";
@@ -8,6 +9,8 @@ import { SET_PASSWORD } from "./types";
 import { SET_CURRENT_USER } from "./types";
 import { GET_PROFILES } from "./types";
 import { GET_OTHERUSER_PROFILE } from "./types";
+import { CLEAR_OTHERS_PROFILE } from "./types";
+
 
 export const getCurrentProfile = () => (dispatch) => {
   axios
@@ -179,6 +182,7 @@ export const getAllProfiles = () => (dispatch) => {
 };
 
 export const getOthersProfile = (handle) => (dispatch) => {
+  dispatch(clearOthersProfile());
   axios
     .get(`/api/profile/handle/${handle}`)
     .then((res) => {
@@ -193,4 +197,12 @@ export const getOthersProfile = (handle) => (dispatch) => {
         payload: {},
       })
     );
+};
+
+export const clearOthersProfile =() => {
+  return {
+    type: CLEAR_OTHERS_PROFILE
+
+  }
+
 };

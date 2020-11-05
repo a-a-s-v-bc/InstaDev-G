@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 
 import PropTypes from "prop-types";
+import { Link } from "react-router-dom";
 
 import { connect } from "react-redux";
 
@@ -11,6 +12,7 @@ import {
   followUser,
   getCurrentFollowing,
   unfollowUser,
+  
 } from "../../actions/profileActions";
 import { getAllUserPosts, clearPost } from "../../actions/postActions";
 import PostFeed from "../posts/PostFeed";
@@ -23,6 +25,7 @@ class OthersProfile extends Component {
     super();
     this.state = {
       postcalled: false,
+
     };
   }
   componentDidMount() {
@@ -101,14 +104,14 @@ class OthersProfile extends Component {
                   <i className="fas fa-mail-bulk  mr-1"></i>
                   {this.props.post.userposts.length} Posts
                 </div>
-                <a
-                  href={`/profile/followers/${this.props.profile.OtherUserProfile.user._id}`}
+                <Link
+                  to={`/profile/followers/${this.props.profile.OtherUserProfile.user._id}`}
                   className="btn btn-light"
                 >
                   <i className="fas fa-arrow-circle-right  mr-1"></i>
                   {this.props.profile.OtherUserProfile.followers.length}{" "}
                   Followers
-                </a>
+                </Link>
                 <a
                   href={`/profile/following/${this.props.profile.OtherUserProfile.user._id}`}
                   className="btn btn-light"
