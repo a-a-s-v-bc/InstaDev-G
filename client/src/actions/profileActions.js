@@ -1,6 +1,6 @@
 import axios from "axios";
 //import OthersProfile from "../components/Profile/OthersProfile";
-import { GET_PROFILE, SET_ERROR } from "./types";
+import { GET_PROFILE, SET_ERROR,CLEAR_ERRORS } from "./types";
 
 import { GET_ERRORS } from "./types";
 import { GET_FOLLOWERS } from "./types";
@@ -30,6 +30,7 @@ export const getCurrentProfile = () => (dispatch) => {
 };
 
 export const createProfile = (profiledata, history) => (dispatch) => {
+  dispatch(clearErrors());
   axios
     .post("/api/profile", profiledata)
     .then((res) => history.push("/profile"))
@@ -205,4 +206,11 @@ export const clearOthersProfile =() => {
 
   }
 
+};
+
+// Clear errors
+export const clearErrors = () => {
+  return {
+    type: CLEAR_ERRORS,
+  };
 };
