@@ -28,7 +28,7 @@ class Search extends Component {
   render() {
   
     return (
-      <div className="row" Style="width:100%;">
+      <div className="row searchicon" Style="width:100%;">
 
           <div className="input-group">
             <div className="input-group-prepend">
@@ -51,7 +51,7 @@ class Search extends Component {
             className="rounded-circle"
             src={user.user.avatar}
             alt=""
-            Style="width:3.5em;height:3.5em;"
+            Style="width:2.0em;height:2.0em;"
             onClick={() => {
               const handle = { handle: `${user.handle}` };
               console.log("userdata:", handle);

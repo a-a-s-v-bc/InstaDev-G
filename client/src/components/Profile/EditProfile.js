@@ -235,14 +235,14 @@ onDeleteClick(e) {
         <button
               onClick={this.onDeleteClick.bind(this)}
           className="btn btn-danger"
-          Style="width:200px;"
+          
             >
           Delete My Account
             </button>
-            <a href="/profile/changePassword" className="btn btn-light">
+            <a href="/profile/changePassword" className="btn">
           Change Password
         </a>
-            <a href="/profile" className="btn btn-light">
+            <a href="/profile" className="btn">
           Go Back
         </a>
         <div className="container">
@@ -261,7 +261,7 @@ onDeleteClick(e) {
                   className="rounded-circle positionimage"
                   src={this.state.avatar}
                   alt=""
-                  Style="width: 45%;height: 180px;margin-left: 90px;"
+                  id="createprofileimage"
                 />
                 <input
                   style={{ display: "none" }}
@@ -269,15 +269,15 @@ onDeleteClick(e) {
                   onChange={this.fileSelectedHandler}
                   ref={(fileInput) => (this.fileInput = fileInput)}
                 />
-                <div> <span Style="margin-left:30px;">Pick a File and Upload to change the profile image</span>
-                <button className="btn btn-light"  Style="float:left;margin-left:0px;margin-bottom:-90px;margin-right:0px;" onClick={() => this.fileInput.click()}>
+                <div> <p Style="text-align:center">Pick a File and Upload to change the profile image</p>
+                <button className="btn spacing"  Style="float:left;" onClick={() => this.fileInput.click()}>
                   Pick File
                 </button>
                 <button
                   type="button"
                   onClick={this.fileUploadHandler}
-                  className="btn btn-light"
-                  Style="margin-right:0px;margin-bottom:20px;"
+                  className="btn"
+                  Style="float:left;margin-bottom:10px;"
                 >
                     Upload
                 </button>
@@ -358,7 +358,7 @@ onDeleteClick(e) {
                         displaySocialInputs: !prevState.displaySocialInputs,
                       }));
                     }}
-                    className="btn btn-light"
+                    className="btn"
                   >
                     Add Social Network Links
                   </button>
@@ -368,7 +368,7 @@ onDeleteClick(e) {
                 <input
                   type="submit"
                   value="Submit"
-                  className="btn btn-info btn-block mt-4"
+                  className="btn btn-block mt-4"
                 />
               </form>
             </div>

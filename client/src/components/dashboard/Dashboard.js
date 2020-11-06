@@ -29,11 +29,13 @@ class Posts extends Component {
       //   console.log("repeat");
       //   this.setState({ norepeate: false });
       return (
-        <div className="container" Style="margin-bottom:600px;margin-top:15px;">
-        <div className="btn-group mb-4"  role="group">
-          <a href="/profile/createProfile" className="btn btn-light">
+        <div className="container" >
+          <div className="row">
+ 
+          <a href="/profile/createProfile" className="btn" Style="margin-left:20px;width:400px;margin-bottom:50px;">
             <i className="fas fa-user-circle  mr-1"></i> Create Profile</a>
-          </div>
+            </div>
+            
           </div>
       )
       

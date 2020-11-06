@@ -13,6 +13,9 @@
 
 }
 
+#createprofileimage{
+  margin-left: 200px;
+}
 .dark-overlay {
   background-color: transparent;
   position: absolute;
@@ -237,6 +240,7 @@ color: rgb(236, 196, 18);
   margin-left:20px;
   font-weight: Bold;
   font-size: 1.5em;
+  
 }
 
 .input-group-text{
@@ -292,6 +296,10 @@ color: rgb(236, 196, 18);
   border:1px solid black;
   
 }
+
+.spacing{
+  margin-left: 100px;
+}
 /* 
   ##Device = Laptops, Desktops
   ##Screen = B/w 1025px to 1280px
@@ -330,7 +338,11 @@ color: rgb(236, 196, 18);
 @media (min-width: 320px) and (max-width: 480px) {
   
   /* CSS */
-  .col-xl-12 ,.btn-info,.btn-light,.lead,.bg-dark,.landing,.post-image-size,.post-text-left,.col-md-10,.card,.col-md-2,.comments, .postbuttons,.post-name,.profileheader,.positionimage,.container,.btn-group,.btn,.display-4 {
+  .col-xl-12 ,.btn-info,.btn-light,.lead,
+  .bg-dark,.landing,.post-image-size,.post-text-left,.col-md-10,
+  .card,.col-md-2,.comments, .postbuttons,.post-name,.profileheader,
+  .positionimage,.container,.btn-group,.btn,.display-4 ,h2,.searchicon,.followername,
+  .userlist,#createprofileimage,.spacing,.form-group,.socialicons{
    
  
     display:block;
@@ -345,10 +357,18 @@ color: rgb(236, 196, 18);
     float:center;
    
   }
+  .socialicons{
+    margin-left:0px;
+    width:100px;
+  }
   .bg-dark{
     width:350px;
   }
 
+  .form-group {
+    width:300px;
+  }
+  
   .comments{
     font-size: 1em;
     color:black;
@@ -412,7 +432,7 @@ color: rgb(236, 196, 18);
    
  }
  .card{
-   width:320px;
+   width:340px;
    height: 200px;
    overflow:auto;
  }
@@ -427,7 +447,7 @@ color: rgb(236, 196, 18);
  }
 
  .profileheader{
-   width:320px;
+   width:350px;
    margin-left:0px;
    height:250px;
  }
@@ -440,6 +460,7 @@ color: rgb(236, 196, 18);
  .container{
    padding-left:0px;
    padding-right:0px;
+   
  }
  .btn-group{
   float:right;
@@ -457,6 +478,33 @@ color: rgb(236, 196, 18);
 .display-4 {
   margin-left:0px;
   font-size:1em;
+}
+h2{
+  margin-left:30px;
+}
+.searchicon{
+  margin-left:20px;
+  
+}
+.followername{
+  width:50px;
+  height:50px;
+  float:left;
+  
+
+}
+.userlist{
+  width:300px;
+height:100px;
+margin-bottom:100px;
+float:left;
+
+}
+#createprofileimage{
+  margin-left:100px;
+}
+.spacing{
+  margin-left:0px;
 }
 }
 

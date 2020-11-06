@@ -97,16 +97,16 @@ class OthersProfile extends Component {
                 className="rounded-circle positionimage"
                 src={this.props.profile.OtherUserProfile.user.avatar}
                 alt=""
-                Style="width:170px;height:170px;"
+                
               />
               <div className="btn-group mb-4" role="group">
-                <div Style="margin-top:55px;margin-right:40px;">
+                <div Style="margin-top:55px;">
                   <i className="fas fa-mail-bulk  mr-1"></i>
                   {this.props.post.userposts.length} Posts
                 </div>
                 <Link
                   to={`/profile/followers/${this.props.profile.OtherUserProfile.user._id}`}
-                  className="btn btn-light"
+                  className="btn"
                 >
                   <i className="fas fa-arrow-circle-right  mr-1"></i>
                   {this.props.profile.OtherUserProfile.followers.length}{" "}
@@ -114,7 +114,7 @@ class OthersProfile extends Component {
                 </Link>
                 <a
                   href={`/profile/following/${this.props.profile.OtherUserProfile.user._id}`}
-                  className="btn btn-light"
+                  className="btn"
                 >
                   <i className="fas fa-arrow-circle-left  mr-1"></i>
                   {this.props.profile.OtherUserProfile.following.length}{" "}
@@ -125,14 +125,14 @@ class OthersProfile extends Component {
             <div className="text-left">
               <h1
                 className="display-4 text-left"
-                Style="margin-left:50px;margin-top:50px;"
+                Style="margin-top:50px;"
               >
                 {this.props.profile.OtherUserProfile.user.name}
               </h1>
               <div>
                 <button
-                  className="btn btn-light"
-                  Style="float:left;margin-left:30px;margin-top:20px;"
+                  className="btn"
+                  Style="float:left;margin-top:20px;margin-bottom:10px;"
                   onClick={() => {
                     const usrid = { user_id: `${userid}` };
                     console.log("inside submit", usrid);
