@@ -94,19 +94,19 @@ function refreshPage() {
         
           <div className="card card-body text-white mb-3 ">
             <div className="row ">
-                
-              <img className="rounded-circle positionimage" src={this.props.profile.user.avatar} alt="" Style="width:170px;height:170px;" />
+            <img className="rounded-circle positionimage" src={this.props.profile.user.avatar}  alt=""  />
+              {/* <img className="rounded-circle positionimage" src={this.props.profile.user.avatar} sizes="(max-width: 30em) 100vw, (max-width: 50em) 50vw, calc(33vw - 100px)" alt="" srcset={`${this.props.profile.user.avatar} "200w"","${this.props.profile.user.avatar} "400w""," ${this.props.profile.user.avatar} "800w""," ${this.props.profile.user.avatar} "1600w"}`} /> */}
               <div className="btn-group mb-4" role="group">
-              <div Style="margin-top:50px;margin-right:20px;">
+              <div Style="margin-top:55px;">
                   <i className="fas fa-mail-bulk  mr-1"></i>
                   {this.props.post.userposts.length} Posts</div>
-                <Link to="/profile/editProfile" className="btn btn-light">
+                <Link to="/profile/editProfile" className="btn" Style="margin-right:0px;">
                   <i className="fas fa-user-circle  mr-1"></i> Edit Profile</Link>
                 
-                <a href={`/profile/followers/${this.props.profile.user._id}`} className="btn btn-light">
+                <a href={`/profile/followers/${this.props.profile.user._id}`} className="btn" Style="margin-right:0px;">
                   <i className="fas fa-arrow-circle-right  mr-1"></i>
                   {this.props.profile.followers.length} Followers</a>
-                <a href={`/profile/following/${this.props.profile.user._id}`} className="btn btn-light">
+                <a href={`/profile/following/${this.props.profile.user._id}`} className="btn" Style="margin-right:0px;">
                   <i className="fas fa-arrow-circle-left  mr-1"></i>
                   {this.props.profile.following.length} Following</a>
               </div>
@@ -114,7 +114,7 @@ function refreshPage() {
             
             </div>
             <div className="text-left">
-              <h1 className="display-4 text-left" Style="margin-left:50px;margin-top:50px;">{this.props.profile.user.name}</h1>
+              <h1 className="display-4 text-left" Style="margin-top:50px;">{this.props.profile.user.name}</h1>
             </div>
                 
                   

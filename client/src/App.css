@@ -68,12 +68,16 @@
   margin-top: 50px;
   width: 150px;
   margin-right: 25px;
+  color:white;
+  background-color: rgb(236, 196, 18);
+  border:1px solid black;
 }
 
 .btn-info{
 background-color:rgb(193, 153, 212);
 border-color:transparent;
 width:190px;
+
 }
 
 #mobile-nav a{
@@ -105,6 +109,7 @@ color: rgb(236, 196, 18);
   background-color: rgb(236, 196, 18);
   width:190px;
   
+  
 }
 
 .navbar-dark .navbar-brand {
@@ -114,8 +119,8 @@ color: rgb(236, 196, 18);
 
 .positionimage{
   margin-left:50px;
-  width:13%;
-  height:70%;
+  width:170px;
+  height:170px;
   
 }
 
@@ -155,6 +160,7 @@ color: rgb(236, 196, 18);
 .display-4{
   margin-bottom: 0%;
   font-size: 1.5em;
+  margin-left:40px;
 }
 
 .socialicons{
@@ -271,8 +277,21 @@ color: rgb(236, 196, 18);
   margin-top:5px;
 }
 
+.post-name{
+  color:rgb(236, 196, 18);
+}
 
+.postbuttons{
+  background-color: rgb(236, 196, 18);
+}
 
+.comments{
+  font-size: 1em;
+  color:black;
+  padding-bottom:6px;
+  border:1px solid black;
+  
+}
 /* 
   ##Device = Laptops, Desktops
   ##Screen = B/w 1025px to 1280px
@@ -311,23 +330,133 @@ color: rgb(236, 196, 18);
 @media (min-width: 320px) and (max-width: 480px) {
   
   /* CSS */
-  .landing {
-    position: relative;
-    background: url('./img/LandingImage_Updated.gif') no-repeat;
-    background-size: 50%;
-    width:100%;
-    height: 400px;
-    margin-top:-24px;
-    
+  .col-xl-12 ,.btn-info,.btn-light,.lead,.bg-dark,.landing,.post-image-size,.post-text-left,.col-md-10,.card,.col-md-2,.comments, .postbuttons,.post-name,.profileheader,.positionimage,.container,.btn-group,.btn,.display-4 {
+   
+ 
+    display:block;
+   
+    margin-right:0px;
+
   
   }
-
-  .display-3{
-    font-size: 1em;
-    text-align: center;
-    margin-left: 0px;
-    margin-bottom: 25px;
-    margin-top: 0px;
+  .lead{
+    font-size:0.4em;
+    margin-right:50px;
+    float:center;
+   
   }
+  .bg-dark{
+    width:350px;
+  }
+
+  .comments{
+    font-size: 1em;
+    color:black;
+    padding-bottom:6px;
+    
+  }
+  .col-xl-12{
+    font-size: 0.4em;
+    margin-top:-100px;
+  }
+
+ .btn-info{
+   width:80px;
+   font-size:1.5em;
+   font-weight: bold;
+   text-align: center;
+   margin-top:0px;
+   
+ }
+ .btn-light{
+   width:80px;
+   font-size:1.5em;
+   font-weight:bold;
+   text-align: center;
+   margin-top:0px;
+ 
+ }
+
+ .landing{
+  
+  background-size: 50%;
+  width:100%;
+  height: 350px;
+  margin-top:100px;
+ }
+ .post-image-size{
+   width:100px;
+   height:100px;
+ }
+ .post-text-left{
+   font-size:1em;
+   float:left;
+   width:150px;
+   margin-left:20px;
+   margin-bottom:10px;
+  
+ }
+ .post-name{
+  font-size:1em;
+  
+  width:70px;
+  margin-left:0px;
+ }
+
+ .col-md-10{
+   width:300px;
+   height:300px;
+   margin-top:-100px;
+   margin-left:60px;
+  
+   
+ }
+ .card{
+   width:320px;
+   height: 200px;
+   overflow:auto;
+ }
+ .col-md-2{
+   float:left;
+   margin-left:0px;
+   padding-left:0px;
+ }
+ .postbuttons{
+   background-color: rgb(236, 196, 18);
+   float:left;
+ }
+
+ .profileheader{
+   width:320px;
+   margin-left:0px;
+   height:250px;
+ }
+ .positionimage{
+  margin-left:10px;
+  width:100px;
+  height:100px;
+  margin-top:10px;
+ }
+ .container{
+   padding-left:0px;
+   padding-right:0px;
+ }
+ .btn-group{
+  float:right;
+  margin-left:200px;
+  width:100px;
+  height:100px;
+  margin-top:-150px;
+}
+.btn{
+  margin-top:0px;
+  color:white;
+  background-color: rgb(236, 196, 18);
+  border:1px solid black;
+}
+.display-4 {
+  margin-left:0px;
+  font-size:1em;
+}
 }
 

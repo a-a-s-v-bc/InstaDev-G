@@ -66,7 +66,7 @@ class PostItem extends Component {
               />
             </Link>
             <br />
-            <p className="post-text-left">{post.name}</p>
+            <p className="post-name">{post.name}</p>
           </div>
           <div className="col-md-10">
           <div Style="float:right;color:rgb(236, 196, 18)">{post.date}</div>
@@ -78,8 +78,7 @@ class PostItem extends Component {
                 <button
                   onClick={this.onLikeClick.bind(this, post._id)}
                   type="button"
-                  className="btn btn-light"
-                  Style="width:130px;"
+                 className="postbuttons"
                 >
                   <i
                     className={classnames("fas fa-thumbs-up", {
@@ -92,26 +91,25 @@ class PostItem extends Component {
                 <button
                   onClick={this.onUnlikeClick.bind(this, post._id)}
                   type="button"
-                  className="btn btn-light"
-                  Style="width:130px;"
+                  className="postbuttons"
+                
                 >
                   <i className="text-secondary fas fa-thumbs-down" />
                 </button>
 
                 <Link
                   to={`/post/${post._id}`}
-                  className="btn btn-light"
-                  Style="width:130px;"
-                >
-                  Comments
+                  className="comments postbuttons"
+                 
+                >Comments
                   <span className="badge badge-light">{post.comments.length}</span>
                 </Link>
                 {post.user === auth.user.id ? (
                   <button
                     onClick={this.onDeleteClick.bind(this, post._id)}
                     type="button"
-                    className="btn btn-danger"
-                    Style="width:130px;"
+                    className="postbuttons"
+                    
                   >
                     <i className="fas fa-times" />
                   </button>

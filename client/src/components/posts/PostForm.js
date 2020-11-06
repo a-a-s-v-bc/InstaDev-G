@@ -97,7 +97,7 @@ fileUploadHandler = () => {
               </div>
               <button
                 type="submit"
-                className="btn btn-light"
+                className="btn"
                 Style="width:180px;"
               >
                 Submit
@@ -116,14 +116,14 @@ fileUploadHandler = () => {
                   <button
                     type="button"
                     onClick={this.fileUploadHandler}
-                    className="btn btn-light"
+                    className="btn"
                     Style="width:180px;"
                   >
                     Upload Image
                   </button>
 
                   <button
-                    className="btn btn-light"
+                    className="btn"
                     onClick={() => this.fileInput.click()}
                     Style="width:180px;"
                   >
