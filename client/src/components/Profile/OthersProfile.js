@@ -132,7 +132,7 @@ class OthersProfile extends Component {
               <div>
                 <button
                   className="btn"
-                  Style="float:left;margin-top:20px;margin-bottom:10px;"
+                  Style="float:left;margin-top:20px;margin-bottom:10px;margin-left:25px;"
                   onClick={() => {
                     const usrid = { user_id: `${userid}` };
                     console.log("inside submit", usrid);
