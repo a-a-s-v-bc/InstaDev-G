@@ -103,9 +103,10 @@ class CreateProfile extends Component {
     let getavatar;
     if (isNewProfile === "") {
       getavatar = (<img
-        className="rounded-circle Editimage"
+        className="rounded-circle positionimage "
         src={this.props.auth.user.avatar}
         alt=""
+        id="createprofileimage"
       />
       )
     } else {
@@ -114,7 +115,8 @@ class CreateProfile extends Component {
           className="rounded-circle positionimage"
           src={this.state.avatar}
           alt=""
-          Style="width: 170px;height: 170px;margin-left: 150px;"
+          id="createprofileimage"
+          
         />)
     }
 
@@ -178,15 +180,15 @@ class CreateProfile extends Component {
    
     return (
       <div className="create-profile">
-        <a href="/profile/changePassword" className="btn btn-light">
+        <a href="/profile/changePassword" className="btn">
           Change Password
         </a>
-        <a href="/profile" className="btn btn-light">
+        <a href="/profile" className="btn">
           Go Back
         </a>
         <div className="container">
           <div className="row">
-            <div className="col-md-8 m-auto">
+            <div className="col-lg-8 m-auto">
               <h1
                 className="display-4 text-center"
                 Style="font-weight:bold; margin-top:10px;"
@@ -205,10 +207,10 @@ class CreateProfile extends Component {
                   onChange={this.fileSelectedHandler}
                   ref={(fileInput) => (this.fileInput = fileInput)}
                 />
-                <div><span Style="margin-left:80px;">Pick a File and Upload to change the profile image</span>
+                <div><p Style="text-align:center">Pick a File and Upload to change the profile image</p>
                   <button
-                    className="btn btn-light"
-                    Style="float:left;margin-left:55px;margin-bottom-20px;"
+                    className="btn spacing"
+                    Style="float:left;"
                     onClick={() => this.fileInput.click()}
                   >
                     Pick File
@@ -216,8 +218,8 @@ class CreateProfile extends Component {
                   <button
                     type="button"
                     onClick={this.fileUploadHandler}
-                    className="btn btn-light"
-                    Style="margin-right:55px;margin-bottom:20px;"
+                    className="btn"
+                    Style="float:left;margin-bottom:10px"
                   >
                     Upload
                   </button>
@@ -297,7 +299,7 @@ class CreateProfile extends Component {
                         displaySocialInputs: !prevState.displaySocialInputs,
                       }));
                     }}
-                    className="btn btn-light"
+                    className="btn"
                   >
                     Add Social Network Links
                   </button>
@@ -307,7 +309,7 @@ class CreateProfile extends Component {
                 <input
                   type="submit"
                   value="Submit"
-                  className="btn btn-info btn-block mt-4"
+                  className="btn btn-block mt-4"
                 />
               </form>
             </div>

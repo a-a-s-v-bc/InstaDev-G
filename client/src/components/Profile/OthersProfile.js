@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 
 import PropTypes from "prop-types";
+import { Link } from "react-router-dom";
 
 import { connect } from "react-redux";
 
@@ -11,15 +12,20 @@ import {
   followUser,
   getCurrentFollowing,
   unfollowUser,
+  
 } from "../../actions/profileActions";
 import { getAllUserPosts, clearPost } from "../../actions/postActions";
 import PostFeed from "../posts/PostFeed";
-import Spinner from "../common/Spinner";
+import spinner from "../../img/Spinner-1s-200px.gif";
+import Spinner from '../common/Spinner';
+
+
 class OthersProfile extends Component {
   constructor() {
     super();
     this.state = {
       postcalled: false,
+
     };
   }
   componentDidMount() {
@@ -31,6 +37,8 @@ class OthersProfile extends Component {
       nextProps.profile.OtherUserProfile.user &&
       nextProps.profile.OtherUserProfile.user._id
     ) {
+      console.log("nextprops:", nextProps);
+
       const id = nextProps.profile.OtherUserProfile.user._id;
       console.log("id of other user value:", id);
       this.props.getAllUserPosts(id);
@@ -46,7 +54,11 @@ class OthersProfile extends Component {
       this.props.profile.OtherUserProfile.loaded === false ||
       this.props.profile.profile.loaded === false
     ) {
-      return <div> Loading .....</div>;
+      return <div> <img
+      src={spinner}
+      style={{ width: '200px', margin: 'auto', display: 'block' }}
+      alt="Loading..."
+    /></div>;
     }
     const userid = this.props.profile.OtherUserProfile.user._id;
     const handle = this.props.profile.OtherUserProfile.handle;
@@ -79,30 +91,30 @@ class OthersProfile extends Component {
     return (
       <div className="container">
         <div className="profileheader">
-          <div className="card card-body text-white mb-3 " Style="height:70%;">
+          <div className="card card-body text-white mb-3 " Style="height:70%;margin-bottom:200px;">
             <div className="row">
               <img
                 className="rounded-circle positionimage"
                 src={this.props.profile.OtherUserProfile.user.avatar}
                 alt=""
-                Style="width:170px;height:170px;"
+                
               />
               <div className="btn-group mb-4" role="group">
-                <div Style="margin-top:55px;margin-right:40px;">
+                <div Style="margin-top:55px;">
                   <i className="fas fa-mail-bulk  mr-1"></i>
-                  {this.props.post.userposts.length} Posts
+                  {this.props.post.userposts.length} Posts &nbsp;
                 </div>
-                <a
-                  href={`/profile/followers/${this.props.profile.OtherUserProfile.user._id}`}
-                  className="btn btn-light"
+                <Link
+                  to={`/profile/followers/${this.props.profile.OtherUserProfile.user._id}`}
+                  className="btn"
                 >
                   <i className="fas fa-arrow-circle-right  mr-1"></i>
                   {this.props.profile.OtherUserProfile.followers.length}{" "}
                   Followers
-                </a>
+                </Link>
                 <a
                   href={`/profile/following/${this.props.profile.OtherUserProfile.user._id}`}
-                  className="btn btn-light"
+                  className="btn"
                 >
                   <i className="fas fa-arrow-circle-left  mr-1"></i>
                   {this.props.profile.OtherUserProfile.following.length}{" "}
@@ -113,14 +125,14 @@ class OthersProfile extends Component {
             <div className="text-left">
               <h1
                 className="display-4 text-left"
-                Style="margin-left:50px;margin-top:50px;"
+                Style="margin-top:50px;"
               >
                 {this.props.profile.OtherUserProfile.user.name}
               </h1>
               <div>
                 <button
-                  className="btn btn-light"
-                  Style="float:left;"
+                  className="btn"
+                  Style="float:left;margin-top:20px;margin-bottom:10px;margin-left:25px;"
                   onClick={() => {
                     const usrid = { user_id: `${userid}` };
                     console.log("inside submit", usrid);
@@ -200,6 +212,7 @@ class OthersProfile extends Component {
         <br></br>
         <br></br>
         <br></br>
+        
         <p Style="background-color:white;"> {postContent}</p>
       </div>
     );

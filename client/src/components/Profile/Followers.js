@@ -3,7 +3,8 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { getCurrentFollowers, removeFollower,getOthersProfile } from "../../actions/profileActions";
 import { Link } from "react-router-dom";
-import  Search  from '../common/Search';
+import Search from '../common/Search';
+import spinner from '../../img/Spinner-1s-200px.gif';
 
 class Followers extends Component {
   componentDidMount() {
@@ -28,21 +29,25 @@ class Followers extends Component {
     console.log("props:", this.props);
 
     if (this.props.followers.loaded === false ) {
-      return <div> Loading .....</div>;
+      return <div> <img
+      src={spinner}
+      style={{ width: '200px', margin: 'auto', display: 'block' }}
+      alt="Loading..."
+    /></div>;
     }
     return (
       <div className="container">
         <div className="row">
           <h2>
             Followers {followerslist.length} 
-            <a href="/profile"
+            {/* <a href="/profile"
             
-              className="btn btn-light"
+              className="btn"
               Style="margin-left:720px;margin-top:0px;"
               
             >
               Go Back
-            </a>
+            </a> */}
           </h2>
 
           <br></br>
@@ -56,12 +61,12 @@ class Followers extends Component {
 
           <div className="col-md-12">
             {followerslist.map((user, index) => (
-              <div key={index}>
+              <div className="userlist" key={index}>
                 <img
-                  className="rounded-circle"
+                  className="rounded-circle positionimage"
                   src={user.user.avatar}
                   alt=""
-                  Style="width:15%;"
+                
                 />
                 <Link to="/profile/other"><span className="followername"
                  onClick={() => {
@@ -74,7 +79,7 @@ class Followers extends Component {
                 {nonuser ? <input
                   type="submit"
                   value="Remove"
-                  className="btn btn-info"
+                  className="btn"
                   Style="margin-bottom:10px;"
                   onClick={() => {
                     const userid = { user_id:user.user._id  };

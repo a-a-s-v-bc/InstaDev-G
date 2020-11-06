@@ -3,7 +3,8 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { getCurrentFollowing, unfollowUser, followUser,getOthersProfile } from "../../actions/profileActions";
 import { Link } from "react-router-dom";
-import Search  from "../common/Search";
+import Search from "../common/Search";
+import spinner from '../../img/Spinner-1s-200px.gif';
 
 class Following extends Component {
   componentDidMount() {
@@ -30,7 +31,11 @@ class Following extends Component {
     }
       let followerslist = this.props.following.following;
       if (this.props.following.loaded === false) {
-        return <div> Loading .....</div>;
+        return <div> <img
+        src={spinner}
+        style={{ width: '200px', margin: 'auto', display: 'block' }}
+        alt="Loading..."
+      /></div>;
     }
     
       // if (followerslist.includes(this.props.user.id)) {
@@ -43,19 +48,17 @@ class Following extends Component {
           <div className="row">
             <h2>
               Following  {followerslist.length} 
-            <a href="/profile"
+            {/* <a href="/profile"
                
-                className="btn btn-light"
-                Style="margin-left:720px;margin-top:0px;"
+                className="btn"
+                Style="margin-right:0px;margin-top:0px;margin-left:30px"
                
               >
                 Go Back
-            </a>
+            </a> */}
             </h2>
 
-            <br></br>
-            <br></br>
-            <br></br>
+           
 {/* 
             <div className="input-group">
               <div className="input-group-prepend">
@@ -78,12 +81,12 @@ class Following extends Component {
 
             <div className="col-md-12">
               {followerslist.map((user, index) => (
-                <div key={index}>
+                <div className="userlist" key={index}>
                   <img
-                    className="rounded-circle"
+                    className="rounded-circle positionimage"
                     src={user.user.avatar}
                     alt=""
-                    Style="width:15%;"
+                    
                   />
                   <Link to="/profile/other"><span className="followername"
                     onClick={() => {
@@ -97,7 +100,7 @@ class Following extends Component {
                   {nonuser ? (<input
                     type="submit"
                     value="Unfollow"
-                    className="btn btn-info"
+                    className="btn"
                     Style="margin-bottom:10px;"
                     onClick={() => {
                       const userid = { user_id: `${user.user._id}` };

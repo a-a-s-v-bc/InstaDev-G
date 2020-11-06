@@ -20,6 +20,7 @@
     "concurrently": "^5.3.0",
     "express": "^4.17.1",
     "gravatar": "^1.8.1",
+    "images-responsiver": "^1.8.2",
     "jsonwebtoken": "^8.5.1",
     "jwt-decode": "^3.0.0",
     "mongoose": "^5.10.5",
@@ -27,6 +28,7 @@
     "nodemailer-sendgrid-transport": "^0.2.0",
     "passport": "^0.4.1",
     "passport-jwt": "^4.0.0",
+    "react-redux": "^7.2.2",
     "redux": "^4.0.5",
     "redux-thunk": "^2.3.0",
     "validator": "^13.1.1"

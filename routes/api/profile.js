@@ -261,8 +261,36 @@ router.delete(
   passport.authenticate("jwt", { session: false }),
   (req, res) => {
     Profile.findOneAndRemove({ user: req.user.id }).then(() => {
-      User.findOneAndRemove({ _id: req.user.id }).then(() =>
-        res.json({ success: true })
+      User.findOneAndRemove({ _id: req.user.id }).then(() => {
+        Profile.update(
+          { "following": req.user.id },
+          { "$pull": { following: req.user.id } },
+          { "multi": true },
+          function (err, status) {
+            if (err) {
+              console.log(err);
+            }
+            console.log(status);
+          }
+          
+        )
+        Profile.update(
+          { "followers": req.user.id },
+          { "$pull": { followers: req.user.id } },
+          { "multi": true },
+          function (err, status) {
+            if (err) {
+              console.log(err);
+            }
+            //console.log(status);
+          }
+          
+        )
+            
+       
+        res.json({ success: true }) 
+      }
+        
       );
     });
   }

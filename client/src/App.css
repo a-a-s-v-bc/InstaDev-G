@@ -13,6 +13,9 @@
 
 }
 
+#createprofileimage{
+  margin-left: 200px;
+}
 .dark-overlay {
   background-color: transparent;
   position: absolute;
@@ -24,6 +27,7 @@
 
 .card-form {
   opacity: 0.9;
+  border: 2px solid;
 }
 
 .latest-profiles-img {
@@ -67,12 +71,16 @@
   margin-top: 50px;
   width: 150px;
   margin-right: 25px;
+  color:white;
+  background-color: rgb(236, 196, 18);
+  border:1px solid black;
 }
 
 .btn-info{
 background-color:rgb(193, 153, 212);
 border-color:transparent;
-width:200px;
+width:190px;
+
 }
 
 #mobile-nav a{
@@ -98,14 +106,12 @@ color: rgb(236, 196, 18);
   width:100%;
 }
 
-.container {
-  width:100%; 
 
-}
 
 .btn-light{
   background-color: rgb(236, 196, 18);
-  width:200px;
+  width:190px;
+  
   
 }
 
@@ -116,8 +122,8 @@ color: rgb(236, 196, 18);
 
 .positionimage{
   margin-left:50px;
-  width:13%;
-  height:70%;
+  width:170px;
+  height:170px;
   
 }
 
@@ -157,25 +163,31 @@ color: rgb(236, 196, 18);
 .display-4{
   margin-bottom: 0%;
   font-size: 1.5em;
+  margin-left:40px;
 }
 
 .socialicons{
-  margin-left: 45px;
+  margin-left: 40px;
   margin-top:0px;
   
   
 }
 
 .card{
-  height:320px;
-  
+  height:360px;
+  border: 2px solid;
+  overflow:auto;
 }
 
 
 
 .profileheader{
-  width: 137%;
-  margin-left:-200px;
+  width: 139%;
+  margin-left:-220px;
+  margin-top:-22px;
+  
+
+  
 }
 
 .Profilechangeimage{
@@ -228,6 +240,7 @@ color: rgb(236, 196, 18);
   margin-left:20px;
   font-weight: Bold;
   font-size: 1.5em;
+  
 }
 
 .input-group-text{
@@ -267,3 +280,310 @@ color: rgb(236, 196, 18);
   margin-bottom: 20px;
   margin-top:5px;
 }
+
+.post-name{
+  color:rgb(236, 196, 18);
+}
+
+.postbuttons{
+  background-color: rgb(236, 196, 18);
+}
+
+.comments{
+  font-size: 1em;
+  color:black;
+  padding-bottom:6px;
+  border:1px solid black;
+  
+}
+
+.spacing{
+  margin-left: 100px;
+}
+/* 
+  ##Device = Laptops, Desktops
+  ##Screen = B/w 1025px to 1280px
+*/
+
+@media (min-width: 1025px) and (max-width: 1280px) {
+  
+  /* CSS */
+  .col-lap-3{
+    width:100%;
+    float:left;
+   
+  }
+}
+
+/* 
+  ##Device = Tablets, Ipads (portrait)
+  ##Screen = B/w 768px to 1024px
+*/
+
+@media (min-width: 768px) and (max-width: 1024px) {
+  
+  /* CSS */
+  .btn,.display-4,.card,.profileheader,.positionimage,.btn-group,.socialicons,.text-left,#createprofileimage,.spacing,.form-group,#socialsitesinput,.btn-block,.col-md-12{
+  
+  
+    display:block;
+   
+    margin-right:0px;
+   
+  }
+  .col-md-12{
+    margin-left:-35px;
+    margin-top:30px;
+  
+  }
+  .card{
+    width:760px;
+    height: 400px;
+    overflow:auto;
+    
+    
+  }
+  .btn{
+    margin-top:0px;
+    color:white;
+    background-color: rgb(236, 196, 18);
+    border:1px solid black;
+    width:250px;
+    font-size:1em;
+  }
+  .display-4 {
+    margin-left:0px;
+    font-size:1em;
+  }
+  .profileheader{
+    width:450px;
+    margin-left:-40px;
+    height:350px;
+  }
+  .positionimage{
+   margin-left:10px;
+   width:200px;
+   height:200px;
+   margin-top:10px;
+  }
+  .btn-group{
+    float:right;
+    margin-left:300px;
+    width:200px;
+    height:100px;
+    font-size: 1.5em;
+
+  }
+  .socialicons{
+    margin-left:30px;
+    width:100px;
+  }
+  .text-left{
+    margin-left:20px;
+  }
+  #createprofileimage{
+    margin-left:50px;
+  }
+  .spacing{
+    margin-left:0px;
+  }
+  .form-group {
+    width:300px;
+    margin-left:10px;
+  }
+ #socialsitesinput{
+   width:1500px;
+ }
+ 
+ .btn-block{
+   width:300px;
+   display:inline-block;
+ }
+}
+
+
+/* 
+  ##Device = Most of the Smartphones Mobiles (Portrait)
+  ##Screen = B/w 320px to 479px
+*/
+
+@media (min-width: 320px) and (max-width: 480px) {
+  
+  /* CSS */
+  .col-xl-12 ,.btn-info,.btn-light,.lead,
+  .bg-dark,.landing,.post-image-size,.post-text-left,.col-md-10,
+  .card,.col-md-2,.comments, .postbuttons,.post-name,.profileheader,
+  .positionimage,.container,.btn-group,.btn,.display-4 ,h2,.searchicon,.followername,
+  .userlist,#createprofileimage,.spacing,.form-group,.socialicons,.text-value{
+   
+ 
+    display:block;
+   
+    margin-right:0px;
+
+  
+  }
+  .lead{
+    font-size:0.4em;
+    margin-right:50px;
+    float:center;
+   
+  }
+  .socialicons{
+    margin-left:0px;
+    width:100px;
+  }
+  .bg-dark{
+    width:350px;
+  }
+
+  .form-group {
+    width:300px;
+    margin-left:10px;
+  }
+  
+  .comments{
+    font-size: 1em;
+    color:black;
+    padding-bottom:6px;
+    
+  }
+  .col-xl-12{
+    font-size: 0.4em;
+    margin-top:-100px;
+  }
+
+ .btn-info{
+   width:80px;
+   font-size:1.5em;
+   font-weight: bold;
+   text-align: center;
+   margin-top:0px;
+   
+ }
+ .btn-light{
+   width:80px;
+   font-size:1.5em;
+   font-weight:bold;
+   text-align: center;
+   margin-top:0px;
+ 
+ }
+
+ .landing{
+  
+  background-size: 50%;
+  width:100%;
+  height: 350px;
+  margin-top:100px;
+ }
+ .post-image-size{
+   width:100px;
+   height:100px;
+ }
+ .post-text-left{
+   font-size:1em;
+   float:left;
+   width:150px;
+   margin-left:20px;
+   margin-bottom:10px;
+  
+ }
+ .post-name{
+  font-size:1em;
+  
+  width:70px;
+  margin-left:0px;
+ }
+
+ .col-md-10{
+   width:300px;
+   height:300px;
+   margin-top:-100px;
+   margin-left:60px;
+  
+   
+ }
+ .card{
+   width:320px;
+   height: 200px;
+   overflow:auto;
+ }
+ .col-md-2{
+   float:left;
+   margin-left:0px;
+   padding-left:0px;
+ }
+ .postbuttons{
+   background-color: rgb(236, 196, 18);
+   float:left;
+ }
+
+ .profileheader{
+   width:350px;
+   margin-left:0px;
+   height:250px;
+ }
+ .positionimage{
+  margin-left:10px;
+  width:100px;
+  height:100px;
+  margin-top:10px;
+ }
+ .container{
+   padding-left:0px;
+   padding-right:0px;
+   
+ }
+ .btn-group{
+  float:right;
+  margin-left:200px;
+  width:100px;
+  height:100px;
+  margin-top:-150px;
+}
+.btn{
+  margin-top:0px;
+  color:white;
+  background-color: rgb(236, 196, 18);
+  border:1px solid black;
+  
+}
+.display-4 {
+  margin-left:0px;
+  font-size:1em;
+}
+h2{
+  margin-left:30px;
+}
+.searchicon{
+  margin-left:20px;
+  
+}
+.followername{
+  width:50px;
+  height:50px;
+  float:left;
+  
+
+}
+.userlist{
+  width:300px;
+height:100px;
+margin-bottom:100px;
+float:left;
+
+}
+#createprofileimage{
+  margin-left:100px;
+}
+.spacing{
+  margin-left:0px;
+}
+.text-value{
+margin-top:10px;
+margin-left:50px;
+color:rgb(236, 196, 18);
+}
+}
+

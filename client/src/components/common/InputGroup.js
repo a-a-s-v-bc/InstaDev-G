@@ -9,6 +9,7 @@ const InputGroup = ({
   error,
   icon,
   type,
+  id,
   onChange
 }) => {
   return (
@@ -26,6 +27,7 @@ const InputGroup = ({
         name={name}
         value={value}
         onChange={onChange}
+        id="socialsitesinput"
       />
       {error && <div className="invalid-feedback">{error}</div>}
     </div>

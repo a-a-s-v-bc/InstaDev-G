@@ -82,7 +82,7 @@ fileUploadHandler = () => {
         <div className="card card-body">
           <div>
             <h2>Create your post!</h2>
-            <h5>Select an image, upload it, give it a title, and submit!</h5>
+            <h5>For Image upload - Give a title, Select an image, upload it, and submit!</h5>
           </div>
           <div className="card-body">
             <form onSubmit={this.onSubmit}>
@@ -97,12 +97,12 @@ fileUploadHandler = () => {
               </div>
               <button
                 type="submit"
-                className="btn btn-light"
+                className="btn"
                 Style="width:180px;"
               >
                 Submit
               </button>
-
+              </form>
               <div className="form-group">
                 <input
                   style={{ display: "none" }}
@@ -110,26 +110,28 @@ fileUploadHandler = () => {
                   onChange={this.fileSelectedHandler}
                   ref={(fileInput) => (this.fileInput = fileInput)}
                 />
-                <div>
+              <div>
+                {this.state.image ? <img src={this.state.image} alt="" Style="width:120px;
+  height:100px;"></img> : ""}
                   <button
                     type="button"
                     onClick={this.fileUploadHandler}
-                    className="btn btn-light"
-                    Style="width:180px;"
+                    className="btn"
+                    
                   >
                     Upload Image
                   </button>
 
                   <button
-                    className="btn btn-light"
+                    className="btn"
                     onClick={() => this.fileInput.click()}
-                    Style="width:180px;"
+              
                   >
                     Select Image
                   </button>
                 </div>
               </div>
-            </form>
+            
           </div>
         </div>
       </div>

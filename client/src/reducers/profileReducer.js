@@ -1,4 +1,4 @@
-import { GET_PROFILE, SET_CURRENT_USER, GET_PROFILES,GET_OTHERUSER_PROFILE } from "../actions/types";
+import { GET_PROFILE, SET_CURRENT_USER, GET_PROFILES,GET_OTHERUSER_PROFILE ,CLEAR_OTHERS_PROFILE} from "../actions/types";
 
 const initialState = {
   profile: {
@@ -38,11 +38,18 @@ export default function (state = initialState, action) {
     case GET_OTHERUSER_PROFILE:
       return {
         ...state,
-        OtherUserProfile:{
+        OtherUserProfile: {
           ...action.payload,
           loaded: true,
         },
         
+      };
+    case CLEAR_OTHERS_PROFILE:
+      return {
+        ...state,
+        OtherUserProfile: {
+          loaded:false,
+        },
       }
     default:
       return state;

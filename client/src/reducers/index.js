@@ -6,6 +6,7 @@ import followingReducer from './followingReducer';
 import profileReducer from './profileReducer';
 import postReducer from "./postReducer";
 
+
 export default combineReducers({
   auth: authReducer,
   errors: errorReducer,
