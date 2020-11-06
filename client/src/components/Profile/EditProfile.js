@@ -247,7 +247,7 @@ onDeleteClick(e) {
         </a>
         <div className="container">
           <div className="row">
-            <div className="col-md-8 m-auto">
+            <div className="col-lg-8 m-auto">
               <h1
                 className="display-4 text-center"
                 Style="font-weight:bold; margin-top:10px;"

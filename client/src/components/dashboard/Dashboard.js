@@ -32,7 +32,7 @@ class Posts extends Component {
         <div className="container" >
           <div className="row">
  
-          <a href="/profile/createProfile" className="btn" Style="margin-left:20px;width:400px;margin-bottom:50px;">
+          <a href="/profile/createProfile" className="btn" Style="margin-left:0px;width:400px;margin-bottom:50px;">
             <i className="fas fa-user-circle  mr-1"></i> Create Profile</a>
             </div>
             

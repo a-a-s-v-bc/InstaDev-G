@@ -99,7 +99,7 @@ function refreshPage() {
               <div className="btn-group mb-4" role="group">
               <div Style="margin-top:55px;">
                   <i className="fas fa-mail-bulk  mr-1"></i>
-                  {this.props.post.userposts.length} Posts</div>
+                  {this.props.post.userposts.length} Posts &nbsp;</div>
                 <Link to="/profile/editProfile" className="btn" Style="margin-right:0px;">
                   <i className="fas fa-user-circle  mr-1"></i> Edit Profile</Link>
                 
@@ -173,7 +173,7 @@ function refreshPage() {
         <br></br>
         <br></br>
        
-        <p Style="background-color:white;" onClick={refreshPage}> {postContent}</p>
+        <div className="col-md-12" Style="background-color:white;" onClick={refreshPage}> {postContent}</div>
          
 
       </div>

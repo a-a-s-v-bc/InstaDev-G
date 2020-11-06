@@ -53,7 +53,13 @@ class PostItem extends Component {
                       console.log("handle before calling", handle);
                       if (auth.user.id === post.user) {
                         //this.props.getCurrentProfile();
-                        window.location.href = "http://localhost:3000/profile";
+                        if (process.env.NODE_ENV === 'production') {
+                          window.location.href = "https://pacific-island-78597.herokuapp.com/profile";
+                        } else {
+                          window.location.href = "http://localhost:3000/profile";
+                        
+                        }
+
                       } else {
                         
                         this.props.getOthersProfile(handle);

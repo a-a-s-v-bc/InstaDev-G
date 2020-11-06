@@ -102,7 +102,7 @@ class OthersProfile extends Component {
               <div className="btn-group mb-4" role="group">
                 <div Style="margin-top:55px;">
                   <i className="fas fa-mail-bulk  mr-1"></i>
-                  {this.props.post.userposts.length} Posts
+                  {this.props.post.userposts.length} Posts &nbsp;
                 </div>
                 <Link
                   to={`/profile/followers/${this.props.profile.OtherUserProfile.user._id}`}

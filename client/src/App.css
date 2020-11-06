@@ -167,16 +167,16 @@ color: rgb(236, 196, 18);
 }
 
 .socialicons{
-  margin-left: 45px;
+  margin-left: 40px;
   margin-top:0px;
   
   
 }
 
 .card{
-  height:320px;
+  height:360px;
   border: 2px solid;
-  
+  overflow:auto;
 }
 
 
@@ -323,10 +323,82 @@ color: rgb(236, 196, 18);
 @media (min-width: 768px) and (max-width: 1024px) {
   
   /* CSS */
-  .col-tab-3{
-    width:100%;
+  .btn,.display-4,.card,.profileheader,.positionimage,.btn-group,.socialicons,.text-left,#createprofileimage,.spacing,.form-group,#socialsitesinput,.btn-block,.col-md-12{
+  
+  
+    display:block;
+   
+    margin-right:0px;
    
   }
+  .col-md-12{
+    margin-left:-35px;
+    margin-top:30px;
+  
+  }
+  .card{
+    width:760px;
+    height: 400px;
+    overflow:auto;
+    
+    
+  }
+  .btn{
+    margin-top:0px;
+    color:white;
+    background-color: rgb(236, 196, 18);
+    border:1px solid black;
+    width:250px;
+    font-size:1em;
+  }
+  .display-4 {
+    margin-left:0px;
+    font-size:1em;
+  }
+  .profileheader{
+    width:450px;
+    margin-left:-40px;
+    height:350px;
+  }
+  .positionimage{
+   margin-left:10px;
+   width:200px;
+   height:200px;
+   margin-top:10px;
+  }
+  .btn-group{
+    float:right;
+    margin-left:300px;
+    width:200px;
+    height:100px;
+    font-size: 1.5em;
+
+  }
+  .socialicons{
+    margin-left:30px;
+    width:100px;
+  }
+  .text-left{
+    margin-left:20px;
+  }
+  #createprofileimage{
+    margin-left:50px;
+  }
+  .spacing{
+    margin-left:0px;
+  }
+  .form-group {
+    width:300px;
+    margin-left:10px;
+  }
+ #socialsitesinput{
+   width:1500px;
+ }
+ 
+ .btn-block{
+   width:300px;
+   display:inline-block;
+ }
 }
 
 
@@ -433,7 +505,7 @@ color: rgb(236, 196, 18);
    
  }
  .card{
-   width:340px;
+   width:320px;
    height: 200px;
    overflow:auto;
  }
