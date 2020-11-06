@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-//import MediaQuery from 'react-responsive';
-//import { useMediaQuery } from 'react-responsive'
+
 
 class Landing extends Component {
   render() {

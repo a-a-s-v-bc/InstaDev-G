@@ -48,7 +48,7 @@ class Register extends Component {
       <div className="row">
         <div className="col-md-8 m-auto">
           <h1 className="display-3 text-center" Style="font-weight:Bold">Sign Up</h1>
-          <h3 className="text-left">Create an account</h3>
+          <h3 className="text-value">Create an account</h3>
           <form onSubmit={this.onSubmit}>
           <div className="form-group">
         <input type="text" className={classnames("form-control form-control-lg", {"is-invalid":errors.name})} placeholder="Name" name="name" 
