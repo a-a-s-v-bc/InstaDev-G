@@ -102,7 +102,7 @@ router.post("/confirmEmail", (req, res) => {
        // User.expiretoken = Date.now() + 3600000; 
        // User.save()
        
-        const url = `https://pacific-island-78597.herokuapp.com/${userid}`;
+        const url = `https://pacific-island-78597.herokuapp.com/ConfirmEmail/${userid}`;
         console.log("url:", url);
         console.log("id", userid);
             transporter.sendMail({
