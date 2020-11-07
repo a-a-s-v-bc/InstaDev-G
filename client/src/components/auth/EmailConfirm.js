@@ -12,7 +12,7 @@ class EmailConfirm extends Component {
     return (
       <div className="container">
         <div className="row">
-        <Link to="/login" className="btn" Style="margin-left:0px;width:400px;margin-bottom:50px;"
+        <Link to="/login" className="btn" Style="margin-left:20px;width:400px;margin-bottom:50px;"
        
        onClick={() =>
          axios
