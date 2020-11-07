@@ -23,6 +23,10 @@ const UserSchema = new Schema({
     type: String,
     required: false,
   },
+  confirmEmail: {
+    type: Boolean,
+    required: false,
+  },
   date: {
     type: Date,
     default: Date.now,

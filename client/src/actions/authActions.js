@@ -1,5 +1,5 @@
 import { SET_USER } from "./types";
-import { SET_ERROR } from "./types";
+import { SET_ERROR ,CLEAR_ERRORS} from "./types";
 import axios from "axios";
 import setAuthToken from '../utils/setAuthToken';
 import jwt_decode from 'jwt-decode';
@@ -8,7 +8,14 @@ import jwt_decode from 'jwt-decode';
 export const registerUser = (userData, history) => dispatch => {
   axios
     .post('/api/users/register', userData)
-    .then(res => history.push('/login'))
+    .then(res => {
+      axios
+        .post('/api/users/confirmEmail',res)
+        .then(res => history.push('/login'))
+        .catch(err => console.log(err)
+          )
+     
+    })
     .catch(err =>
       dispatch({
         type: SET_ERROR,
@@ -19,7 +26,7 @@ export const registerUser = (userData, history) => dispatch => {
 };
 
 export const loginUser=userData => dispatch=> {
-
+  dispatch(clearErrors());
   axios
     .post("/api/users/login", userData)
     .then((res)=> {
@@ -125,3 +132,10 @@ export const logoutUser=()=> dispatch=>{
     payload: {},
   });
 }
+
+// Clear errors
+export const clearErrors = () => {
+  return {
+    type: CLEAR_ERRORS,
+  };
+};
