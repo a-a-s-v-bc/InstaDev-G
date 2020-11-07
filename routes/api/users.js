@@ -77,6 +77,82 @@ router.post("/resetpassword", (req, res) => {
   });
 });
 
+//confirm email address 
+
+router.post("/confirmEmail", (req, res) => {
+  // create token
+ 
+    // if (err) {
+    //   console.log(err);
+    // }
+    // const mailtoken = buffer.toString("hex");
+     console.log("res email is ", req.body);
+  const email = req.body.data.email;
+  const userid = req.body.data._id;
+
+    User.findOne({ email })
+      .then((User) => {
+        if (!User) {
+          return res.status(404).json({ email: "User not found" });
+        }
+        console.log("user found");
+ 
+        //save token with a expiration time
+       // User.resettoken = mailtoken;
+       // User.expiretoken = Date.now() + 3600000; 
+       // User.save()
+       
+        const url = `https://pacific-island-78597.herokuapp.com/${userid}`;
+        console.log("url:", url);
+        console.log("id", userid);
+            transporter.sendMail({
+              to: User.email,
+              from: "instadevg@gmail.com",
+              subject: " Confirm the Email Address",
+              html:
+                '<p>You are receiving this because we want to confirm your email address </p> <p> Click this <a href="'+url+'">link </a> please click this link</p>',
+                  
+              });
+        console.log("email sent");
+        return res.json({ success: 'email sent' });
+          })
+          .catch((err) => console.log(err));
+
+                      
+          // if (User) {
+          //   var redir = { redirect: "/emailtextsent" };
+          //   return res.json(redir);
+          // }
+    
+
+   
+  });
+
+
+
+//Setting the confirm email value
+
+router.post(`/setconfirmEmail/:userid`, (req, res) => {
+
+
+
+  const userid = req.params.userid;
+
+  //Find user with email
+
+  User.findOne({ _id:userid })
+    .then((user) => {
+      if (!user) {
+        return res.status(404).json({ email: "User not Found" });
+      }
+      user.confirmEmail = true;
+      user.save();
+    })
+
+    .catch((err) => console.log(err));
+});
+
+
 //@route  POST/api/users/register
 //@desc   registers the user
 //@access public
@@ -106,6 +182,7 @@ router.post("/register", (req, res) => {
           email: req.body.email,
           avatar: avatar,
           password: req.body.password,
+          confirmEmail: false,
         });
 
         bcrypt.genSalt(10, (err, salt) => {
@@ -144,6 +221,10 @@ router.post("/login", (req, res) => {
     .then((user) => {
       if (!user) {
         return res.status(404).json({ email: "User not Found" });
+      }
+      // check confirmemail is set
+      if (!user.confirmEmail) {
+        return res.status(404).json({ email: "Confirm Email Address, by clicking the link sent to your inbox" });
       }
 
       //check password

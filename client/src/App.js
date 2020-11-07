@@ -16,6 +16,7 @@ import Following from './components/Profile/Following';
 import Resetpassword from './components/auth/Resetpassword';
 import Passwordreset from './components/auth/Passwordreset';
 import EmailSentText from "./components/auth/EmailSentText";
+import EmailConfirm from "./components/auth/EmailConfirm";
 import jwt_decode from 'jwt-decode';
 import { logoutUser } from './actions/authActions';
 import setAuthToken from './utils/setAuthToken';
@@ -74,6 +75,7 @@ class App extends Component {
           <Route exact path="/resetpassword" component={Resetpassword} />
           <Route exact path="/forgotpassword/:token" component={Passwordreset} />
           <Route exact path="/emailsenttext" component={EmailSentText} />
+          <Route exact path="/ConfirmEmail/:userid" component={EmailConfirm} />
           <Switch>
           <PrivateRoute exact path="/Dashboard" component={Dashboard} />
           </Switch>
